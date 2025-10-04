@@ -41,9 +41,7 @@ export default function AdminContributionsPage() {
   const [contributions, setContributions] = useState<ContributionWithFarmer[]>(
     []
   )
-  const [filter, setFilter] = useState<'all' | 'pending' | 'verified'>(
-    'pending'
-  )
+  const [filter, setFilter] = useState<'all' | 'pending' | 'verified'>('pending')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedContribution, setSelectedContribution] =
     useState<ContributionWithFarmer | null>(null)
@@ -417,7 +415,9 @@ export default function AdminContributionsPage() {
                     {!contribution.verified ? (
                       <>
                         <button
-                          onClick={() => handleVerify(contribution.id, true)}
+                          onClick={() =>
+                            handleVerify(contribution.id, true)
+                          }
                           disabled={processingId === contribution.id}
                           className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                         >
@@ -425,7 +425,9 @@ export default function AdminContributionsPage() {
                           Aprobar
                         </button>
                         <button
-                          onClick={() => handleVerify(contribution.id, false)}
+                          onClick={() =>
+                            handleVerify(contribution.id, false)
+                          }
                           disabled={processingId === contribution.id}
                           className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                         >
@@ -435,7 +437,9 @@ export default function AdminContributionsPage() {
                       </>
                     ) : (
                       <button
-                        onClick={() => handleVerify(contribution.id, false)}
+                        onClick={() =>
+                          handleVerify(contribution.id, false)
+                        }
                         disabled={processingId === contribution.id}
                         className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                       >
@@ -517,7 +521,9 @@ export default function AdminContributionsPage() {
                         : 'text-orange-500'
                     }`}
                   >
-                    {selectedContribution.verified ? 'Verificada' : 'Pendiente'}
+                    {selectedContribution.verified
+                      ? 'Verificada'
+                      : 'Pendiente'}
                   </p>
                 </div>
 
@@ -526,9 +532,9 @@ export default function AdminContributionsPage() {
                     Fecha de Creación
                   </label>
                   <p className="text-gray-900 dark:text-white">
-                    {new Date(selectedContribution.created_at).toLocaleString(
-                      'es-MX'
-                    )}
+                    {new Date(
+                      selectedContribution.created_at
+                    ).toLocaleString('es-MX')}
                   </p>
                 </div>
               </div>

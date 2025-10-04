@@ -46,7 +46,10 @@ export async function PATCH(
 
     if (roleError || !roleData) {
       return NextResponse.json(
-        { error: 'Acceso denegado. Solo administradores pueden verificar contribuciones.' },
+        {
+          error:
+            'Acceso denegado. Solo administradores pueden verificar contribuciones.',
+        },
         { status: 403 }
       )
     }
@@ -159,10 +162,7 @@ export async function GET(
     // Verificar autenticación y rol admin
     const authHeader = request.headers.get('authorization')
     if (!authHeader) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      )
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
     }
 
     const token = authHeader.replace('Bearer ', '')
@@ -172,10 +172,7 @@ export async function GET(
     } = await supabase.auth.getUser(token)
 
     if (authError || !user) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      )
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
     }
 
     // Verificar rol admin
@@ -187,22 +184,21 @@ export async function GET(
       .single()
 
     if (roleError || !roleData) {
-      return NextResponse.json(
-        { error: 'Acceso denegado' },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: 'Acceso denegado' }, { status: 403 })
     }
 
     // Obtener historial de verificaciones
     const { data, error } = await supabase
       .from('contribution_verifications')
-      .select(`
+      .select(
+        `
         *,
         verifier:verified_by (
           email,
           raw_user_meta_data
         )
-      `)
+      `
+      )
       .eq('contribution_id', contributionId)
       .order('created_at', { ascending: false })
 
@@ -220,9 +216,6 @@ export async function GET(
     })
   } catch (error) {
     console.error('Unexpected error:', error)
-    return NextResponse.json(
-      { error: 'Error inesperado' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Error inesperado' }, { status: 500 })
   }
 }

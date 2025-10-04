@@ -224,6 +224,7 @@
 ### 9. Responsive Design
 
 #### Desktop (>1024px)
+
 ```
 ┌──────────────────────────────────────────────────────────┐
 │  [Estadísticas en 3 columnas]                            │
@@ -234,6 +235,7 @@
 ```
 
 #### Tablet (768px - 1024px)
+
 ```
 ┌────────────────────────────────────────┐
 │  [Estadísticas en 2 columnas]          │
@@ -245,6 +247,7 @@
 ```
 
 #### Mobile (<768px)
+
 ```
 ┌─────────────────────────┐
 │  [Stats vertical]       │
@@ -334,6 +337,7 @@
 ## 🎨 Paleta de Colores
 
 ### Principales
+
 - **Verde Primary:** `#10b981` (green-500)
 - **Naranja Warning:** `#f59e0b` (orange-500)
 - **Rojo Danger:** `#ef4444` (red-500)
@@ -341,11 +345,13 @@
 - **Púrpura:** `#a855f7` (purple-500)
 
 ### Estados
+
 - **Pendiente:** Naranja (#f59e0b)
 - **Verificada:** Verde (#10b981)
 - **Rechazada:** Rojo (#ef4444)
 
 ### Backgrounds
+
 - **Light:** White (#ffffff)
 - **Dark:** Gray-800 (#1f2937)
 - **Gradient Light:** green-50 to blue-50
@@ -356,6 +362,7 @@
 ## 📱 Interacciones
 
 ### Hover Effects
+
 ```
 Botón Normal:     bg-green-500
 Botón Hover:      bg-green-600
@@ -363,6 +370,7 @@ Transición:       transition-colors (150ms)
 ```
 
 ### Click Effects
+
 ```
 Estado Normal:    shadow-sm
 Estado Hover:     shadow-md
@@ -370,6 +378,7 @@ Estado Active:    scale-95
 ```
 
 ### Focus States
+
 ```
 Input Focus:      ring-2 ring-green-500
 Button Focus:     outline outline-2 outline-green-500
@@ -380,26 +389,43 @@ Button Focus:     outline outline-2 outline-green-500
 ## ✨ Animaciones
 
 ### Loading Spinner
+
 ```css
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 ```
 
 ### Fade In
+
 ```css
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 ```
 
 ### Slide Up
+
 ```css
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 ```
 
@@ -436,6 +462,7 @@ Mostrar éxito
 ## 🖥️ Componentes UI
 
 ### Card de Contribución
+
 ```tsx
 <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
   {/* Contenido */}
@@ -443,6 +470,7 @@ Mostrar éxito
 ```
 
 ### Badge de Estado
+
 ```tsx
 <span className="px-3 py-1 rounded-full text-sm font-medium">
   {/* Estado */}
@@ -450,6 +478,7 @@ Mostrar éxito
 ```
 
 ### Botón de Acción
+
 ```tsx
 <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
   {/* Acción */}
@@ -491,6 +520,7 @@ Mostrar éxito
 ## 🎉 Estado Final
 
 El panel de administrador tiene:
+
 - ✅ UI moderna y profesional
 - ✅ Responsive en todos los dispositivos
 - ✅ Dark mode completo

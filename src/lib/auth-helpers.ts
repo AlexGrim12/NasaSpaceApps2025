@@ -36,9 +36,7 @@ export async function isAdmin(user: User | null): Promise<boolean> {
 /**
  * Obtiene todos los roles de un usuario
  */
-export async function getUserRoles(
-  userId: string
-): Promise<string[] | null> {
+export async function getUserRoles(userId: string): Promise<string[] | null> {
   try {
     const { data, error } = await supabase
       .from('user_roles')

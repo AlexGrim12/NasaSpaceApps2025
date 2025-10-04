@@ -30,7 +30,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 
 ```sql
 -- Ver lista de admins
-SELECT u.email, ur.granted_at 
+SELECT u.email, ur.granted_at
 FROM public.user_roles ur
 JOIN auth.users u ON u.id = ur.user_id
 WHERE ur.role = 'admin';
@@ -58,22 +58,26 @@ WHERE ur.role = 'admin';
 ## 🎯 ¿Qué Puedes Hacer?
 
 ### ✅ Aprobar Contribuciones
+
 - Ve contribuciones pendientes
 - Clic en **Ver Detalles**
 - Clic en **✅ Aprobar**
 - Los puntos se otorgan automáticamente
 
 ### ❌ Rechazar Contribuciones
+
 - Clic en **❌ Rechazar**
 - La contribución permanece sin verificar
 - No se otorgan puntos
 
 ### 🔄 Revocar Verificaciones
+
 - Para contribuciones ya verificadas
 - Clic en **🔄 Revocar Verificación**
 - Los puntos se recalculan automáticamente
 
 ### 🔍 Buscar y Filtrar
+
 - **Buscar:** Por nombre, email o descripción
 - **Filtros:** Todas | Pendientes | Verificadas
 - **Stats:** Ver totales en tiempo real
@@ -85,11 +89,14 @@ WHERE ur.role = 'admin';
 ### ❌ "No veo el botón Admin"
 
 **Solución:**
+
 1. Verifica que ejecutaste el SQL
 2. Verifica que tienes rol admin:
+
 ```sql
 SELECT public.is_admin(auth.uid());
 ```
+
 3. Cierra sesión y vuelve a entrar
 
 ---
@@ -97,10 +104,13 @@ SELECT public.is_admin(auth.uid());
 ### ❌ "Error 403: Acceso Denegado"
 
 **Solución:**
+
 1. Ejecuta de nuevo:
+
 ```sql
 SELECT public.make_user_admin('tu-email@ejemplo.com');
 ```
+
 2. Cierra sesión
 3. Inicia sesión nuevamente
 
@@ -109,6 +119,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 ### ❌ "No se cargan las contribuciones"
 
 **Solución:**
+
 1. Verifica que tienes contribuciones creadas
 2. Como agricultor, ve a `/contributions` y crea una
 3. Refresca el panel admin
@@ -118,6 +129,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 ## 📊 Flujo Completo de Prueba
 
 ### Como Agricultor:
+
 1. Login como agricultor
 2. Ve a **Contribuir** (navbar)
 3. Crea una contribución:
@@ -127,6 +139,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 5. Verás estado: **⏳ Pendiente**
 
 ### Como Admin:
+
 1. Clic en **🛡️ Admin** (navbar)
 2. Verás la contribución en "Pendientes"
 3. Clic en **Ver Detalles**
@@ -134,6 +147,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 5. ¡Listo! El agricultor recibe sus puntos
 
 ### Verificar Resultado:
+
 1. Como agricultor, ve a **Dashboard**
 2. Verás tus puntos actualizados
 3. En **Mis Contribuciones** verás: **✅ Verificada**
@@ -155,7 +169,7 @@ SELECT * FROM contributions WHERE verified = false;
 SELECT * FROM contributions WHERE verified = true;
 
 -- Ver historial de verificaciones
-SELECT * FROM contribution_verifications 
+SELECT * FROM contribution_verifications
 ORDER BY created_at DESC LIMIT 10;
 
 -- Remover admin (si te equivocaste)
@@ -181,6 +195,7 @@ AND role = 'admin';
 ## 🎉 ¡Todo Listo!
 
 Ahora tienes un panel de administrador completo para:
+
 - ✅ Verificar contribuciones de agricultores
 - ✅ Aprobar o rechazar submissions
 - ✅ Ver estadísticas en tiempo real
@@ -190,4 +205,4 @@ Ahora tienes un panel de administrador completo para:
 
 ---
 
-*Tiempo total de setup: ~5 minutos* ⏱️
+_Tiempo total de setup: ~5 minutos_ ⏱️

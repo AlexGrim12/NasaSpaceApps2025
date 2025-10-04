@@ -9,6 +9,7 @@ Sistema completo de administración para verificar contribuciones de agricultore
 ## ✨ Características
 
 ### ✅ Panel de Control
+
 - Lista de todas las contribuciones (pendientes/verificadas)
 - Búsqueda en tiempo real
 - Filtros por estado
@@ -17,6 +18,7 @@ Sistema completo de administración para verificar contribuciones de agricultore
 - Interfaz responsive y moderna
 
 ### ✅ Sistema de Seguridad
+
 - Autenticación requerida
 - Verificación de rol admin
 - Protección de rutas API
@@ -24,8 +26,9 @@ Sistema completo de administración para verificar contribuciones de agricultore
 - Logs de auditoría
 
 ### ✅ Acciones de Admin
+
 - ✅ Aprobar contribuciones
-- ❌ Rechazar contribuciones  
+- ❌ Rechazar contribuciones
 - 🔄 Revocar verificaciones
 - 📊 Ver historial completo
 - 👤 Ver información del agricultor
@@ -48,6 +51,7 @@ CREATE TABLE public.user_roles (
 ```
 
 **Roles disponibles:**
+
 - `admin`: Acceso total al panel de administración
 - `farmer`: Agricultor estándar
 - `researcher`: Investigador
@@ -80,6 +84,7 @@ CREATE TABLE public.contribution_verifications (
 ```
 
 Este script crea:
+
 - ✅ Tabla `user_roles`
 - ✅ Tabla `contribution_verifications`
 - ✅ Políticas RLS
@@ -97,6 +102,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 ```
 
 **Respuesta esperada:**
+
 ```
 "Usuario tu-email@ejemplo.com es ahora administrador"
 ```
@@ -105,7 +111,7 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 
 ```sql
 -- Ver todos los admins
-SELECT u.email, ur.granted_at 
+SELECT u.email, ur.granted_at
 FROM public.user_roles ur
 JOIN auth.users u ON u.id = ur.user_id
 WHERE ur.role = 'admin';
@@ -128,6 +134,7 @@ WHERE ur.role = 'admin';
 Verifica o revoca una contribución.
 
 **Headers:**
+
 ```typescript
 {
   "Authorization": "Bearer <session_token>",
@@ -136,6 +143,7 @@ Verifica o revoca una contribución.
 ```
 
 **Body:**
+
 ```typescript
 {
   "verified": boolean,  // true = aprobar, false = rechazar
@@ -144,6 +152,7 @@ Verifica o revoca una contribución.
 ```
 
 **Respuesta Exitosa (200):**
+
 ```json
 {
   "success": true,
@@ -157,6 +166,7 @@ Verifica o revoca una contribución.
 ```
 
 **Errores:**
+
 - `401`: No autenticado
 - `403`: No es admin
 - `404`: Contribución no encontrada
@@ -167,6 +177,7 @@ Verifica o revoca una contribución.
 Obtiene el historial de verificaciones de una contribución.
 
 **Headers:**
+
 ```typescript
 {
   "Authorization": "Bearer <session_token>"
@@ -174,6 +185,7 @@ Obtiene el historial de verificaciones de una contribución.
 ```
 
 **Respuesta:**
+
 ```json
 {
   "success": true,
@@ -203,6 +215,7 @@ Obtiene el historial de verificaciones de una contribución.
 **URL:** `http://localhost:3000/admin/contributions`
 
 **Requisitos:**
+
 - ✅ Usuario autenticado
 - ✅ Rol de admin asignado
 - ✅ Sesión activa
@@ -210,18 +223,22 @@ Obtiene el historial de verificaciones de una contribución.
 ### Flujo de Verificación
 
 1. **Ver Contribuciones Pendientes**
+
    - El panel muestra automáticamente contribuciones pendientes
    - Usa filtros: "Todas", "Pendientes", "Verificadas"
 
 2. **Buscar Contribución**
+
    - Busca por nombre de agricultor, email o descripción
    - Búsqueda en tiempo real
 
 3. **Ver Detalles**
+
    - Clic en "Ver Detalles" para información completa
    - Revisa tipo, descripción, puntos y agricultor
 
 4. **Aprobar/Rechazar**
+
    - **Aprobar:** ✅ Marca como verificada y otorga puntos
    - **Rechazar:** ❌ Mantiene sin verificar, no otorga puntos
    - **Revocar:** 🔄 Quita verificación de una aprobada
@@ -238,11 +255,13 @@ Obtiene el historial de verificaciones de una contribución.
 ### Niveles de Protección
 
 1. **Frontend:**
+
    - Verificación de rol con `isAdmin()`
    - Redirección si no es admin
    - Estado de loading durante verificación
 
 2. **API:**
+
    - Token de sesión requerido
    - Validación de rol admin en cada request
    - Error 403 si no es admin
@@ -285,6 +304,7 @@ El panel muestra en tiempo real:
 ### No veo el botón "Admin" en navbar
 
 **Solución:**
+
 ```sql
 -- Verificar si tienes rol admin
 SELECT public.is_admin(auth.uid());
@@ -298,11 +318,13 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 ### Error 403: Acceso Denegado
 
 **Causas comunes:**
+
 1. No tienes rol admin asignado
 2. Sesión expirada
 3. No ejecutaste el script SQL
 
 **Solución:**
+
 ```bash
 # 1. Verificar en Supabase que exista la tabla user_roles
 # 2. Verificar que tu usuario tenga rol admin
@@ -312,8 +334,10 @@ SELECT public.make_user_admin('tu-email@ejemplo.com');
 ### Las contribuciones no se actualizan
 
 **Solución:**
+
 1. Verifica que el trigger `update_ranking_on_verification` esté activo
 2. Ejecuta manualmente:
+
 ```sql
 SELECT update_farmer_ranking('farmer_id_aqui');
 ```
@@ -336,8 +360,8 @@ En `/src/app/admin/contributions/page.tsx`:
 ```typescript
 const getTypeColor = (type: string) => {
   const colors: Record<string, string> = {
-    drought_report: 'bg-red-500/10 text-red-500',      // Cambiar aquí
-    pest_report: 'bg-orange-500/10 text-orange-500',   // Cambiar aquí
+    drought_report: 'bg-red-500/10 text-red-500', // Cambiar aquí
+    pest_report: 'bg-orange-500/10 text-orange-500', // Cambiar aquí
     // ...
   }
   return colors[type]
@@ -353,8 +377,7 @@ const [dateRange, setDateRange] = useState({ start: '', end: '' })
 const filteredByDate = filteredContributions.filter((c) => {
   if (!dateRange.start || !dateRange.end) return true
   const date = new Date(c.created_at)
-  return date >= new Date(dateRange.start) && 
-         date <= new Date(dateRange.end)
+  return date >= new Date(dateRange.start) && date <= new Date(dateRange.end)
 })
 ```
 
