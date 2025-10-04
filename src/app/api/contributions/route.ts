@@ -100,8 +100,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Obtener puntos según el tipo
-    const pointsEarned =
-      CONTRIBUTION_POINTS[type as ContributionType]
+    const pointsEarned = CONTRIBUTION_POINTS[type as ContributionType]
 
     // Crear contribución usando supabaseAdmin para bypass RLS
     const { data, error } = await supabaseAdmin

@@ -3,6 +3,7 @@
 ## ⚡ Resumen Rápido
 
 Hay 2 errores que ya fueron corregidos en el código:
+
 1. ✅ Error de `params.id` en Next.js 15 - **CORREGIDO**
 2. ⚠️ Error de RLS al crear contribuciones - **NECESITAS CONFIGURAR**
 
@@ -30,7 +31,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...tu-service-role-key-aqui
 ```
 
-⚠️ **IMPORTANTE:** 
+⚠️ **IMPORTANTE:**
+
 - Esta key **NO** tiene el prefijo `NEXT_PUBLIC_`
 - Es solo para el servidor, nunca se expone al cliente
 - Es sensible - no la subas a Git
@@ -52,12 +54,14 @@ npm run dev
 ## 📊 Qué Pasará
 
 ### ANTES (sin service_role_key):
+
 ```
 ❌ POST /api/contributions 500 in 642ms
 Error: new row violates row-level security policy
 ```
 
 ### DESPUÉS (con service_role_key):
+
 ```
 ✅ POST /api/contributions 200 in 145ms
 Contribución creada exitosamente
@@ -80,7 +84,8 @@ Las políticas de Row Level Security (RLS) en Supabase bloquean las inserciones 
 ### ¿Es seguro?
 
 Sí, porque:
-- Solo existe en el servidor (sin NEXT_PUBLIC_)
+
+- Solo existe en el servidor (sin NEXT*PUBLIC*)
 - El código valida el JWT del usuario primero
 - El usuario solo puede crear SUS propias contribuciones
 
@@ -116,6 +121,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbG...
 ## 📚 Documentación Completa
 
 Para más detalles, revisa:
+
 - **[RLS_FIX_GUIDE.md](./RLS_FIX_GUIDE.md)** - Guía completa y detallada
 - **[NEXTJS15_FIXES.md](./NEXTJS15_FIXES.md)** - Correcciones de Next.js 15
 - **[FARMER_GUIDE.md](./FARMER_GUIDE.md)** - Guía del usuario
@@ -123,7 +129,7 @@ Para más detalles, revisa:
 ## ✅ Checklist Final
 
 - [ ] Obtuve la service_role_key de Supabase
-- [ ] La agregué a .env.local (sin NEXT_PUBLIC_)
+- [ ] La agregué a .env.local (sin NEXT*PUBLIC*)
 - [ ] Reinicié el servidor (npm run dev)
 - [ ] Probé crear una contribución
 - [ ] Funcionó correctamente ✨
@@ -132,4 +138,4 @@ Para más detalles, revisa:
 
 **¿Todo listo?** Una vez que agregues la key y reinicies, ¡el sistema estará 100% funcional! 🚀
 
-*Última actualización: 4 de octubre de 2025*
+_Última actualización: 4 de octubre de 2025_

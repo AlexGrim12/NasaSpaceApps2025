@@ -5,6 +5,7 @@
 ## 🎯 Prerequisitos (5 minutos)
 
 Asegúrate de tener:
+
 - ✅ Node.js 18+ instalado
 - ✅ Cuenta de Supabase (gratis)
 - ✅ Git instalado
@@ -12,6 +13,7 @@ Asegúrate de tener:
 ## 🚀 Paso 1: Configurar Supabase (10 minutos)
 
 ### 1.1 Crear Proyecto
+
 ```bash
 1. Ve a https://supabase.com
 2. Click en "New Project"
@@ -23,6 +25,7 @@ Asegúrate de tener:
 ```
 
 ### 1.2 Configurar Base de Datos
+
 ```bash
 1. En tu proyecto, ve a "SQL Editor"
 2. Click en "+ New query"
@@ -33,6 +36,7 @@ Asegúrate de tener:
 ```
 
 ### 1.3 Obtener Credenciales
+
 ```bash
 1. Ve a "Settings" > "API"
 2. Copia "Project URL"
@@ -43,6 +47,7 @@ Asegúrate de tener:
 ## 💻 Paso 2: Configurar Proyecto (5 minutos)
 
 ### 2.1 Clonar y Configurar
+
 ```bash
 # Clonar repositorio
 git clone <tu-repo-url>
@@ -56,6 +61,7 @@ cp .env.example .env.local
 ```
 
 ### 2.2 Configurar Variables de Entorno
+
 ```bash
 # Editar .env.local con tus credenciales
 NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
@@ -75,12 +81,14 @@ http://localhost:3000
 ## ✨ Paso 4: Probar el Sistema (8 minutos)
 
 ### 4.1 Ver Ranking Vacío
+
 ```bash
 1. Ve a: http://localhost:3000/rankings
 2. Deberías ver "No hay agricultores en este nivel"
 ```
 
 ### 4.2 Crear Tu Primer Usuario
+
 ```bash
 1. Ve a: http://localhost:3000/auth/register
 2. Selecciona: "Agricultor"
@@ -95,6 +103,7 @@ http://localhost:3000
 ### 4.3 Crear Primera Contribución
 
 **Opción A: Desde Supabase (Más Rápido)**
+
 ```sql
 1. Ve a Supabase Dashboard
 2. Abre "Table Editor"
@@ -110,6 +119,7 @@ http://localhost:3000
 ```
 
 **Opción B: Usando SQL**
+
 ```sql
 -- Ve a SQL Editor y ejecuta:
 -- Primero obtén tu farmer_id:
@@ -121,6 +131,7 @@ VALUES ('tu-uuid-aqui', 'drought_report', 50, 'Primera prueba', true);
 ```
 
 ### 4.4 Ver Tu Ranking
+
 ```bash
 1. Ve a: http://localhost:3000/rankings
 2. ¡Deberías verte en el puesto #1! 🥇
@@ -133,6 +144,7 @@ VALUES ('tu-uuid-aqui', 'drought_report', 50, 'Primera prueba', true);
 Tu sistema está funcionando. Ahora puedes:
 
 ### Crear Más Contribuciones
+
 ```sql
 -- Agregar más contribuciones para subir de nivel:
 SELECT insert_sample_contributions('tu-uuid', 'drought_report', 10);
@@ -143,11 +155,13 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ```
 
 ### Explorar la Documentación
+
 - 📖 [Sistema Completo](./FARMER_RANKING_SYSTEM.md)
 - 💻 [Ejemplos de API](./API_EXAMPLES.md)
 - 🗺️ [Guía Visual](./VISUAL_GUIDE.md)
 
 ### Probar Features
+
 - [ ] Filtrar por nivel en `/rankings`
 - [ ] Cambiar tema oscuro/claro
 - [ ] Ver en mobile (responsive)
@@ -156,6 +170,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ## 🐛 ¿Problemas?
 
 ### Error: "Cannot connect to Supabase"
+
 ```bash
 ✅ Verifica que copiaste correctamente las credenciales
 ✅ Revisa que .env.local existe y tiene las variables
@@ -163,6 +178,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ```
 
 ### Error: "Table does not exist"
+
 ```bash
 ✅ Asegúrate de haber ejecutado farmer-ranking-schema.sql
 ✅ Ve a Supabase > Table Editor y verifica las tablas
@@ -170,6 +186,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ```
 
 ### No aparezco en el ranking
+
 ```bash
 ✅ Verifica que verified = true en la contribución
 ✅ Ve a Table Editor > contributions y verifica tus registros
@@ -178,6 +195,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ```
 
 ### Error al crear contribución
+
 ```bash
 ✅ Verifica que estás autenticado
 ✅ Usa el UUID correcto de tu usuario
@@ -187,6 +205,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ## 📱 Próximos Pasos
 
 ### Para Desarrollo
+
 1. ✅ Agregar más usuarios de prueba
 2. ✅ Crear contribuciones variadas
 3. ✅ Probar diferentes niveles
@@ -194,6 +213,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 5. ✅ Agregar tu logo
 
 ### Para Producción
+
 1. ✅ Seguir [checklist completo](./IMPLEMENTATION_CHECKLIST.md)
 2. ✅ Hacer pruebas exhaustivas
 3. ✅ Deploy a Vercel
@@ -202,6 +222,7 @@ SELECT insert_sample_contributions('tu-uuid', 'sustainable_practice', 5);
 ## 🎯 Tips Rápidos
 
 ### Crear Múltiples Contribuciones Rápido
+
 ```sql
 -- Ejecuta en SQL Editor para crear 25 contribuciones:
 DO $$
@@ -217,9 +238,10 @@ END $$;
 ```
 
 ### Ver Estadísticas Rápidas
+
 ```sql
 -- Total de puntos y contribuciones:
-SELECT 
+SELECT
     farmer_name,
     total_points,
     level,
@@ -229,6 +251,7 @@ ORDER BY total_points DESC;
 ```
 
 ### Reset para Empezar de Nuevo
+
 ```sql
 -- CUIDADO: Esto borra TODO
 TRUNCATE TABLE contributions CASCADE;
@@ -238,11 +261,13 @@ TRUNCATE TABLE farmer_rankings CASCADE;
 ## 🌟 Funcionalidades Destacadas
 
 ### Landing Page
+
 - 🏠 Sección de ranking integrada
 - 🎯 Explicación clara de beneficios
 - 🚀 CTA para unirse
 
 ### Dashboard de Ranking
+
 - 🏆 Top 100 agricultores
 - 🥇 Medallas para top 3
 - 📊 Estadísticas en tiempo real
@@ -250,6 +275,7 @@ TRUNCATE TABLE farmer_rankings CASCADE;
 - 🌙 Modo oscuro
 
 ### Sistema de Puntos
+
 - 🌵 Sequía: 50 pts
 - 🐛 Plaga: 40 pts
 - ♻️ Sostenible: 60 pts
@@ -257,6 +283,7 @@ TRUNCATE TABLE farmer_rankings CASCADE;
 - 🌦️ Clima: 20 pts
 
 ### 6 Niveles
+
 - 🌱 Aprendiz (0-99)
 - 🌿 Cultivador (100-499)
 - 👨‍🌾 Experimentado (500-1,499)
@@ -267,11 +294,13 @@ TRUNCATE TABLE farmer_rankings CASCADE;
 ## 🎓 Recursos
 
 ### Documentación
+
 - [README Principal](./README.md)
 - [Resumen de Implementación](./IMPLEMENTATION_SUMMARY.md)
 - [Sistema Completo](./FARMER_RANKING_SYSTEM.md)
 
 ### Código
+
 - API: `src/app/api/rankings/` y `src/app/api/contributions/`
 - UI: `src/app/rankings/page.tsx`
 - Tipos: `src/types/farmer-ranking.ts`
@@ -289,4 +318,4 @@ Has configurado exitosamente el **Sistema de Ranking de Agricultores** para Bloo
 
 **¿Preguntas? Consulta la [documentación completa](./FARMER_RANKING_SYSTEM.md)**
 
-*Desarrollado para BloomWatch - NASA Space Apps Challenge 2025* 🚀🌽
+_Desarrollado para BloomWatch - NASA Space Apps Challenge 2025_ 🚀🌽

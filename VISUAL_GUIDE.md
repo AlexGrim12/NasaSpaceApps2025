@@ -412,6 +412,7 @@ DESKTOP (> 1024px)
 5. ✅ Desplegar a producción
 
 **📚 Documentación Adicional:**
+
 - [Sistema de Ranking Completo](./FARMER_RANKING_SYSTEM.md)
 - [Ejemplos de API](./API_EXAMPLES.md)
 - [Configuración de Supabase](./SUPABASE_SETUP.md)

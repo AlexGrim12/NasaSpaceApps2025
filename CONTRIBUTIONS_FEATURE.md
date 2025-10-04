@@ -13,6 +13,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 **Archivo:** `/src/components/ContributionForm.tsx`
 
 #### Funcionalidades:
+
 - ✅ Selección visual de tipo de contribución (5 tipos)
 - ✅ Campo de descripción con validación (mínimo 10 caracteres)
 - ✅ Campo opcional de ubicación
@@ -24,15 +25,17 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 - ✅ Integración con API `/api/contributions`
 
 #### Tipos de Contribución:
-| Tipo | Puntos | Ícono | Color |
-|------|--------|-------|-------|
-| Sequía | 50 | 🌵 Droplets | Naranja |
-| Plaga | 40 | 🐛 Bug | Rojo |
-| Sostenible | 60 | ♻️ Leaf | Verde |
-| Cultivo | 30 | 📊 BarChart | Azul |
-| Clima | 20 | 🌦️ Cloud | Morado |
+
+| Tipo       | Puntos | Ícono       | Color   |
+| ---------- | ------ | ----------- | ------- |
+| Sequía     | 50     | 🌵 Droplets | Naranja |
+| Plaga      | 40     | 🐛 Bug      | Rojo    |
+| Sostenible | 60     | ♻️ Leaf     | Verde   |
+| Cultivo    | 30     | 📊 BarChart | Azul    |
+| Clima      | 20     | 🌦️ Cloud    | Morado  |
 
 #### UX Highlights:
+
 - Cards interactivas para seleccionar tipo
 - Preview de puntos antes de enviar
 - Contador de caracteres en tiempo real
@@ -47,6 +50,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 **Archivo:** `/src/components/FarmerStats.tsx`
 
 #### Funcionalidades:
+
 - ✅ Tarjeta de ranking con gradiente (verde a azul)
 - ✅ Visualización de posición, puntos, nivel y contribuciones
 - ✅ Insignias desbloqueadas
@@ -57,7 +61,9 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 - ✅ Auto-refresh al crear nueva contribución
 
 #### Información Mostrada:
+
 **Tarjeta Principal:**
+
 - Posición en ranking (con ícono de trofeo)
 - Total de puntos acumulados
 - Nivel actual (capitalizado)
@@ -65,6 +71,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 - Insignias con badges visuales
 
 **Desglose por Tipo:**
+
 - Sequías (Droplets - Naranja)
 - Plagas (Bug - Rojo)
 - Sostenibles (Leaf - Verde)
@@ -72,6 +79,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 - Clima (Cloud - Morado)
 
 **Lista de Contribuciones:**
+
 - Ícono y tipo
 - Puntos ganados
 - Descripción (limitada a 2 líneas)
@@ -86,6 +94,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 **Archivo:** `/src/app/contributions/page.tsx`
 
 #### Layout:
+
 ```
 ┌─────────────────────────────────────────────┐
 │  Header: "Mis Contribuciones"               │
@@ -111,6 +120,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 ```
 
 #### Características:
+
 - ✅ Protected route (solo agricultores logueados)
 - ✅ Grid responsivo (2 columnas en desktop, 1 en mobile)
 - ✅ Banner informativo con puntos por tipo
@@ -127,6 +137,7 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 #### Cambios Realizados:
 
 **Nuevo Banner de Ranking:**
+
 ```tsx
 ┌────────────────────────────────────────────────┐
 │  🏆 Posición #X en el Ranking                 │
@@ -137,18 +148,21 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 ```
 
 **Para usuarios con ranking:**
+
 - Banner verde-azul con gradiente
 - Ícono de trofeo dorado
 - Posición, puntos y nivel visibles
 - Botón CTA blanco para crear contribución
 
 **Para usuarios nuevos (sin ranking):**
+
 - Banner con bordes (no gradiente)
 - Ícono de Award verde
 - Mensaje motivacional
 - Botón verde para primera contribución
 
 #### Funcionalidades Agregadas:
+
 - ✅ Fetch automático de ranking al cargar
 - ✅ Estado de loading para ranking
 - ✅ Botón de acción directa a `/contributions`
@@ -163,11 +177,13 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
 #### Cambios en la Navbar:
 
 **Enlaces Públicos:**
+
 - 🏆 **Ranking** - Visible para todos
   - Ícono: Trophy
   - Link: `/rankings`
 
 **Para Agricultores Logueados:**
+
 - 🏠 **Dashboard** - Panel de control
 - 🎖️ **Contribuir** - Nueva contribución
   - Ícono: Award
@@ -175,9 +191,11 @@ Se ha implementado un sistema completo que permite a los agricultores crear y ge
   - Destacado con ícono
 
 **Para Investigadores:**
+
 - 📊 **Análisis** - Dashboard de investigador
 
 #### Estructura Visual:
+
 ```
 Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Contribuir | 🚪 Salir | 🌙
 ```
@@ -191,6 +209,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 #### Contenido (3000+ palabras):
 
 **Secciones:**
+
 1. ✅ Introducción al sistema
 2. ✅ Tabla de tipos y puntos
 3. ✅ Cómo crear contribuciones (3 métodos)
@@ -206,6 +225,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 13. ✅ Próximos pasos sugeridos
 
 **Ejemplos Incluidos:**
+
 - ✅ Reporte de sequía completo
 - ✅ Reporte de plaga detallado
 - ✅ Práctica sostenible con números
@@ -219,7 +239,9 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### APIs Utilizadas:
 
 #### 1. POST `/api/contributions`
+
 **Uso:** Crear nueva contribución
+
 ```typescript
 {
   type: ContributionType,
@@ -232,10 +254,12 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ```
 
 #### 2. GET `/api/contributions?farmerId={id}`
+
 **Uso:** Obtener contribuciones del agricultor
 **Retorna:** Array de contribuciones
 
 #### 3. GET `/api/rankings/{userId}`
+
 **Uso:** Obtener ranking del agricultor
 **Retorna:** FarmerRanking con todas las estadísticas
 
@@ -245,34 +269,35 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 
 ### Paleta de Colores:
 
-| Elemento | Color | Uso |
-|----------|-------|-----|
-| Sequía | Orange-600 | Reportes de sequía |
-| Plaga | Red-600 | Reportes de plagas |
-| Sostenible | Green-600 | Prácticas sostenibles |
-| Cultivo | Blue-600 | Datos de cultivo |
-| Clima | Purple-600 | Datos climáticos |
-| Éxito | Green-50/900 | Mensajes exitosos |
-| Error | Red-50/900 | Mensajes de error |
-| Warning | Yellow-50/900 | Pendientes |
+| Elemento   | Color         | Uso                   |
+| ---------- | ------------- | --------------------- |
+| Sequía     | Orange-600    | Reportes de sequía    |
+| Plaga      | Red-600       | Reportes de plagas    |
+| Sostenible | Green-600     | Prácticas sostenibles |
+| Cultivo    | Blue-600      | Datos de cultivo      |
+| Clima      | Purple-600    | Datos climáticos      |
+| Éxito      | Green-50/900  | Mensajes exitosos     |
+| Error      | Red-50/900    | Mensajes de error     |
+| Warning    | Yellow-50/900 | Pendientes            |
 
 ### Iconografía:
 
-| Elemento | Ícono Lucide | Contexto |
-|----------|--------------|----------|
-| Sequía | Droplets | Tipo contribución |
-| Plaga | Bug | Tipo contribución |
-| Sostenible | Leaf | Tipo contribución |
-| Cultivo | BarChart3 | Tipo contribución |
-| Clima | Cloud | Tipo contribución |
-| Ranking | Trophy | Navbar, estadísticas |
-| Contribuir | Award | Navbar, CTAs |
-| Tiempo | Clock | Fechas |
-| Verificado | CheckCircle | Estado aprobado |
-| Pendiente | XCircle | Estado pendiente |
-| Loading | Loader2 | Estados de carga |
+| Elemento   | Ícono Lucide | Contexto             |
+| ---------- | ------------ | -------------------- |
+| Sequía     | Droplets     | Tipo contribución    |
+| Plaga      | Bug          | Tipo contribución    |
+| Sostenible | Leaf         | Tipo contribución    |
+| Cultivo    | BarChart3    | Tipo contribución    |
+| Clima      | Cloud        | Tipo contribución    |
+| Ranking    | Trophy       | Navbar, estadísticas |
+| Contribuir | Award        | Navbar, CTAs         |
+| Tiempo     | Clock        | Fechas               |
+| Verificado | CheckCircle  | Estado aprobado      |
+| Pendiente  | XCircle      | Estado pendiente     |
+| Loading    | Loader2      | Estados de carga     |
 
 ### Responsive Design:
+
 - ✅ Mobile First approach
 - ✅ Grid adaptativo (1 col mobile, 2 cols desktop)
 - ✅ Cards stackeables
@@ -341,6 +366,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Validaciones Implementadas:
 
 **Cliente (React):**
+
 - ✅ Usuario debe estar autenticado
 - ✅ Usuario debe ser agricultor
 - ✅ Tipo de contribución debe estar seleccionado
@@ -348,6 +374,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 - ✅ Severidad por defecto "moderate"
 
 **Servidor (API):**
+
 - ✅ Verificación de token JWT
 - ✅ Validación de farmerId
 - ✅ Validación de tipo (enum)
@@ -356,6 +383,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 - ✅ Contribución creada como no verificada
 
 **Base de Datos:**
+
 - ✅ RLS policies activas
 - ✅ Foreign key a auth.users
 - ✅ Triggers automáticos
@@ -368,6 +396,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Datos Rastreables:
 
 **Por Agricultor:**
+
 - Total de contribuciones creadas
 - Contribuciones verificadas vs pendientes
 - Desglose por tipo de contribución
@@ -379,6 +408,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 - Fecha de última contribución
 
 **Globales:**
+
 - Total de agricultores activos
 - Total de contribuciones
 - Tasa de verificación
@@ -395,6 +425,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Tests Manuales:
 
 **Formulario:**
+
 1. ✅ Intentar enviar sin seleccionar tipo
 2. ✅ Intentar enviar con descripción corta (<10 chars)
 3. ✅ Enviar contribución completa
@@ -403,6 +434,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 6. ✅ Verificar que aparece en lista "Pendientes"
 
 **Navegación:**
+
 1. ✅ Acceder desde dashboard
 2. ✅ Acceder desde navbar
 3. ✅ Acceder con URL directa
@@ -410,6 +442,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 5. ✅ Intentar acceder como investigador (debe redirigir)
 
 **Responsividad:**
+
 1. ✅ Vista mobile (320px)
 2. ✅ Vista tablet (768px)
 3. ✅ Vista desktop (1024px+)
@@ -423,35 +456,42 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Features Adicionales:
 
 1. **Edición de Contribuciones**
+
    - Permitir editar antes de verificación
    - Historial de cambios
 
 2. **Adjuntar Imágenes**
+
    - Upload de fotos
    - Galería de imágenes
    - Integración con storage
 
 3. **Geolocalización**
+
    - Mapa interactivo
    - Selección de ubicación en mapa
    - Visualización de contribuciones por región
 
 4. **Notificaciones**
+
    - Email al verificar contribución
    - Push notifications
    - Alertas de nuevo nivel/insignia
 
 5. **Comentarios**
+
    - Admins pueden comentar contribuciones
    - Solicitar más información
    - Feedback constructivo
 
 6. **Borrador**
+
    - Guardar contribuciones incompletas
    - Continuar más tarde
    - Auto-save
 
 7. **Templates**
+
    - Plantillas predefinidas por tipo
    - Campos estructurados opcionales
    - Guías contextuales
@@ -476,6 +516,7 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Archivos Modificados (2):
 
 1. ✅ `/src/app/dashboard/farmer/page.tsx`
+
    - Agregado import de Award, Plus
    - Agregado import de FarmerRanking type
    - Agregado estado para ranking
@@ -530,35 +571,39 @@ Logo BloomWatch | ... | 🏆 Ranking | 👤 Agricultor | Dashboard | 🎖️ Con
 ### Para el Desarrollador:
 
 **1. Levantar el proyecto:**
+
 ```bash
 npm run dev
 ```
 
 **2. Crear usuario agricultor:**
+
 - Ir a `/auth/register`
 - Seleccionar "Agricultor"
 - Completar formulario
 
 **3. Crear contribución:**
+
 - Login como agricultor
 - Click "Contribuir" en navbar
 - Llenar formulario
 - Enviar
 
 **4. Verificar en Supabase:**
+
 ```sql
 -- Ver contribución pendiente
-SELECT * FROM contributions 
-WHERE farmer_id = 'tu-uuid' 
+SELECT * FROM contributions
+WHERE farmer_id = 'tu-uuid'
 ORDER BY created_at DESC;
 
 -- Verificar manualmente
-UPDATE contributions 
-SET verified = true 
+UPDATE contributions
+SET verified = true
 WHERE id = 'contribution-uuid';
 
 -- Ver ranking actualizado
-SELECT * FROM farmer_rankings 
+SELECT * FROM farmer_rankings
 WHERE farmer_id = 'tu-uuid';
 ```
 
@@ -602,7 +647,7 @@ El sistema de contribuciones está 100% funcional y listo para producción.
 
 ---
 
-*Desarrollado para BloomWatch - NASA Space Apps Challenge 2025* 🚀🌽
+_Desarrollado para BloomWatch - NASA Space Apps Challenge 2025_ 🚀🌽
 
 **Fecha de Implementación:** Octubre 4, 2025
 **Versión:** 1.0.0

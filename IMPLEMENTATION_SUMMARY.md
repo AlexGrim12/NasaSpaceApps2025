@@ -11,15 +11,18 @@ Se ha implementado exitosamente un **sistema completo de ranking de agricultores
 ### 1. 🗄️ Base de Datos (PostgreSQL/Supabase)
 
 #### Tablas Creadas
+
 - ✅ `farmer_rankings` - Almacena el ranking y estadísticas de cada agricultor
 - ✅ `contributions` - Registra todas las contribuciones de los agricultores
 
 #### Funciones PostgreSQL
+
 - ✅ `calculate_farmer_level(points)` - Calcula el nivel según puntos
 - ✅ `update_farmer_ranking()` - Trigger que actualiza rankings automáticamente
 - ✅ `get_top_farmers(limit)` - Query optimizada para obtener top agricultores con posiciones
 
 #### Características de Seguridad
+
 - ✅ Row Level Security (RLS) habilitado
 - ✅ Políticas de acceso configuradas
 - ✅ Índices para optimización de queries
@@ -53,28 +56,33 @@ Sistema completo de tipos para el ranking:
 #### Endpoints Implementados
 
 **GET /api/rankings**
+
 - Obtiene top de agricultores
 - Soporta paginación con `limit`
 - Permite filtrar por `level`
 - Respuesta JSON con posiciones de ranking
 
 **GET /api/rankings/[id]**
+
 - Obtiene información de un agricultor específico
 - Incluye posición en el ranking
 - Manejo de errores 404
 
 **GET /api/contributions**
+
 - Lista todas las contribuciones
 - Filtros por: farmerId, type, verified
 - Ordenadas por fecha de creación
 
 **POST /api/contributions**
+
 - Crea nuevas contribuciones
 - Requiere autenticación
 - Validación de datos
 - Asignación automática de puntos
 
-**Archivos**: 
+**Archivos**:
+
 - `src/app/api/rankings/route.ts`
 - `src/app/api/rankings/[id]/route.ts`
 - `src/app/api/contributions/route.ts`
@@ -86,6 +94,7 @@ Sistema completo de tipos para el ranking:
 #### Dashboard Público de Rankings (`/rankings`)
 
 **Características**:
+
 - ✅ Vista completa del top 100 agricultores
 - ✅ Medallas para top 3 (🥇🥈🥉)
 - ✅ Estadísticas generales (total agricultores, contribuciones, puntos promedio)
@@ -110,6 +119,7 @@ Sistema completo de tipos para el ranking:
 #### Landing Page Mejorada (`/`)
 
 **Nuevas Secciones**:
+
 - ✅ Sección destacada del sistema de ranking
 - ✅ 3 cards explicando beneficios:
   - Mejores contratos gubernamentales
@@ -128,6 +138,7 @@ Sistema completo de tipos para el ranking:
 #### Documentos Creados
 
 **1. FARMER_RANKING_SYSTEM.md**
+
 - Descripción general del sistema
 - Tabla de puntos por contribución
 - Tabla de niveles y beneficios
@@ -139,6 +150,7 @@ Sistema completo de tipos para el ranking:
 - Roadmap de mejoras futuras
 
 **2. API_EXAMPLES.md**
+
 - Ejemplos de cada endpoint con cURL
 - Ejemplos con JavaScript/TypeScript
 - Hooks de React personalizados
@@ -147,6 +159,7 @@ Sistema completo de tipos para el ranking:
 - Mejores prácticas
 
 **3. VISUAL_GUIDE.md**
+
 - Diagramas de arquitectura
 - Flujo de usuario paso a paso
 - Progresión de niveles visual
@@ -157,6 +170,7 @@ Sistema completo de tipos para el ranking:
 - Diseño responsive
 
 **4. IMPLEMENTATION_CHECKLIST.md**
+
 - Lista completa de tareas
 - Pasos de configuración
 - Pruebas requeridas
@@ -165,6 +179,7 @@ Sistema completo de tipos para el ranking:
 - Mejoras futuras
 
 **5. database/sample-data.sql**
+
 - Scripts para datos de ejemplo
 - Función helper para generar contribuciones
 - Ejemplos de cada tipo de contribución
@@ -172,6 +187,7 @@ Sistema completo de tipos para el ranking:
 - Scripts de limpieza
 
 **6. README.md** (actualizado)
+
 - Información del sistema de ranking
 - Estructura del proyecto
 - Guía de uso
@@ -185,6 +201,7 @@ Sistema completo de tipos para el ranking:
 ## 🎯 Características Principales
 
 ### Sistema de Puntos
+
 - 🌵 **Sequía**: 50 puntos
 - 🐛 **Plaga**: 40 puntos
 - ♻️ **Práctica Sostenible**: 60 puntos
@@ -192,6 +209,7 @@ Sistema completo de tipos para el ranking:
 - 🌦️ **Datos Climáticos**: 20 puntos
 
 ### Niveles de Progresión
+
 1. 🌱 **Aprendiz** (0-99 pts)
 2. 🌿 **Cultivador** (100-499 pts)
 3. 👨‍🌾 **Agricultor Experimentado** (500-1,499 pts)
@@ -200,6 +218,7 @@ Sistema completo de tipos para el ranking:
 6. 🏆 **Leyenda del Campo** (10,000+ pts)
 
 ### Sistema de Badges
+
 - 🌱 Primera Contribución
 - ☀️ Experto en Sequías
 - 🐛 Cazador de Plagas
@@ -213,6 +232,7 @@ Sistema completo de tipos para el ranking:
 ## 🚀 Funcionalidades Clave
 
 ### Para Agricultores
+
 ✅ Registro con rol de agricultor
 ✅ Dashboard personalizado
 ✅ Crear contribuciones de 5 tipos diferentes
@@ -223,6 +243,7 @@ Sistema completo de tipos para el ranking:
 ✅ Acceso a mejores contratos gubernamentales
 
 ### Para Visitantes/Gobierno/Empresas
+
 ✅ Ver ranking completo sin necesidad de cuenta
 ✅ Filtrar por nivel de agricultor
 ✅ Ver estadísticas detalladas de cada agricultor
@@ -230,6 +251,7 @@ Sistema completo de tipos para el ranking:
 ✅ Acceso a datos públicos verificados
 
 ### Para el Sistema
+
 ✅ Actualización automática de rankings
 ✅ Cálculo automático de niveles
 ✅ Asignación automática de puntos
@@ -243,6 +265,7 @@ Sistema completo de tipos para el ranking:
 ## 📊 Estadísticas del Proyecto
 
 ### Archivos Creados/Modificados
+
 - ✅ 3 archivos API routes
 - ✅ 1 archivo de tipos TypeScript
 - ✅ 1 página de rankings
@@ -252,11 +275,13 @@ Sistema completo de tipos para el ranking:
 - ✅ README actualizado
 
 ### Líneas de Código (aproximado)
+
 - TypeScript/React: ~1,200 líneas
 - SQL: ~500 líneas
 - Documentación: ~3,000 líneas
 
 ### Tiempo de Desarrollo
+
 - Backend: ~2 horas
 - Frontend: ~3 horas
 - Base de datos: ~2 horas
@@ -268,6 +293,7 @@ Sistema completo de tipos para el ranking:
 ## 🎓 Tecnologías Utilizadas
 
 ### Frontend
+
 - Next.js 15 (App Router)
 - TypeScript
 - Tailwind CSS v3
@@ -275,12 +301,14 @@ Sistema completo de tipos para el ranking:
 - Next Themes (modo oscuro)
 
 ### Backend
+
 - Next.js API Routes
 - PostgreSQL (Supabase)
 - Row Level Security
 - Triggers y Functions
 
 ### DevOps
+
 - Vercel (recomendado para deploy)
 - Git/GitHub
 - npm
@@ -314,6 +342,7 @@ Sistema completo de tipos para el ranking:
 ## 🧪 Testing
 
 ### Pruebas Recomendadas
+
 - [ ] Registro de usuario
 - [ ] Crear contribución
 - [ ] Verificar actualización de puntos
@@ -329,6 +358,7 @@ Sistema completo de tipos para el ranking:
 ## 🚀 Próximos Pasos
 
 ### Para Desarrollo
+
 1. Configurar base de datos en Supabase
 2. Ejecutar scripts SQL
 3. Configurar variables de entorno
@@ -338,6 +368,7 @@ Sistema completo de tipos para el ranking:
 7. Verificar que todo funciona
 
 ### Para Producción
+
 1. Completar pruebas
 2. Build de producción
 3. Deploy a Vercel
@@ -346,6 +377,7 @@ Sistema completo de tipos para el ranking:
 6. Recopilar feedback de usuarios
 
 ### Mejoras Futuras (Ya Documentadas)
+
 - Sistema de notificaciones
 - Dashboard de admin
 - Exportar a PDF
@@ -359,12 +391,14 @@ Sistema completo de tipos para el ranking:
 ## 📞 Soporte y Recursos
 
 ### Documentación
+
 - [Sistema Completo](./FARMER_RANKING_SYSTEM.md)
 - [Ejemplos de API](./API_EXAMPLES.md)
 - [Guía Visual](./VISUAL_GUIDE.md)
 - [Checklist de Implementación](./IMPLEMENTATION_CHECKLIST.md)
 
 ### Código
+
 - API Routes: `src/app/api/`
 - Componentes: `src/app/rankings/`
 - Tipos: `src/types/farmer-ranking.ts`
@@ -392,6 +426,7 @@ El sistema está **listo para ser configurado y desplegado** siguiendo la docume
 ## 🏆 Beneficios del Sistema
 
 ### Para Agricultores
+
 - 🎯 Reconocimiento público
 - 💼 Mejores contratos
 - 🏅 Badges y niveles
@@ -399,6 +434,7 @@ El sistema está **listo para ser configurado y desplegado** siguiendo la docume
 - 🤝 Networking
 
 ### Para Gobierno/Empresas
+
 - 🔍 Identificar top agricultores
 - 📊 Datos verificados
 - 🎯 Priorización en licitaciones
@@ -406,6 +442,7 @@ El sistema está **listo para ser configurado y desplegado** siguiendo la docume
 - 🤝 Colaboración transparente
 
 ### Para la Plataforma
+
 - 📈 Gamificación efectiva
 - 👥 Mayor participación
 - 📊 Datos de calidad
@@ -416,4 +453,4 @@ El sistema está **listo para ser configurado y desplegado** siguiendo la docume
 
 **🚀 ¡El sistema está completo y listo para revolucionar la agricultura en México!**
 
-*Desarrollado con ❤️ para BloomWatch - NASA Space Apps Challenge 2025*
+_Desarrollado con ❤️ para BloomWatch - NASA Space Apps Challenge 2025_

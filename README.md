@@ -86,7 +86,7 @@ BloomWatch incluye un sistema completo de ranking que recompensa a los agriculto
 3. **Configurar base de datos en Supabase**
 
    **Paso 1: Configurar tablas básicas**
-   
+
    Ejecuta el siguiente SQL en tu proyecto de Supabase:
 
    ```sql
@@ -115,15 +115,16 @@ BloomWatch incluye un sistema completo de ranking que recompensa a los agriculto
    ```
 
    **Paso 2: Configurar Sistema de Ranking (Opcional pero Recomendado)**
-   
+
    Para habilitar el sistema completo de ranking de agricultores, ejecuta el script:
-   
+
    ```bash
    # En el SQL Editor de Supabase, ejecuta el contenido de:
    database/farmer-ranking-schema.sql
    ```
-   
+
    Este script crea:
+
    - Tablas: `farmer_rankings` y `contributions`
    - Funciones: `calculate_farmer_level`, `update_farmer_ranking`, `get_top_farmers`
    - Triggers automáticos para actualización de puntos
@@ -257,24 +258,24 @@ Authorization: Bearer [token]
 
 ## 🏆 Sistema de Puntos
 
-| Contribución | Puntos | Descripción |
-|--------------|--------|-------------|
-| 🌵 Sequía | 50 pts | Reporte de condiciones de sequía |
-| 🐛 Plaga | 40 pts | Detección y reporte de plagas |
+| Contribución  | Puntos | Descripción                         |
+| ------------- | ------ | ----------------------------------- |
+| 🌵 Sequía     | 50 pts | Reporte de condiciones de sequía    |
+| 🐛 Plaga      | 40 pts | Detección y reporte de plagas       |
 | ♻️ Sostenible | 60 pts | Prácticas de agricultura sostenible |
-| 📊 Cultivo | 30 pts | Datos de producción y cosecha |
-| 🌦️ Clima | 20 pts | Información meteorológica local |
+| 📊 Cultivo    | 30 pts | Datos de producción y cosecha       |
+| 🌦️ Clima      | 20 pts | Información meteorológica local     |
 
 ## 📈 Niveles de Progresión
 
-| Nivel | Puntos | Color | Beneficios |
-|-------|--------|-------|------------|
-| 🌱 Aprendiz | 0-99 | Gris | Acceso básico |
-| 🌿 Cultivador | 100-499 | Verde | Prioridad baja |
-| 👨‍🌾 Experimentado | 500-1,499 | Azul | Prioridad media |
-| 🎓 Maestro | 1,500-4,999 | Morado | Prioridad alta |
-| ⭐ Gran Maestro | 5,000-9,999 | Naranja | Programas especiales |
-| 🏆 Leyenda | 10,000+ | Dorado | Reconocimiento nacional |
+| Nivel            | Puntos      | Color   | Beneficios              |
+| ---------------- | ----------- | ------- | ----------------------- |
+| 🌱 Aprendiz      | 0-99        | Gris    | Acceso básico           |
+| 🌿 Cultivador    | 100-499     | Verde   | Prioridad baja          |
+| 👨‍🌾 Experimentado | 500-1,499   | Azul    | Prioridad media         |
+| 🎓 Maestro       | 1,500-4,999 | Morado  | Prioridad alta          |
+| ⭐ Gran Maestro  | 5,000-9,999 | Naranja | Programas especiales    |
+| 🏆 Leyenda       | 10,000+     | Dorado  | Reconocimiento nacional |
 
 ## 🛡️ Seguridad
 
@@ -325,6 +326,7 @@ npm run test:e2e
 ## 🌐 Internacionalización
 
 Actualmente en **Español (México)**, preparado para:
+
 - 🇺🇸 English
 - 🇫🇷 Français
 - 🇵🇹 Português

@@ -35,7 +35,9 @@ export async function GET(
     })
 
     const position =
-      allRankings?.findIndex((r: { farmer_id: string }) => r.farmer_id === farmerId) ?? -1
+      allRankings?.findIndex(
+        (r: { farmer_id: string }) => r.farmer_id === farmerId
+      ) ?? -1
 
     return NextResponse.json({
       success: true,

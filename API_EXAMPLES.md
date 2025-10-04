@@ -16,30 +16,34 @@ Este documento contiene ejemplos prácticos de cómo interactuar con la API del 
 ## 1. Obtener Top Rankings
 
 ### Endpoint
+
 ```
 GET /api/rankings
 ```
 
 ### Parámetros Query
 
-| Parámetro | Tipo | Requerido | Descripción |
-|-----------|------|-----------|-------------|
-| limit | number | No | Número máximo de resultados (default: 100) |
-| level | string | No | Filtrar por nivel específico |
+| Parámetro | Tipo   | Requerido | Descripción                                |
+| --------- | ------ | --------- | ------------------------------------------ |
+| limit     | number | No        | Número máximo de resultados (default: 100) |
+| level     | string | No        | Filtrar por nivel específico               |
 
 ### Ejemplos
 
 #### Obtener Top 10
+
 ```bash
 GET /api/rankings?limit=10
 ```
 
 #### Obtener solo "Gran Maestro"
+
 ```bash
 GET /api/rankings?level=Gran%20Maestro
 ```
 
 #### Respuesta de Éxito (200)
+
 ```json
 {
   "success": true,
@@ -79,16 +83,19 @@ GET /api/rankings?level=Gran%20Maestro
 ## 2. Obtener Ranking de un Agricultor
 
 ### Endpoint
+
 ```
 GET /api/rankings/[farmer_id]
 ```
 
 ### Ejemplo
+
 ```bash
 GET /api/rankings/123e4567-e89b-12d3-a456-426614174000
 ```
 
 ### Respuesta de Éxito (200)
+
 ```json
 {
   "success": true,
@@ -98,13 +105,14 @@ GET /api/rankings/123e4567-e89b-12d3-a456-426614174000
     "farmer_name": "Juan Pérez López",
     "total_points": 5200,
     "level": "Gran Maestro",
-    "rank_position": 1,
+    "rank_position": 1
     // ... resto de campos
   }
 }
 ```
 
 ### Respuesta de Error (404)
+
 ```json
 {
   "error": "Agricultor no encontrado"
@@ -116,11 +124,13 @@ GET /api/rankings/123e4567-e89b-12d3-a456-426614174000
 ## 3. Crear una Contribución
 
 ### Endpoint
+
 ```
 POST /api/contributions
 ```
 
 ### Headers Requeridos
+
 ```
 Authorization: Bearer <supabase_access_token>
 Content-Type: application/json
@@ -151,15 +161,16 @@ Content-Type: application/json
 
 ### Tipos de Contribución Válidos
 
-| Tipo | Puntos | Descripción |
-|------|--------|-------------|
-| `drought_report` | 50 | Reporte de sequía |
-| `pest_report` | 40 | Reporte de plaga |
-| `sustainable_practice` | 60 | Práctica sostenible |
-| `crop_data` | 30 | Datos de cultivo |
-| `weather_data` | 20 | Datos climáticos |
+| Tipo                   | Puntos | Descripción         |
+| ---------------------- | ------ | ------------------- |
+| `drought_report`       | 50     | Reporte de sequía   |
+| `pest_report`          | 40     | Reporte de plaga    |
+| `sustainable_practice` | 60     | Práctica sostenible |
+| `crop_data`            | 30     | Datos de cultivo    |
+| `weather_data`         | 20     | Datos climáticos    |
 
 ### Respuesta de Éxito (200)
+
 ```json
 {
   "success": true,
@@ -170,7 +181,9 @@ Content-Type: application/json
     "points_earned": 50,
     "description": "Sequía severa detectada...",
     "verified": false,
-    "metadata": { /* ... */ },
+    "metadata": {
+      /* ... */
+    },
     "created_at": "2025-10-04T10:00:00.000Z"
   },
   "message": "Contribución creada exitosamente. Está pendiente de verificación."
@@ -180,6 +193,7 @@ Content-Type: application/json
 ### Respuestas de Error
 
 #### 401 - No Autorizado
+
 ```json
 {
   "error": "No autorizado. Debes iniciar sesión."
@@ -187,6 +201,7 @@ Content-Type: application/json
 ```
 
 #### 400 - Tipo Inválido
+
 ```json
 {
   "error": "Tipo de contribución inválido"
@@ -194,6 +209,7 @@ Content-Type: application/json
 ```
 
 #### 400 - Descripción Corta
+
 ```json
 {
   "error": "La descripción es requerida y debe tener al menos 10 caracteres"
@@ -205,36 +221,41 @@ Content-Type: application/json
 ## 4. Obtener Contribuciones
 
 ### Endpoint
+
 ```
 GET /api/contributions
 ```
 
 ### Parámetros Query
 
-| Parámetro | Tipo | Requerido | Descripción |
-|-----------|------|-----------|-------------|
-| farmerId | string (UUID) | No | ID del agricultor |
-| type | string | No | Tipo de contribución |
-| verified | boolean | No | Solo verificadas (true/false) |
+| Parámetro | Tipo          | Requerido | Descripción                   |
+| --------- | ------------- | --------- | ----------------------------- |
+| farmerId  | string (UUID) | No        | ID del agricultor             |
+| type      | string        | No        | Tipo de contribución          |
+| verified  | boolean       | No        | Solo verificadas (true/false) |
 
 ### Ejemplos
 
 #### Todas las contribuciones verificadas
+
 ```bash
 GET /api/contributions?verified=true
 ```
 
 #### Contribuciones de un agricultor
+
 ```bash
 GET /api/contributions?farmerId=123e4567-e89b-12d3-a456-426614174000
 ```
 
 #### Reportes de sequías verificados
+
 ```bash
 GET /api/contributions?type=drought_report&verified=true
 ```
 
 ### Respuesta de Éxito (200)
+
 ```json
 {
   "success": true,
@@ -247,7 +268,9 @@ GET /api/contributions?type=drought_report&verified=true
       "description": "Sequía severa detectada...",
       "verified": true,
       "metadata": {
-        "location": { /* ... */ },
+        "location": {
+          /* ... */
+        },
         "severity": "high"
       },
       "created_at": "2025-10-04T10:00:00.000Z",
@@ -263,12 +286,14 @@ GET /api/contributions?type=drought_report&verified=true
 ## 5. Ejemplos con cURL
 
 ### Obtener Top 5 Rankings
+
 ```bash
 curl -X GET "https://tu-dominio.com/api/rankings?limit=5" \
   -H "Content-Type: application/json"
 ```
 
 ### Crear Contribución (requiere auth)
+
 ```bash
 curl -X POST "https://tu-dominio.com/api/contributions" \
   -H "Content-Type: application/json" \
@@ -289,6 +314,7 @@ curl -X POST "https://tu-dominio.com/api/contributions" \
 ```
 
 ### Obtener Contribuciones de un Agricultor
+
 ```bash
 curl -X GET "https://tu-dominio.com/api/contributions?farmerId=123e4567-e89b-12d3-a456-426614174000&verified=true" \
   -H "Content-Type: application/json"
@@ -305,7 +331,7 @@ async function getTopFarmers(limit: number = 10) {
   try {
     const response = await fetch(`/api/rankings?limit=${limit}`)
     const result = await response.json()
-    
+
     if (result.success) {
       console.log('Top Farmers:', result.data)
       return result.data
@@ -335,8 +361,10 @@ async function createContribution(
 ) {
   try {
     // Obtener token de autenticación
-    const { data: { session } } = await supabase.auth.getSession()
-    
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+
     if (!session) {
       throw new Error('No autenticado')
     }
@@ -345,17 +373,17 @@ async function createContribution(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${session.access_token}`
+        Authorization: `Bearer ${session.access_token}`,
       },
       body: JSON.stringify({
         type,
         description,
-        metadata
-      })
+        metadata,
+      }),
     })
 
     const result = await response.json()
-    
+
     if (result.success) {
       console.log('Contribución creada:', result.data)
       return result.data
@@ -374,7 +402,7 @@ const contribution = await createContribution(
   'Sequía severa en zona norte',
   {
     severity: 'high',
-    location: { state: 'Jalisco' }
+    location: { state: 'Jalisco' },
   }
 )
 ```
@@ -396,7 +424,7 @@ export function useRankings(limit: number = 100) {
         setLoading(true)
         const response = await fetch(`/api/rankings?limit=${limit}`)
         const result = await response.json()
-        
+
         if (result.success) {
           setRankings(result.data)
         } else {
@@ -424,9 +452,10 @@ function RankingsList() {
 
   return (
     <ul>
-      {rankings.map(farmer => (
+      {rankings.map((farmer) => (
         <li key={farmer.id}>
-          {farmer.rank_position}. {farmer.farmer_name} - {farmer.total_points} pts
+          {farmer.rank_position}. {farmer.farmer_name} - {farmer.total_points}{' '}
+          pts
         </li>
       ))}
     </ul>
@@ -454,8 +483,10 @@ export default function ContributionForm() {
     setMessage('')
 
     try {
-      const { data: { session } } = await supabase.auth.getSession()
-      
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
       if (!session) {
         setMessage('Debes iniciar sesión')
         return
@@ -465,13 +496,13 @@ export default function ContributionForm() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`
+          Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ type, description })
+        body: JSON.stringify({ type, description }),
       })
 
       const result = await response.json()
-      
+
       if (result.success) {
         setMessage('¡Contribución enviada exitosamente!')
         setDescription('')
@@ -489,14 +520,16 @@ export default function ContributionForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label>Tipo de Contribución</label>
-        <select 
-          value={type} 
+        <select
+          value={type}
           onChange={(e) => setType(e.target.value)}
           className="w-full p-2 border rounded"
         >
           <option value="drought_report">Reporte de Sequía (50 pts)</option>
           <option value="pest_report">Reporte de Plaga (40 pts)</option>
-          <option value="sustainable_practice">Práctica Sostenible (60 pts)</option>
+          <option value="sustainable_practice">
+            Práctica Sostenible (60 pts)
+          </option>
           <option value="crop_data">Datos de Cultivo (30 pts)</option>
           <option value="weather_data">Datos Climáticos (20 pts)</option>
         </select>
@@ -523,7 +556,13 @@ export default function ContributionForm() {
       </button>
 
       {message && (
-        <div className={`p-3 rounded ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+        <div
+          className={`p-3 rounded ${
+            message.includes('Error')
+              ? 'bg-red-100 text-red-700'
+              : 'bg-green-100 text-green-700'
+          }`}
+        >
           {message}
         </div>
       )}

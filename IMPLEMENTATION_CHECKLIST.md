@@ -95,6 +95,7 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 ### Paso 3: Crear Primera Contribución
 
 #### Opción A: Desde la Aplicación (cuando esté implementado el formulario)
+
 - [ ] Ir al dashboard de agricultor
 - [ ] Click en "Agregar Contribución"
 - [ ] Seleccionar tipo: "Reporte de Sequía"
@@ -103,9 +104,12 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 - [ ] Verificar mensaje de éxito
 
 #### Opción B: Usando la API directamente
+
 - [ ] Obtener token de Supabase desde la consola del navegador:
   ```javascript
-  const { data: { session } } = await supabase.auth.getSession()
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
   console.log(session.access_token)
   ```
 - [ ] Usar Postman o cURL para crear contribución:
@@ -122,6 +126,7 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 - [ ] Verificar respuesta exitosa
 
 #### Opción C: Directamente en Supabase
+
 - [ ] Ir a Table Editor en Supabase
 - [ ] Abrir tabla `contributions`
 - [ ] Click en "Insert row"
@@ -161,8 +166,8 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 - [ ] Opción 1: Usar función SQL helper:
   ```sql
   SELECT insert_sample_contributions(
-    'tu-farmer-id-aqui', 
-    'drought_report', 
+    'tu-farmer-id-aqui',
+    'drought_report',
     5
   );
   ```
@@ -230,6 +235,7 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 ### Página de Rankings (/rankings)
 
 #### Desktop
+
 - [ ] Header con logo y navegación
 - [ ] Estadísticas principales (3 cards)
 - [ ] Filtros por nivel funcionan
@@ -242,6 +248,7 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 - [ ] CTA al final funciona
 
 #### Mobile
+
 - [ ] Layout en columna única
 - [ ] Todas las estadísticas visibles
 - [ ] Filtros en pantalla completa
@@ -249,6 +256,7 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 - [ ] Scroll suave
 
 #### Tema Oscuro/Claro
+
 - [ ] Toggle funciona
 - [ ] Colores se adaptan correctamente
 - [ ] Contraste adecuado en ambos temas
@@ -358,16 +366,19 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 ## 🔄 Mantenimiento Continuo
 
 ### Diario
+
 - [ ] Revisar errores en logs
 - [ ] Verificar contribuciones pendientes
 - [ ] Responder consultas de usuarios
 
 ### Semanal
+
 - [ ] Análisis de métricas
 - [ ] Revisar feedback de usuarios
 - [ ] Planear mejoras
 
 ### Mensual
+
 - [ ] Backup de base de datos
 - [ ] Actualizar dependencias
 - [ ] Revisar seguridad
@@ -376,18 +387,21 @@ Este documento te guiará paso a paso para implementar completamente el sistema 
 ## ✨ Mejoras Futuras
 
 ### Corto Plazo
+
 - [ ] Sistema de notificaciones
 - [ ] Dashboard de admin para verificar contribuciones
 - [ ] Exportar ranking a PDF
 - [ ] Compartir perfil en redes sociales
 
 ### Mediano Plazo
+
 - [ ] Sistema de recompensas monetarias
 - [ ] Integración con plataforma gubernamental
 - [ ] App móvil nativa
 - [ ] Sistema de mensajería entre usuarios
 
 ### Largo Plazo
+
 - [ ] Blockchain para certificados
 - [ ] IA para verificación automática
 - [ ] Expansión a otros países
@@ -413,6 +427,7 @@ Si necesitas preparar una demo rápida:
 **¡Éxito con tu implementación!** 🚀
 
 Si encuentras algún problema, revisa:
+
 1. [Documentación completa](./FARMER_RANKING_SYSTEM.md)
 2. [Ejemplos de API](./API_EXAMPLES.md)
 3. [Guía visual](./VISUAL_GUIDE.md)

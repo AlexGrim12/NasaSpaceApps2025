@@ -68,7 +68,9 @@ export default function FarmerStats() {
       }
 
       // Fetch contributions
-      const contributionsRes = await fetch(`/api/contributions?farmerId=${user.id}`)
+      const contributionsRes = await fetch(
+        `/api/contributions?farmerId=${user.id}`
+      )
       if (contributionsRes.ok) {
         const contributionsData = await contributionsRes.json()
         setContributions(contributionsData.data || [])
@@ -102,7 +104,9 @@ export default function FarmerStats() {
         <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-6 text-white">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-2xl font-bold">{profile?.name || 'Agricultor'}</h3>
+              <h3 className="text-2xl font-bold">
+                {profile?.name || 'Agricultor'}
+              </h3>
               <p className="text-white/80">Tu posición en el ranking</p>
             </div>
             <Trophy className="h-12 w-12 text-yellow-300" />
@@ -110,7 +114,9 @@ export default function FarmerStats() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-              <div className="text-3xl font-bold">{ranking.rank_position || '-'}</div>
+              <div className="text-3xl font-bold">
+                {ranking.rank_position || '-'}
+              </div>
               <div className="text-sm text-white/80">Posición</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -118,11 +124,15 @@ export default function FarmerStats() {
               <div className="text-sm text-white/80">Puntos</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-              <div className="text-3xl font-bold capitalize">{ranking.level}</div>
+              <div className="text-3xl font-bold capitalize">
+                {ranking.level}
+              </div>
               <div className="text-sm text-white/80">Nivel</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-              <div className="text-3xl font-bold">{ranking.contributions_count}</div>
+              <div className="text-3xl font-bold">
+                {ranking.contributions_count}
+              </div>
               <div className="text-sm text-white/80">Contribuciones</div>
             </div>
           </div>
@@ -250,12 +260,18 @@ export default function FarmerStats() {
               <div
                 key={contribution.id}
                 className={`p-4 border rounded-lg ${
-                  contribution.verified ? 'border-green-200 dark:border-green-800' : 'border-yellow-200 dark:border-yellow-800'
+                  contribution.verified
+                    ? 'border-green-200 dark:border-green-800'
+                    : 'border-yellow-200 dark:border-yellow-800'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-3 flex-1">
-                    <div className={`p-2 rounded-lg ${CONTRIBUTION_COLORS[contribution.type]}`}>
+                    <div
+                      className={`p-2 rounded-lg ${
+                        CONTRIBUTION_COLORS[contribution.type]
+                      }`}
+                    >
                       {CONTRIBUTION_ICONS[contribution.type]}
                     </div>
                     <div className="flex-1">
@@ -273,11 +289,14 @@ export default function FarmerStats() {
                       <div className="flex items-center space-x-4 mt-2 text-xs text-muted-foreground">
                         <span className="flex items-center">
                           <Clock className="h-3 w-3 mr-1" />
-                          {new Date(contribution.created_at).toLocaleDateString('es-MX', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          })}
+                          {new Date(contribution.created_at).toLocaleDateString(
+                            'es-MX',
+                            {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                            }
+                          )}
                         </span>
                         {contribution.verified ? (
                           <span className="flex items-center text-green-600">

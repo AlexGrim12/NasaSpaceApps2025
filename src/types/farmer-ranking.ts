@@ -1,4 +1,4 @@
-export type FarmerLevel = 
+export type FarmerLevel =
   | 'Aprendiz'
   | 'Cultivador'
   | 'Agricultor Experimentado'
@@ -6,7 +6,7 @@ export type FarmerLevel =
   | 'Gran Maestro'
   | 'Leyenda del Campo'
 
-export type ContributionType = 
+export type ContributionType =
   | 'drought_report'
   | 'pest_report'
   | 'sustainable_practice'
@@ -54,8 +54,8 @@ export interface Badge {
 }
 
 export const LEVEL_REQUIREMENTS: Record<FarmerLevel, number> = {
-  'Aprendiz': 0,
-  'Cultivador': 100,
+  Aprendiz: 0,
+  Cultivador: 100,
   'Agricultor Experimentado': 500,
   'Maestro Agricultor': 1500,
   'Gran Maestro': 5000,
@@ -63,11 +63,11 @@ export const LEVEL_REQUIREMENTS: Record<FarmerLevel, number> = {
 }
 
 export const CONTRIBUTION_POINTS: Record<ContributionType, number> = {
-  'drought_report': 50,
-  'pest_report': 40,
-  'sustainable_practice': 60,
-  'crop_data': 30,
-  'weather_data': 20,
+  drought_report: 50,
+  pest_report: 40,
+  sustainable_practice: 60,
+  crop_data: 30,
+  weather_data: 20,
 }
 
 export const AVAILABLE_BADGES: Badge[] = [

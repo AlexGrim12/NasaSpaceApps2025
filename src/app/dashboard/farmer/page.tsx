@@ -90,7 +90,10 @@ export default function FarmerDashboard() {
                     Posición #{ranking.rank_position || '-'} en el Ranking
                   </h3>
                   <p className="text-white/80">
-                    {ranking.total_points} puntos • Nivel: <span className="capitalize font-semibold">{ranking.level}</span>
+                    {ranking.total_points} puntos • Nivel:{' '}
+                    <span className="capitalize font-semibold">
+                      {ranking.level}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -111,7 +114,9 @@ export default function FarmerDashboard() {
               <div className="flex items-center space-x-4">
                 <Award className="h-12 w-12 text-green-600" />
                 <div>
-                  <h3 className="text-xl font-bold">¡Únete al Ranking de Agricultores!</h3>
+                  <h3 className="text-xl font-bold">
+                    ¡Únete al Ranking de Agricultores!
+                  </h3>
                   <p className="text-muted-foreground">
                     Comparte información y gana puntos para mejorar tu posición
                   </p>

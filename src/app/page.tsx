@@ -1,5 +1,17 @@
 import Link from 'next/link'
-import { Sprout, Satellite, BarChart3, Users, Eye, Globe, Sparkles, ArrowRight, Trophy, Award, TrendingUp } from 'lucide-react'
+import {
+  Sprout,
+  Satellite,
+  BarChart3,
+  Users,
+  Eye,
+  Globe,
+  Sparkles,
+  ArrowRight,
+  Trophy,
+  Award,
+  TrendingUp,
+} from 'lucide-react'
 
 export default function Home() {
   return (
@@ -12,7 +24,7 @@ export default function Home() {
           <div className="absolute top-40 right-20 w-72 h-72 bg-emerald-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-teal-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
-        
+
         <div className="container px-4 py-32 mx-auto relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             {/* Badge */}
@@ -20,7 +32,7 @@ export default function Home() {
               <Sparkles className="mr-2 h-4 w-4" />
               NASA Space Apps Challenge 2025
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
               BloomWatch
             </h1>
@@ -28,9 +40,10 @@ export default function Home() {
               Monitoreo inteligente de la floración del maíz
             </p>
             <p className="text-lg mb-12 text-green-100/90 max-w-3xl mx-auto leading-relaxed">
-              Utilizamos datos satelitales de la NASA y tecnología de vanguardia para revolucionar 
-              la agricultura y la investigación fenológica del maíz mexicano, proporcionando 
-              insights precisos para mejorar los rendimientos.
+              Utilizamos datos satelitales de la NASA y tecnología de vanguardia
+              para revolucionar la agricultura y la investigación fenológica del
+              maíz mexicano, proporcionando insights precisos para mejorar los
+              rendimientos.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -53,11 +66,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         {/* Wave decoration */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 C400,120 800,0 1200,60 L1200,120 L0,120 Z" fill="currentColor" className="text-white dark:text-gray-950"></path>
+          <svg
+            className="w-full h-20"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,60 C400,120 800,0 1200,60 L1200,120 L0,120 Z"
+              fill="currentColor"
+              className="text-white dark:text-gray-950"
+            ></path>
           </svg>
         </div>
       </section>
@@ -90,7 +111,8 @@ export default function Home() {
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Utilizamos imágenes de MODIS, Landsat y VIIRS para detectar
-                eventos de floración con precisión temporal y espacial excepcional.
+                eventos de floración con precisión temporal y espacial
+                excepcional.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -104,7 +126,8 @@ export default function Home() {
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Visualiza el estado actual de tus cultivos y recibe alertas
-                inteligentes sobre cambios importantes en los patrones de floración.
+                inteligentes sobre cambios importantes en los patrones de
+                floración.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -117,8 +140,9 @@ export default function Home() {
                 Análisis Predictivo
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Modelos de IA avanzados que predicen patrones de floración y optimizan las
-                decisiones agrícolas basadas en datos históricos y tendencias.
+                Modelos de IA avanzados que predicen patrones de floración y
+                optimizan las decisiones agrícolas basadas en datos históricos y
+                tendencias.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -133,7 +157,7 @@ export default function Home() {
           <div className="absolute top-10 right-10 w-96 h-96 bg-green-200 dark:bg-green-800/30 rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-200 dark:bg-blue-800/30 rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
-        
+
         <div className="container px-4 mx-auto relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 text-gray-800 dark:text-gray-200 rounded-full text-sm font-medium mb-6">
@@ -152,16 +176,16 @@ export default function Home() {
             {/* Farmers Card */}
             <div className="group relative bg-gradient-to-br from-green-400/10 to-emerald-600/10 dark:from-green-800/20 dark:to-emerald-900/20 p-8 rounded-3xl border border-green-200/50 dark:border-green-700/30 hover:border-green-300 dark:hover:border-green-600 transition-all duration-500 hover:shadow-2xl hover:shadow-green-200/20 dark:hover:shadow-green-900/20">
               <div className="absolute top-6 right-6 w-24 h-24 bg-green-400/20 rounded-full blur-2xl"></div>
-              
+
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-600 rounded-3xl mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Sprout className="h-12 w-12 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
                   Para Agricultores
                 </h3>
-                
+
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
@@ -180,7 +204,7 @@ export default function Home() {
                     Alertas personalizadas
                   </li>
                 </ul>
-                
+
                 <Link
                   href="/auth/register?role=agricultor"
                   className="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -194,16 +218,16 @@ export default function Home() {
             {/* Researchers Card */}
             <div className="group relative bg-gradient-to-br from-blue-400/10 to-cyan-600/10 dark:from-blue-800/20 dark:to-cyan-900/20 p-8 rounded-3xl border border-blue-200/50 dark:border-blue-700/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-200/20 dark:hover:shadow-blue-900/20">
               <div className="absolute top-6 right-6 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl"></div>
-              
+
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-3xl mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Users className="h-12 w-12 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
                   Para Investigadores
                 </h3>
-                
+
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
@@ -222,7 +246,7 @@ export default function Home() {
                     Exportación de datasets
                   </li>
                 </ul>
-                
+
                 <Link
                   href="/auth/register?role=investigador"
                   className="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -243,7 +267,7 @@ export default function Home() {
           <div className="absolute top-20 right-20 w-96 h-96 bg-yellow-200 dark:bg-yellow-800/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
           <div className="absolute bottom-20 left-20 w-96 h-96 bg-green-200 dark:bg-green-800/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
         </div>
-        
+
         <div className="container px-4 mx-auto relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium mb-6">
@@ -254,8 +278,8 @@ export default function Home() {
               Ranking de Agricultores
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Reconocemos a los agricultores más comprometidos que comparten información valiosa
-              sobre sequías, plagas y prácticas sostenibles.
+              Reconocemos a los agricultores más comprometidos que comparten
+              información valiosa sobre sequías, plagas y prácticas sostenibles.
             </p>
           </div>
 
@@ -268,7 +292,8 @@ export default function Home() {
                 Mejores Contratos
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Los agricultores mejor rankeados obtienen acceso a mejores licitaciones y contratos gubernamentales.
+                Los agricultores mejor rankeados obtienen acceso a mejores
+                licitaciones y contratos gubernamentales.
               </p>
             </div>
 
@@ -280,7 +305,8 @@ export default function Home() {
                 Gana Puntos
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Reporta sequías (50 pts), plagas (40 pts), prácticas sostenibles (60 pts) y datos de cultivos.
+                Reporta sequías (50 pts), plagas (40 pts), prácticas sostenibles
+                (60 pts) y datos de cultivos.
               </p>
             </div>
 
@@ -292,7 +318,8 @@ export default function Home() {
                 Sube de Nivel
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Desde Aprendiz hasta Leyenda del Campo. Desbloquea insignias y reconocimientos.
+                Desde Aprendiz hasta Leyenda del Campo. Desbloquea insignias y
+                reconocimientos.
               </p>
             </div>
           </div>
@@ -321,32 +348,35 @@ export default function Home() {
           <div className="absolute top-20 left-10 w-96 h-96 bg-white/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
         </div>
-        
+
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-            backgroundSize: '50px 50px'
-          }}></div>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+              backgroundSize: '50px 50px',
+            }}
+          ></div>
         </div>
-        
+
         <div className="container px-4 mx-auto text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* Icon with glow effect */}
             <div className="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-3xl mb-8 backdrop-blur-sm border border-white/30">
               <Globe className="h-12 w-12 text-white animate-pulse" />
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
               Únete a la Revolución Agrícola
             </h2>
-            
+
             <p className="text-xl md:text-2xl text-green-100/90 mb-12 max-w-3xl mx-auto leading-relaxed">
               Forma parte del futuro de la agricultura mexicana con datos
-              satelitales de última generación, análisis inteligente y una comunidad
-              comprometida con la innovación.
+              satelitales de última generación, análisis inteligente y una
+              comunidad comprometida con la innovación.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link
                 href="/auth/register"
@@ -356,7 +386,7 @@ export default function Home() {
                 Crear Cuenta Gratis
                 <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
-              
+
               <Link
                 href="/auth/login"
                 className="group inline-flex items-center px-8 py-4 bg-transparent text-white border-2 border-white/50 rounded-2xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
@@ -365,7 +395,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-            
+
             {/* Stats or badges */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
               <div className="text-center">
@@ -378,7 +408,9 @@ export default function Home() {
               </div>
               <div className="text-center md:col-span-1 col-span-2">
                 <div className="text-3xl font-bold text-white mb-2">AI</div>
-                <div className="text-green-100 text-sm">Análisis Inteligente</div>
+                <div className="text-green-100 text-sm">
+                  Análisis Inteligente
+                </div>
               </div>
             </div>
           </div>

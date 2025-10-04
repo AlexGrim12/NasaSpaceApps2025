@@ -61,16 +61,20 @@ export default function ContributionsPage() {
 
         {/* Info Banner */}
         <div className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border rounded-lg p-6">
-          <h3 className="font-semibold mb-2">💡 ¿Cómo funciona el sistema de puntos?</h3>
+          <h3 className="font-semibold mb-2">
+            💡 ¿Cómo funciona el sistema de puntos?
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-sm">
             <div>
-              <span className="font-medium text-orange-600">Sequías:</span> 50 pts
+              <span className="font-medium text-orange-600">Sequías:</span> 50
+              pts
             </div>
             <div>
               <span className="font-medium text-red-600">Plagas:</span> 40 pts
             </div>
             <div>
-              <span className="font-medium text-green-600">Sostenible:</span> 60 pts
+              <span className="font-medium text-green-600">Sostenible:</span> 60
+              pts
             </div>
             <div>
               <span className="font-medium text-blue-600">Cultivo:</span> 30 pts
@@ -80,8 +84,8 @@ export default function ContributionsPage() {
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-3">
-            Todas las contribuciones son revisadas antes de ser verificadas. Los puntos se
-            suman automáticamente una vez verificadas.
+            Todas las contribuciones son revisadas antes de ser verificadas. Los
+            puntos se suman automáticamente una vez verificadas.
           </p>
         </div>
 
@@ -100,30 +104,32 @@ export default function ContributionsPage() {
 
         {/* Benefits Section */}
         <div className="mt-8 bg-card border rounded-lg p-6">
-          <h3 className="text-xl font-semibold mb-4">🏆 Beneficios de Contribuir</h3>
+          <h3 className="text-xl font-semibold mb-4">
+            🏆 Beneficios de Contribuir
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="text-3xl mb-2">📈</div>
               <h4 className="font-semibold mb-2">Mejores Contratos</h4>
               <p className="text-sm text-muted-foreground">
-                Agricultores con alto ranking tienen acceso a mejores licitaciones
-                gubernamentales y contratos comerciales
+                Agricultores con alto ranking tienen acceso a mejores
+                licitaciones gubernamentales y contratos comerciales
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🎓</div>
               <h4 className="font-semibold mb-2">Reconocimiento</h4>
               <p className="text-sm text-muted-foreground">
-                Sube de nivel desde Aprendiz hasta Leyenda y obtén insignias exclusivas
-                que demuestran tu experiencia
+                Sube de nivel desde Aprendiz hasta Leyenda y obtén insignias
+                exclusivas que demuestran tu experiencia
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🌍</div>
               <h4 className="font-semibold mb-2">Impacto Social</h4>
               <p className="text-sm text-muted-foreground">
-                Tu información ayuda a otros agricultores y contribuye a la seguridad
-                alimentaria de México
+                Tu información ayuda a otros agricultores y contribuye a la
+                seguridad alimentaria de México
               </p>
             </div>
           </div>

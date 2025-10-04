@@ -7,28 +7,29 @@ El Sistema de Ranking de Agricultores es una funcionalidad completa que reconoce
 ## 🎯 Características Principales
 
 ### 1. Sistema de Puntos
+
 Los agricultores ganan puntos por diferentes tipos de contribuciones:
 
-| Tipo de Contribución | Puntos | Descripción |
-|---------------------|---------|-------------|
-| Reporte de Sequías | 50 pts | Información sobre períodos de sequía |
-| Reporte de Plagas | 40 pts | Detección y reporte de plagas |
+| Tipo de Contribución  | Puntos | Descripción                             |
+| --------------------- | ------ | --------------------------------------- |
+| Reporte de Sequías    | 50 pts | Información sobre períodos de sequía    |
+| Reporte de Plagas     | 40 pts | Detección y reporte de plagas           |
 | Prácticas Sostenibles | 60 pts | Uso de métodos socialmente responsables |
-| Datos de Cultivos | 30 pts | Compartir datos de producción y cosecha |
-| Datos Climáticos | 20 pts | Información meteorológica local |
+| Datos de Cultivos     | 30 pts | Compartir datos de producción y cosecha |
+| Datos Climáticos      | 20 pts | Información meteorológica local         |
 
 ### 2. Sistema de Niveles
 
 Los agricultores progresan a través de diferentes niveles según sus puntos acumulados:
 
-| Nivel | Puntos Requeridos | Beneficios |
-|-------|-------------------|------------|
-| 🌱 Aprendiz | 0 - 99 pts | Acceso básico a la plataforma |
-| 🌿 Cultivador | 100 - 499 pts | Prioridad baja en licitaciones |
-| 👨‍🌾 Agricultor Experimentado | 500 - 1,499 pts | Prioridad media en licitaciones |
-| 🎓 Maestro Agricultor | 1,500 - 4,999 pts | Prioridad alta en licitaciones |
-| ⭐ Gran Maestro | 5,000 - 9,999 pts | Acceso a programas especiales |
-| 🏆 Leyenda del Campo | 10,000+ pts | Máximos beneficios y reconocimiento nacional |
+| Nivel                       | Puntos Requeridos | Beneficios                                   |
+| --------------------------- | ----------------- | -------------------------------------------- |
+| 🌱 Aprendiz                 | 0 - 99 pts        | Acceso básico a la plataforma                |
+| 🌿 Cultivador               | 100 - 499 pts     | Prioridad baja en licitaciones               |
+| 👨‍🌾 Agricultor Experimentado | 500 - 1,499 pts   | Prioridad media en licitaciones              |
+| 🎓 Maestro Agricultor       | 1,500 - 4,999 pts | Prioridad alta en licitaciones               |
+| ⭐ Gran Maestro             | 5,000 - 9,999 pts | Acceso a programas especiales                |
+| 🏆 Leyenda del Campo        | 10,000+ pts       | Máximos beneficios y reconocimiento nacional |
 
 ### 3. Sistema de Insignias
 
@@ -110,12 +111,15 @@ CREATE TABLE contributions (
 ### Funciones PostgreSQL
 
 #### `calculate_farmer_level(points INTEGER)`
+
 Calcula el nivel del agricultor basado en sus puntos totales.
 
 #### `update_farmer_ranking()`
+
 Trigger que actualiza automáticamente el ranking cuando se verifica una contribución.
 
 #### `get_top_farmers(limit_count INTEGER)`
+
 Obtiene el top de agricultores con su posición en el ranking.
 
 ## 🔌 API Endpoints
@@ -125,10 +129,12 @@ Obtiene el top de agricultores con su posición en el ranking.
 **GET** `/api/rankings`
 
 **Query Parameters:**
+
 - `limit` (opcional): Número máximo de resultados (default: 100)
 - `level` (opcional): Filtrar por nivel específico
 
 **Respuesta:**
+
 ```json
 {
   "success": true,
@@ -161,9 +167,11 @@ Obtiene el top de agricultores con su posición en el ranking.
 **GET** `/api/rankings/[id]`
 
 **Parámetros de ruta:**
+
 - `id`: ID del agricultor (UUID)
 
 **Respuesta:**
+
 ```json
 {
   "success": true,
@@ -179,11 +187,13 @@ Obtiene el top de agricultores con su posición en el ranking.
 **GET** `/api/contributions`
 
 **Query Parameters:**
+
 - `farmerId` (opcional): ID del agricultor
 - `type` (opcional): Tipo de contribución
 - `verified` (opcional): true/false
 
 **Respuesta:**
+
 ```json
 {
   "success": true,
@@ -208,9 +218,11 @@ Obtiene el top de agricultores con su posición en el ranking.
 **POST** `/api/contributions`
 
 **Headers:**
+
 - `Authorization`: Bearer token (usuario autenticado)
 
 **Body:**
+
 ```json
 {
   "type": "drought_report",
@@ -223,6 +235,7 @@ Obtiene el top de agricultores con su posición en el ranking.
 ```
 
 **Respuesta:**
+
 ```json
 {
   "success": true,
@@ -299,6 +312,7 @@ npm run dev
 Componente: `src/app/rankings/page.tsx`
 
 **Características**:
+
 - Grid responsivo
 - Tarjetas de agricultores con información detallada
 - Filtros dinámicos por nivel
@@ -311,6 +325,7 @@ Componente: `src/app/rankings/page.tsx`
 Ubicación: `src/app/page.tsx`
 
 **Características**:
+
 - Resumen del sistema de ranking
 - 3 cards con beneficios principales
 - CTA destacado para ver ranking completo
@@ -359,15 +374,19 @@ El sistema calcula automáticamente:
 ## 🎯 Casos de Uso
 
 ### 1. Licitaciones Gubernamentales
+
 El gobierno puede consultar el ranking para priorizar agricultores comprometidos en programas de apoyo.
 
 ### 2. Contratos Privados
+
 Empresas agrícolas pueden identificar productores confiables y colaborativos.
 
 ### 3. Investigación
+
 Investigadores pueden acceder a agricultores con datos valiosos verificados.
 
 ### 4. Gamificación
+
 Motivar a los agricultores a compartir información mediante reconocimiento y beneficios.
 
 ## 📈 Futuras Mejoras
@@ -395,6 +414,7 @@ Motivar a los agricultores a compartir información mediante reconocimiento y be
 ## 📞 Soporte
 
 Para problemas o preguntas sobre el sistema de ranking, consulta:
+
 - Documentación de la base de datos: `database/farmer-ranking-schema.sql`
 - Tipos TypeScript: `src/types/farmer-ranking.ts`
 - Componentes de UI: `src/app/rankings/page.tsx`

@@ -33,7 +33,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key-aqui
 SUPABASE_SERVICE_ROLE_KEY=tu-service-role-key-aqui  # ← NUEVA
 ```
 
-⚠️ **IMPORTANTE:** 
+⚠️ **IMPORTANTE:**
+
 - El `service_role_key` **NO** tiene el prefijo `NEXT_PUBLIC_`
 - Esto asegura que solo esté disponible en el servidor
 - Nunca se expone al navegador
@@ -51,10 +52,12 @@ npm run dev
 Ya he actualizado estos archivos por ti:
 
 1. ✅ **`/src/lib/supabase-admin.ts`** (NUEVO)
+
    - Cliente admin con service_role_key
    - Solo para uso en servidor
 
 2. ✅ **`/src/app/api/contributions/route.ts`**
+
    - Usa `supabaseAdmin` para INSERT
    - Bypassa RLS de forma segura
 
@@ -97,22 +100,26 @@ ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
 ### Setup Inicial (5 minutos)
 
 - [ ] **1. Obtener Service Role Key**
+
   ```
   Supabase Dashboard → Settings → API → service_role key (copiar)
   ```
 
 - [ ] **2. Agregar a .env.local**
+
   ```bash
   SUPABASE_SERVICE_ROLE_KEY=eyJhbG...tu-key-completa
   ```
 
 - [ ] **3. Verificar que existe el archivo**
+
   ```bash
   ls -la .env.local
   # Debe mostrar el archivo
   ```
 
 - [ ] **4. Reiniciar servidor**
+
   ```bash
   npm run dev
   ```
@@ -127,16 +134,19 @@ ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
 ### Testing (3 minutos)
 
 - [ ] **1. Login como agricultor**
+
   ```
   http://localhost:3000/auth/login
   ```
 
 - [ ] **2. Ir a contribuciones**
+
   ```
   http://localhost:3000/contributions
   ```
 
 - [ ] **3. Crear contribución de prueba**
+
   ```
   - Seleccionar tipo: Sequía
   - Descripción: "Prueba de sistema de contribuciones"
@@ -144,25 +154,28 @@ ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
   ```
 
 - [ ] **4. Verificar éxito**
+
   ```
   Deberías ver: ✅ "¡Contribución creada exitosamente!"
   ```
 
 - [ ] **5. Verificar en terminal**
+
   ```
   Terminal debe mostrar:
   ✅ POST /api/contributions 200 in XXms
-  
+
   NO debe mostrar:
   ❌ Error creating contribution
   ❌ violates row-level security policy
   ```
 
 - [ ] **6. Verificar en Supabase**
+
   ```sql
   -- En Supabase SQL Editor:
   SELECT * FROM contributions ORDER BY created_at DESC LIMIT 5;
-  
+
   -- Deberías ver tu contribución
   ```
 
@@ -173,11 +186,13 @@ ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
 ### Error: "Service role key not found"
 
 **Síntoma:**
+
 ```
 Error: process.env.SUPABASE_SERVICE_ROLE_KEY is undefined
 ```
 
 **Solución:**
+
 ```bash
 # 1. Verifica que el archivo .env.local existe
 cat .env.local
@@ -198,6 +213,7 @@ npm run dev
 **Causa:** El service_role_key no se cargó correctamente.
 
 **Solución:**
+
 ```bash
 # 1. Verifica las variables de entorno
 echo $SUPABASE_SERVICE_ROLE_KEY
@@ -215,6 +231,7 @@ npm run dev
 **Causa:** El token del cliente expiró.
 
 **Solución:**
+
 ```bash
 # 1. Cierra sesión
 # 2. Inicia sesión nuevamente
@@ -225,19 +242,20 @@ npm run dev
 
 ## 📊 Comparación de Enfoques
 
-| Aspecto | Service Role Key | Políticas RLS |
-|---------|------------------|---------------|
-| **Seguridad** | ✅ Alta (solo servidor) | ✅ Alta (nivel DB) |
-| **Complejidad** | 🟢 Baja | 🟡 Media |
-| **Setup** | 🟢 5 minutos | 🟡 15 minutos |
-| **Mantenimiento** | 🟢 Bajo | 🟡 Medio |
-| **Recomendado** | ✅ Sí | Solo si necesario |
+| Aspecto           | Service Role Key        | Políticas RLS      |
+| ----------------- | ----------------------- | ------------------ |
+| **Seguridad**     | ✅ Alta (solo servidor) | ✅ Alta (nivel DB) |
+| **Complejidad**   | 🟢 Baja                 | 🟡 Media           |
+| **Setup**         | 🟢 5 minutos            | 🟡 15 minutos      |
+| **Mantenimiento** | 🟢 Bajo                 | 🟡 Medio           |
+| **Recomendado**   | ✅ Sí                   | Solo si necesario  |
 
 ---
 
 ## 🎯 Qué Hace el Service Role Key
 
 ### Cliente Normal (anon key):
+
 ```typescript
 // ❌ Respeta RLS - puede fallar
 const { data, error } = await supabase
@@ -247,6 +265,7 @@ const { data, error } = await supabase
 ```
 
 ### Cliente Admin (service_role key):
+
 ```typescript
 // ✅ Bypassa RLS - siempre funciona
 const { data, error } = await supabaseAdmin
@@ -279,13 +298,10 @@ const { data, error } = await supabaseAdmin
 
 1. ✅ **Creado** `/src/lib/supabase-admin.ts`
    - Cliente admin para API routes
-   
 2. ✅ **Modificado** `/src/app/api/contributions/route.ts`
    - Usa `supabaseAdmin` en vez de `supabase` para INSERT
-   
 3. ✅ **Actualizado** `.env.example`
    - Agregada variable `SUPABASE_SERVICE_ROLE_KEY`
-   
 4. ✅ **Creado** `/database/fix-rls-policies.sql`
    - Alternativa con políticas RLS
 
@@ -300,12 +316,14 @@ const { data, error } = await supabaseAdmin
 ## 🎉 Resultado Esperado
 
 ### Antes (con error):
+
 ```
 ❌ POST /api/contributions 500 in 642ms
 Error: new row violates row-level security policy
 ```
 
 ### Después (funcionando):
+
 ```
 ✅ POST /api/contributions 200 in 145ms
 {
@@ -327,6 +345,7 @@ Error: new row violates row-level security policy
 ## 📞 Ayuda Adicional
 
 ### Documentos relacionados:
+
 - [Supabase RLS Docs](https://supabase.com/docs/guides/auth/row-level-security)
 - [Service Role Key Usage](https://supabase.com/docs/guides/api/api-keys)
 - [NEXTJS15_FIXES.md](../NEXTJS15_FIXES.md)
@@ -342,5 +361,5 @@ Si después de seguir estos pasos aún tienes problemas:
 
 ---
 
-*Solución implementada el 4 de octubre de 2025*
-*Next.js 15.5.4 + Supabase*
+_Solución implementada el 4 de octubre de 2025_
+_Next.js 15.5.4 + Supabase_

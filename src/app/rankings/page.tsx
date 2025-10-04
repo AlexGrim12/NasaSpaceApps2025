@@ -2,8 +2,24 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { FarmerRanking, FarmerLevel, AVAILABLE_BADGES } from '@/types/farmer-ranking'
-import { Trophy, TrendingUp, Award, MapPin, Calendar, Sprout, Droplet, Bug, Leaf, CloudRain, BarChart3 } from 'lucide-react'
+import {
+  FarmerRanking,
+  FarmerLevel,
+  AVAILABLE_BADGES,
+} from '@/types/farmer-ranking'
+import {
+  Trophy,
+  TrendingUp,
+  Award,
+  MapPin,
+  Calendar,
+  Sprout,
+  Droplet,
+  Bug,
+  Leaf,
+  CloudRain,
+  BarChart3,
+} from 'lucide-react'
 
 export default function FarmerRankingsPage() {
   const [rankings, setRankings] = useState<FarmerRanking[]>([])
@@ -22,28 +38,34 @@ export default function FarmerRankingsPage() {
   const fetchRankings = async () => {
     try {
       setLoading(true)
-      const url = filter === 'all' 
-        ? '/api/rankings?limit=100'
-        : `/api/rankings?limit=100&level=${filter}`
-      
+      const url =
+        filter === 'all'
+          ? '/api/rankings?limit=100'
+          : `/api/rankings?limit=100&level=${filter}`
+
       const response = await fetch(url)
       const result = await response.json()
 
       if (result.success) {
         setRankings(result.data)
-        
+
         // Calcular estadísticas
         const totalFarmers = result.data.length
         const totalContributions = result.data.reduce(
-          (sum: number, farmer: FarmerRanking) => sum + farmer.contributions_count,
+          (sum: number, farmer: FarmerRanking) =>
+            sum + farmer.contributions_count,
           0
         )
-        const avgPoints = totalFarmers > 0
-          ? Math.round(
-              result.data.reduce((sum: number, farmer: FarmerRanking) => sum + farmer.total_points, 0) /
-                totalFarmers
-            )
-          : 0
+        const avgPoints =
+          totalFarmers > 0
+            ? Math.round(
+                result.data.reduce(
+                  (sum: number, farmer: FarmerRanking) =>
+                    sum + farmer.total_points,
+                  0
+                ) / totalFarmers
+              )
+            : 0
 
         setStats({ totalFarmers, totalContributions, avgPoints })
       }
@@ -56,12 +78,17 @@ export default function FarmerRankingsPage() {
 
   const getLevelColor = (level: FarmerLevel) => {
     const colors: Record<FarmerLevel, string> = {
-      'Aprendiz': 'text-gray-600 bg-gray-100 dark:bg-gray-800 dark:text-gray-300',
-      'Cultivador': 'text-green-600 bg-green-100 dark:bg-green-900/20 dark:text-green-400',
-      'Agricultor Experimentado': 'text-blue-600 bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400',
-      'Maestro Agricultor': 'text-purple-600 bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400',
-      'Gran Maestro': 'text-orange-600 bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400',
-      'Leyenda del Campo': 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/20 dark:text-yellow-400',
+      Aprendiz: 'text-gray-600 bg-gray-100 dark:bg-gray-800 dark:text-gray-300',
+      Cultivador:
+        'text-green-600 bg-green-100 dark:bg-green-900/20 dark:text-green-400',
+      'Agricultor Experimentado':
+        'text-blue-600 bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400',
+      'Maestro Agricultor':
+        'text-purple-600 bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400',
+      'Gran Maestro':
+        'text-orange-600 bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400',
+      'Leyenda del Campo':
+        'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/20 dark:text-yellow-400',
     }
     return colors[level] || colors['Aprendiz']
   }
@@ -74,14 +101,12 @@ export default function FarmerRankingsPage() {
   }
 
   const getBadgeIcon = (badgeId: string) => {
-    const badge = AVAILABLE_BADGES.find(b => b.id === badgeId)
+    const badge = AVAILABLE_BADGES.find((b) => b.id === badgeId)
     return badge?.icon || '🏅'
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      
-
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
@@ -93,8 +118,9 @@ export default function FarmerRankingsPage() {
             Top de Contribuyentes
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Reconocemos a los agricultores que comparten datos valiosos sobre sequías, plagas y
-            prácticas sostenibles. ¡Tu contribución puede mejorar contratos y licitaciones gubernamentales!
+            Reconocemos a los agricultores que comparten datos valiosos sobre
+            sequías, plagas y prácticas sostenibles. ¡Tu contribución puede
+            mejorar contratos y licitaciones gubernamentales!
           </p>
         </div>
 
@@ -106,8 +132,12 @@ export default function FarmerRankingsPage() {
                 <TrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Total Agricultores</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalFarmers}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Total Agricultores
+                </p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {stats.totalFarmers}
+                </p>
               </div>
             </div>
           </div>
@@ -118,8 +148,12 @@ export default function FarmerRankingsPage() {
                 <BarChart3 className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Total Contribuciones</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalContributions}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Total Contribuciones
+                </p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {stats.totalContributions}
+                </p>
               </div>
             </div>
           </div>
@@ -130,8 +164,12 @@ export default function FarmerRankingsPage() {
                 <Award className="h-6 w-6 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Puntos Promedio</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.avgPoints}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Puntos Promedio
+                </p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {stats.avgPoints}
+                </p>
               </div>
             </div>
           </div>
@@ -139,7 +177,9 @@ export default function FarmerRankingsPage() {
 
         {/* Filters */}
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
-          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Filtrar por Nivel</h3>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            Filtrar por Nivel
+          </h3>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter('all')}
@@ -151,7 +191,16 @@ export default function FarmerRankingsPage() {
             >
               Todos
             </button>
-            {(['Aprendiz', 'Cultivador', 'Agricultor Experimentado', 'Maestro Agricultor', 'Gran Maestro', 'Leyenda del Campo'] as FarmerLevel[]).map((level) => (
+            {(
+              [
+                'Aprendiz',
+                'Cultivador',
+                'Agricultor Experimentado',
+                'Maestro Agricultor',
+                'Gran Maestro',
+                'Leyenda del Campo',
+              ] as FarmerLevel[]
+            ).map((level) => (
               <button
                 key={level}
                 onClick={() => setFilter(level)}
@@ -171,7 +220,9 @@ export default function FarmerRankingsPage() {
         {loading ? (
           <div className="bg-white dark:bg-gray-800 rounded-xl p-12 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-            <p className="text-gray-500 dark:text-gray-400">Cargando rankings...</p>
+            <p className="text-gray-500 dark:text-gray-400">
+              Cargando rankings...
+            </p>
           </div>
         ) : rankings.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 rounded-xl p-12 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
@@ -216,11 +267,21 @@ export default function FarmerRankingsPage() {
                               </>
                             )}
                             <Calendar className="h-4 w-4" />
-                            <span>Desde {new Date(farmer.created_at).toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })}</span>
+                            <span>
+                              Desde{' '}
+                              {new Date(farmer.created_at).toLocaleDateString(
+                                'es-MX',
+                                { month: 'long', year: 'numeric' }
+                              )}
+                            </span>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${getLevelColor(farmer.level)}`}>
+                          <div
+                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${getLevelColor(
+                              farmer.level
+                            )}`}
+                          >
                             {farmer.level}
                           </div>
                           <p className="text-2xl font-bold text-green-600 dark:text-green-400 mt-1">
@@ -236,8 +297,12 @@ export default function FarmerRankingsPage() {
                             <Droplet className="h-4 w-4 text-orange-600 dark:text-orange-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Sequías</p>
-                            <p className="font-semibold text-gray-900 dark:text-white">{farmer.drought_reports}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              Sequías
+                            </p>
+                            <p className="font-semibold text-gray-900 dark:text-white">
+                              {farmer.drought_reports}
+                            </p>
                           </div>
                         </div>
 
@@ -246,8 +311,12 @@ export default function FarmerRankingsPage() {
                             <Bug className="h-4 w-4 text-red-600 dark:text-red-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Plagas</p>
-                            <p className="font-semibold text-gray-900 dark:text-white">{farmer.pest_reports}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              Plagas
+                            </p>
+                            <p className="font-semibold text-gray-900 dark:text-white">
+                              {farmer.pest_reports}
+                            </p>
                           </div>
                         </div>
 
@@ -256,8 +325,12 @@ export default function FarmerRankingsPage() {
                             <Leaf className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Sostenible</p>
-                            <p className="font-semibold text-gray-900 dark:text-white">{farmer.sustainable_practices}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              Sostenible
+                            </p>
+                            <p className="font-semibold text-gray-900 dark:text-white">
+                              {farmer.sustainable_practices}
+                            </p>
                           </div>
                         </div>
 
@@ -266,8 +339,12 @@ export default function FarmerRankingsPage() {
                             <CloudRain className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Clima</p>
-                            <p className="font-semibold text-gray-900 dark:text-white">{farmer.weather_data_shared}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              Clima
+                            </p>
+                            <p className="font-semibold text-gray-900 dark:text-white">
+                              {farmer.weather_data_shared}
+                            </p>
                           </div>
                         </div>
 
@@ -276,27 +353,45 @@ export default function FarmerRankingsPage() {
                             <BarChart3 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Total</p>
-                            <p className="font-semibold text-gray-900 dark:text-white">{farmer.contributions_count}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              Total
+                            </p>
+                            <p className="font-semibold text-gray-900 dark:text-white">
+                              {farmer.contributions_count}
+                            </p>
                           </div>
                         </div>
                       </div>
 
                       {/* Badges */}
-                      {farmer.badges && Array.isArray(farmer.badges) && farmer.badges.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {farmer.badges.map((badgeId: string, index: number) => (
-                            <div
-                              key={index}
-                              className="inline-flex items-center space-x-1 px-2 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg text-xs font-medium text-yellow-700 dark:text-yellow-400"
-                              title={AVAILABLE_BADGES.find(b => b.id === badgeId)?.description}
-                            >
-                              <span>{getBadgeIcon(badgeId)}</span>
-                              <span>{AVAILABLE_BADGES.find(b => b.id === badgeId)?.name}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                      {farmer.badges &&
+                        Array.isArray(farmer.badges) &&
+                        farmer.badges.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {farmer.badges.map(
+                              (badgeId: string, index: number) => (
+                                <div
+                                  key={index}
+                                  className="inline-flex items-center space-x-1 px-2 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg text-xs font-medium text-yellow-700 dark:text-yellow-400"
+                                  title={
+                                    AVAILABLE_BADGES.find(
+                                      (b) => b.id === badgeId
+                                    )?.description
+                                  }
+                                >
+                                  <span>{getBadgeIcon(badgeId)}</span>
+                                  <span>
+                                    {
+                                      AVAILABLE_BADGES.find(
+                                        (b) => b.id === badgeId
+                                      )?.name
+                                    }
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -307,10 +402,13 @@ export default function FarmerRankingsPage() {
 
         {/* CTA Section */}
         <div className="mt-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white shadow-2xl">
-          <h2 className="text-3xl font-bold mb-4">¿Quieres aparecer en el ranking?</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            ¿Quieres aparecer en el ranking?
+          </h2>
           <p className="text-lg mb-6 opacity-90">
-            Únete a BloomWatch y comparte información valiosa para la comunidad agrícola.
-            Obtén mejores contratos y reconocimiento por tus contribuciones.
+            Únete a BloomWatch y comparte información valiosa para la comunidad
+            agrícola. Obtén mejores contratos y reconocimiento por tus
+            contribuciones.
           </p>
           <Link
             href="/auth/register?role=agricultor"
