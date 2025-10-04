@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌽 BloomWatch - NASA Space Apps Challenge 2025
 
-## Getting Started
+> **Monitoreo inteligente de la floración del maíz en México usando datos satelitales de la NASA**
 
-First, run the development server:
+BloomWatch es una aplicación web moderna desarrollada para el NASA Space Apps Challenge 2025, diseñada para revolucionar el monitoreo de eventos de floración del maíz en México utilizando datos de observación terrestre de la NASA.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Características Principales
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🌱 Dashboard Dual**: Interfaces especializadas para Agricultores e Investigadores
+- **🛰️ Datos NASA**: Integración con imágenes satelitales MODIS, Landsat y VIIRS
+- **🌙 Modo Oscuro/Claro**: Interfaz adaptable a las preferencias del usuario
+- **📊 Visualización de Datos**: Gráficos interactivos y mapas de cultivos
+- **🔒 Autenticación Segura**: Sistema de roles con Supabase
+- **📱 Diseño Responsivo**: Optimizado para todos los dispositivos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎯 Objetivos del Proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Para Agricultores 🌾
 
-## Learn More
+- Monitoreo en tiempo real de cultivos de maíz
+- Predicciones de floración basadas en IA
+- Optimización de riego y nutrientes
+- Alertas de eventos importantes
 
-To learn more about Next.js, take a look at the following resources:
+### Para Investigadores 🔬
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Acceso a datos históricos de floración
+- Análisis fenológicos detallados
+- Herramientas de investigación científica
+- Contribución al conocimiento agrícola
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tecnologías Utilizadas
 
-## Deploy on Vercel
+- **Frontend**: Next.js 14 con App Router
+- **Lenguaje**: TypeScript
+- **Estilos**: Tailwind CSS
+- **Base de Datos**: Supabase
+- **Autenticación**: Supabase Auth
+- **Iconos**: Lucide React
+- **Temas**: Next Themes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Instalación y Configuración
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prerrequisitos
+
+- Node.js 18+
+- npm o yarn
+- Cuenta de Supabase
+
+### Configuración Local
+
+1. **Instalar dependencias**
+
+   ```bash
+   npm install
+   ```
+
+2. **Configurar variables de entorno**
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Edita `.env.local` con tus credenciales de Supabase:
+
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+3. **Configurar base de datos en Supabase**
+
+   Ejecuta el siguiente SQL en tu proyecto de Supabase:
+
+   ```sql
+   -- Create profiles table
+   CREATE TABLE profiles (
+     id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
+     email TEXT NOT NULL,
+     name TEXT NOT NULL,
+     role TEXT CHECK (role IN ('agricultor', 'investigador')) NOT NULL,
+     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+   );
+
+   -- Enable RLS
+   ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+
+   -- Create policies
+   CREATE POLICY "Users can view own profile" ON profiles
+     FOR SELECT USING (auth.uid() = id);
+
+   CREATE POLICY "Users can insert own profile" ON profiles
+     FOR INSERT WITH CHECK (auth.uid() = id);
+
+   CREATE POLICY "Users can update own profile" ON profiles
+     FOR UPDATE USING (auth.uid() = id);
+   ```
+
+4. **Iniciar servidor de desarrollo**
+
+   ```bash
+   npm run dev
+   ```
+
+   La aplicación estará disponible en `http://localhost:3000`
+
+## 🏆 Equipo
+
+- **Frontend Development**: Alejandro Grimaldo
+- **Investigación**: Leonardo Grimaldo
+- **Base de Datos**: Ruy Cabello Cuahutle
+- **Proyectos Open Source**: Roni Hernández
+- **Análisis Satelital**: Ceibelen
+- **Desarrollo Backend**: Carlos Nolasco
+
+---
+
+**¡Únete a la revolución agrícola con BloomWatch! 🌽✨**
