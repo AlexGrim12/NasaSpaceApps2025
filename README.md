@@ -117,3 +117,4 @@ BloomWatch es una aplicación web moderna desarrollada para el NASA Space Apps C
 ---
 
 **¡Únete a la revolución agrícola con BloomWatch! 🌽✨**
+.
