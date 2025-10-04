@@ -13,7 +13,6 @@ import {
   Award,
   MapPin,
   Calendar,
-  Sprout,
   Droplet,
   Bug,
   Leaf,
@@ -30,10 +29,6 @@ export default function FarmerRankingsPage() {
     totalContributions: 0,
     avgPoints: 0,
   })
-
-  useEffect(() => {
-    fetchRankings()
-  }, [filter])
 
   const fetchRankings = async () => {
     try {
@@ -75,6 +70,11 @@ export default function FarmerRankingsPage() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    fetchRankings()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter])
 
   const getLevelColor = (level: FarmerLevel) => {
     const colors: Record<FarmerLevel, string> = {

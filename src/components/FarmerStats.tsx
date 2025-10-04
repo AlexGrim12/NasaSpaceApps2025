@@ -49,12 +49,6 @@ export default function FarmerStats() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'verified' | 'pending'>('all')
 
-  useEffect(() => {
-    if (user) {
-      fetchData()
-    }
-  }, [user])
-
   const fetchData = async () => {
     if (!user) return
 
@@ -81,6 +75,13 @@ export default function FarmerStats() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      fetchData()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   const filteredContributions = contributions.filter((c) => {
     if (filter === 'verified') return c.verified

@@ -34,12 +34,6 @@ export default function FarmerDashboard() {
     }
   }, [user, profile, loading, router])
 
-  useEffect(() => {
-    if (user) {
-      fetchRanking()
-    }
-  }, [user])
-
   const fetchRanking = async () => {
     if (!user) return
     try {
@@ -52,6 +46,13 @@ export default function FarmerDashboard() {
       console.error('Error fetching ranking:', error)
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      fetchRanking()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   if (loading) {
     return (
