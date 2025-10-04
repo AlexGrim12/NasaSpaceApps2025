@@ -106,7 +106,7 @@ export default function FarmerRankingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen ">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
@@ -126,7 +126,7 @@ export default function FarmerRankingsPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
                 <TrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400" />
@@ -142,7 +142,7 @@ export default function FarmerRankingsPage() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
                 <BarChart3 className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -158,7 +158,7 @@ export default function FarmerRankingsPage() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
                 <Award className="h-6 w-6 text-purple-600 dark:text-purple-400" />
@@ -176,7 +176,7 @@ export default function FarmerRankingsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
+        <div className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             Filtrar por Nivel
           </h3>
@@ -218,14 +218,14 @@ export default function FarmerRankingsPage() {
 
         {/* Rankings Table */}
         {loading ? (
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-12 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
+          <div className="rounded-xl p-12 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
             <p className="text-gray-500 dark:text-gray-400">
               Cargando rankings...
             </p>
           </div>
         ) : rankings.length === 0 ? (
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-12 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
+          <div className=" rounded-xl p-12 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
             <Trophy className="h-16 w-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               No hay agricultores en este nivel
@@ -241,7 +241,7 @@ export default function FarmerRankingsPage() {
               return (
                 <div
                   key={farmer.id}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all"
+                  className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all"
                 >
                   <div className="flex items-start space-x-4">
                     {/* Rank Position */}

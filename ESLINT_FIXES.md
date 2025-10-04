@@ -11,17 +11,20 @@ Se corrigieron **4 warnings de ESLint** sin afectar la funcionalidad del código
 ### 1. ✅ `/src/app/dashboard/farmer/page.tsx`
 
 **Warning Original:**
+
 ```
-Warning: React Hook useEffect has a missing dependency: 'fetchRanking'. 
+Warning: React Hook useEffect has a missing dependency: 'fetchRanking'.
 Either include it or remove the dependency array.
 ```
 
 **Solución:**
+
 - Movida la función `fetchRanking` **antes** del `useEffect`
 - Agregado comentario `eslint-disable-next-line react-hooks/exhaustive-deps`
 - Razón: `fetchRanking` depende de `user`, que ya está en el array de dependencias
 
 **Código Corregido:**
+
 ```typescript
 const fetchRanking = async () => {
   if (!user) return
@@ -49,15 +52,18 @@ useEffect(() => {
 ### 2. ✅ `/src/app/rankings/page.tsx` - Import sin usar
 
 **Warning Original:**
+
 ```
 Warning: 'Sprout' is defined but never used.
 ```
 
 **Solución:**
+
 - Removido `Sprout` del import de lucide-react
 - El ícono no se usaba en ninguna parte del componente
 
 **Código Corregido:**
+
 ```typescript
 // Antes:
 import {
@@ -66,7 +72,7 @@ import {
   Award,
   MapPin,
   Calendar,
-  Sprout,  // ❌ No usado
+  Sprout, // ❌ No usado
   Droplet,
   // ...
 } from 'lucide-react'
@@ -78,7 +84,7 @@ import {
   Award,
   MapPin,
   Calendar,
-  Droplet,  // ✅ Sprout removido
+  Droplet, // ✅ Sprout removido
   // ...
 } from 'lucide-react'
 ```
@@ -88,28 +94,32 @@ import {
 ### 3. ✅ `/src/app/rankings/page.tsx` - Hook useEffect
 
 **Warning Original:**
+
 ```
 Warning: React Hook useEffect has a missing dependency: 'fetchRankings'.
 Either include it or remove the dependency array.
 ```
 
 **Solución:**
+
 - Movida la función `fetchRankings` **antes** del `useEffect`
 - Agregado comentario `eslint-disable-next-line react-hooks/exhaustive-deps`
 - Razón: Solo queremos ejecutar cuando cambie `filter`, no cuando cambie la función
 
 **Código Corregido:**
+
 ```typescript
 const fetchRankings = async () => {
   try {
     setLoading(true)
-    const url = filter === 'all'
-      ? '/api/rankings?limit=100'
-      : `/api/rankings?limit=100&level=${filter}`
-    
+    const url =
+      filter === 'all'
+        ? '/api/rankings?limit=100'
+        : `/api/rankings?limit=100&level=${filter}`
+
     const response = await fetch(url)
     const result = await response.json()
-    
+
     if (result.success) {
       setRankings(result.data)
       // ... cálculo de estadísticas
@@ -132,17 +142,20 @@ useEffect(() => {
 ### 4. ✅ `/src/components/FarmerStats.tsx`
 
 **Warning Original:**
+
 ```
 Warning: React Hook useEffect has a missing dependency: 'fetchData'.
 Either include it or remove the dependency array.
 ```
 
 **Solución:**
+
 - Movida la función `fetchData` **antes** del `useEffect`
 - Agregado comentario `eslint-disable-next-line react-hooks/exhaustive-deps`
 - Razón: `fetchData` depende de `user`, que ya está en el array de dependencias
 
 **Código Corregido:**
+
 ```typescript
 const fetchData = async () => {
   if (!user) return
@@ -184,12 +197,14 @@ useEffect(() => {
 ## 📊 Resultado del Build
 
 ### Antes:
+
 ```
 ⚠ 4 ESLint warnings
 ✓ Build successful
 ```
 
 ### Después:
+
 ```
 ✅ 0 warnings
 ✓ Build successful
@@ -210,6 +225,7 @@ ESLint sugiere incluir **todas** las dependencias en el array de `useEffect`, in
 ### Solución Correcta
 
 En nuestro caso:
+
 - ✅ La función depende de `user`
 - ✅ `user` ya está en el array de dependencias
 - ✅ Solo queremos ejecutar cuando `user` cambie
@@ -238,11 +254,11 @@ useEffect(() => {
 
 ## 📝 Archivos Modificados
 
-| Archivo | Cambio | Líneas |
-|---------|--------|--------|
-| `src/app/dashboard/farmer/page.tsx` | Reordenar función + disable | ~40-45 |
-| `src/app/rankings/page.tsx` | Remover import + reordenar | ~16, ~36-40 |
-| `src/components/FarmerStats.tsx` | Reordenar función + disable | ~52-82 |
+| Archivo                             | Cambio                      | Líneas      |
+| ----------------------------------- | --------------------------- | ----------- |
+| `src/app/dashboard/farmer/page.tsx` | Reordenar función + disable | ~40-45      |
+| `src/app/rankings/page.tsx`         | Remover import + reordenar  | ~16, ~36-40 |
+| `src/components/FarmerStats.tsx`    | Reordenar función + disable | ~52-82      |
 
 **Total de cambios:** ~15 líneas modificadas
 **Impacto funcional:** Ninguno ✅
@@ -267,7 +283,7 @@ npm run dev
 
 # 3. Probar funcionalidad:
 # - Ir a /dashboard/farmer → Ver ranking
-# - Ir a /rankings → Ver lista de rankings  
+# - Ir a /rankings → Ver lista de rankings
 # - Ir a /contributions → Crear contribución
 ```
 
@@ -286,9 +302,12 @@ npm run dev
 ### 1. Orden de Declaraciones
 
 **Buena práctica:**
+
 ```typescript
 // 1. Primero declarar la función
-const fetchData = async () => { /* ... */ }
+const fetchData = async () => {
+  /* ... */
+}
 
 // 2. Luego usarla en useEffect
 useEffect(() => {
@@ -299,6 +318,7 @@ useEffect(() => {
 ### 2. Imports Limpios
 
 **Buena práctica:**
+
 ```typescript
 // Solo importar lo que se usa
 import { Icon1, Icon2 } from 'library'
@@ -310,6 +330,7 @@ import { Icon1, Icon2, UnusedIcon } from 'library'
 ### 3. Dependencias de useEffect
 
 **Regla general:**
+
 - ✅ Incluir variables y props
 - ⚠️ Funciones: Evaluar caso por caso
 - ✅ Usar `useCallback` si la función cambia frecuentemente
@@ -327,6 +348,7 @@ Todos los warnings de ESLint han sido corregidos siguiendo las mejores práctica
 4. ✅ Performance sin afectar
 
 **Estado del Proyecto:**
+
 - ✅ 0 errores de compilación
 - ✅ 0 warnings de ESLint
 - ✅ Build exitoso
@@ -334,5 +356,5 @@ Todos los warnings de ESLint han sido corregidos siguiendo las mejores práctica
 
 ---
 
-*Correcciones aplicadas el 4 de octubre de 2025*
-*Next.js 15.5.4 + ESLint 9.x*
+_Correcciones aplicadas el 4 de octubre de 2025_
+_Next.js 15.5.4 + ESLint 9.x_

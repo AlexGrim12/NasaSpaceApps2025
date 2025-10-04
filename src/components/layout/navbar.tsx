@@ -3,10 +3,31 @@
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import { Sprout, User, LogOut, BarChart3, Award, Trophy } from 'lucide-react'
+import {
+  Sprout,
+  User,
+  LogOut,
+  BarChart3,
+  Award,
+  Trophy,
+  Shield,
+} from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { isAdmin } from '@/lib/auth-helpers'
 
 export function Navbar() {
   const { user, profile, signOut } = useAuth()
+  const [isAdminUser, setIsAdminUser] = useState(false)
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      if (user) {
+        const adminStatus = await isAdmin(user)
+        setIsAdminUser(adminStatus)
+      }
+    }
+    checkAdmin()
+  }, [user])
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,6 +57,17 @@ export function Navbar() {
                     : 'Investigador'}
                 </span>
               </div>
+
+              {/* Admin Panel Link */}
+              {isAdminUser && (
+                <Link
+                  href="/admin/contributions"
+                  className="text-sm font-medium transition-colors hover:text-primary flex items-center space-x-1 text-orange-600 dark:text-orange-400"
+                >
+                  <Shield className="h-4 w-4" />
+                  <span>Admin</span>
+                </Link>
+              )}
 
               {profile?.role === 'agricultor' ? (
                 <>
