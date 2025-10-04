@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Sprout, Satellite, BarChart3, Users, Eye, Globe, Sparkles, ArrowRight } from 'lucide-react'
+import { Sprout, Satellite, BarChart3, Users, Eye, Globe, Sparkles, ArrowRight, Trophy, Award, TrendingUp } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -232,6 +232,84 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Farmer Rankings Section */}
+      <section className="py-32 bg-gradient-to-br from-white via-green-50/30 to-blue-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-yellow-200 dark:bg-yellow-800/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-green-200 dark:bg-green-800/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        
+        <div className="container px-4 mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium mb-6">
+              <Trophy className="mr-2 h-4 w-4" />
+              Sistema de Reconocimiento
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+              Ranking de Agricultores
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Reconocemos a los agricultores más comprometidos que comparten información valiosa
+              sobre sequías, plagas y prácticas sostenibles.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+            <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mb-4 mx-auto">
+                <Trophy className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
+                Mejores Contratos
+              </h3>
+              <p className="text-center text-gray-600 dark:text-gray-300">
+                Los agricultores mejor rankeados obtienen acceso a mejores licitaciones y contratos gubernamentales.
+              </p>
+            </div>
+
+            <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl mb-4 mx-auto">
+                <TrendingUp className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
+                Gana Puntos
+              </h3>
+              <p className="text-center text-gray-600 dark:text-gray-300">
+                Reporta sequías (50 pts), plagas (40 pts), prácticas sostenibles (60 pts) y datos de cultivos.
+              </p>
+            </div>
+
+            <div className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl mb-4 mx-auto">
+                <Award className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
+                Sube de Nivel
+              </h3>
+              <p className="text-center text-gray-600 dark:text-gray-300">
+                Desde Aprendiz hasta Leyenda del Campo. Desbloquea insignias y reconocimientos.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA to Rankings */}
+          <div className="text-center">
+            <Link
+              href="/rankings"
+              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-xl font-semibold hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-200/50 dark:hover:shadow-yellow-900/50"
+            >
+              <Trophy className="mr-3 h-6 w-6" />
+              Ver Ranking Completo
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+              Dashboard público • No requiere iniciar sesión
+            </p>
           </div>
         </div>
       </section>

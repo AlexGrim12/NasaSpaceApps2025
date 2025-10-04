@@ -8,13 +8,18 @@ import {
   Calendar,
   TrendingUp,
   AlertTriangle,
+  Award,
+  Plus,
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { FarmerRanking } from '@/types/farmer-ranking'
 
 export default function FarmerDashboard() {
   const { user, profile, loading } = useAuth()
   const router = useRouter()
+  const [ranking, setRanking] = useState<FarmerRanking | null>(null)
 
   useEffect(() => {
     if (!loading) {
@@ -28,6 +33,25 @@ export default function FarmerDashboard() {
       }
     }
   }, [user, profile, loading, router])
+
+  useEffect(() => {
+    if (user) {
+      fetchRanking()
+    }
+  }, [user])
+
+  const fetchRanking = async () => {
+    if (!user) return
+    try {
+      const res = await fetch(`/api/rankings/${user.id}`)
+      if (res.ok) {
+        const data = await res.json()
+        setRanking(data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching ranking:', error)
+    }
+  }
 
   if (loading) {
     return (
@@ -54,6 +78,55 @@ export default function FarmerDashboard() {
             Panel de control para monitoreo de cultivos de maíz
           </p>
         </div>
+
+        {/* Ranking CTA */}
+        {ranking && (
+          <div className="mb-8 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Award className="h-12 w-12 text-yellow-300" />
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    Posición #{ranking.rank_position || '-'} en el Ranking
+                  </h3>
+                  <p className="text-white/80">
+                    {ranking.total_points} puntos • Nivel: <span className="capitalize font-semibold">{ranking.level}</span>
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/contributions"
+                className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all flex items-center space-x-2"
+              >
+                <Plus className="h-5 w-5" />
+                <span>Nueva Contribución</span>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {!ranking && (
+          <div className="mb-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border rounded-lg p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Award className="h-12 w-12 text-green-600" />
+                <div>
+                  <h3 className="text-xl font-bold">¡Únete al Ranking de Agricultores!</h3>
+                  <p className="text-muted-foreground">
+                    Comparte información y gana puntos para mejorar tu posición
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/contributions"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all flex items-center space-x-2"
+              >
+                <Plus className="h-5 w-5" />
+                <span>Crear Contribución</span>
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">

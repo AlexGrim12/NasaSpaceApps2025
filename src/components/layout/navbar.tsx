@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import { Sprout, User, LogOut, BarChart3 } from 'lucide-react'
+import { Sprout, User, LogOut, BarChart3, Award, Trophy } from 'lucide-react'
 
 export function Navbar() {
   const { user, profile, signOut } = useAuth()
@@ -17,6 +17,15 @@ export function Navbar() {
         </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
+          {/* Public Ranking Link */}
+          <Link
+            href="/rankings"
+            className="text-sm font-medium transition-colors hover:text-primary flex items-center space-x-1"
+          >
+            <Trophy className="h-4 w-4" />
+            <span>Ranking</span>
+          </Link>
+
           {user ? (
             <>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
@@ -29,12 +38,21 @@ export function Navbar() {
               </div>
 
               {profile?.role === 'agricultor' ? (
-                <Link
-                  href="/dashboard/farmer"
-                  className="text-sm font-medium transition-colors hover:text-primary"
-                >
-                  Dashboard
-                </Link>
+                <>
+                  <Link
+                    href="/dashboard/farmer"
+                    className="text-sm font-medium transition-colors hover:text-primary"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/contributions"
+                    className="text-sm font-medium transition-colors hover:text-primary flex items-center space-x-1"
+                  >
+                    <Award className="h-4 w-4" />
+                    <span>Contribuir</span>
+                  </Link>
+                </>
               ) : (
                 <Link
                   href="/dashboard/researcher"
