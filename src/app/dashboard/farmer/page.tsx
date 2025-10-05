@@ -108,7 +108,7 @@ export default function FarmerDashboard() {
     // Redondear coordenadas a 3 decimales
     const lat = parseFloat(latitude.toFixed(3))
     const lon = parseFloat(longitude.toFixed(3))
-    
+
     const startDatetime = `${startDate}T00%3A00%3A00.000Z`
     const endDatetime = `${endDate}T23%3A59%3A59.999Z`
 
@@ -134,7 +134,9 @@ export default function FarmerDashboard() {
       return
     }
 
-    const selectedLocation = locations.find((loc) => loc.id === selectedLocationId)
+    const selectedLocation = locations.find(
+      (loc) => loc.id === selectedLocationId
+    )
     if (!selectedLocation) {
       alert('Field not found')
       return
@@ -368,17 +370,26 @@ export default function FarmerDashboard() {
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     🎉 Link generated successfully!
                   </p>
-                  {selectedLocationId && locations.find(loc => loc.id === selectedLocationId) && (
-                    <div className="mb-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
-                      <p className="text-xs text-blue-700 dark:text-blue-300">
-                        📍 <strong>Coordinates (rounded to 3 decimals):</strong>
-                        <br />
-                        Latitude: {locations.find(loc => loc.id === selectedLocationId)!.latitude.toFixed(3)}°
-                        {' | '}
-                        Longitude: {locations.find(loc => loc.id === selectedLocationId)!.longitude.toFixed(3)}°
-                      </p>
-                    </div>
-                  )}
+                  {selectedLocationId &&
+                    locations.find((loc) => loc.id === selectedLocationId) && (
+                      <div className="mb-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
+                        <p className="text-xs text-blue-700 dark:text-blue-300">
+                          📍{' '}
+                          <strong>Coordinates (rounded to 3 decimals):</strong>
+                          <br />
+                          Latitude:{' '}
+                          {locations
+                            .find((loc) => loc.id === selectedLocationId)!
+                            .latitude.toFixed(3)}
+                          °{' | '}
+                          Longitude:{' '}
+                          {locations
+                            .find((loc) => loc.id === selectedLocationId)!
+                            .longitude.toFixed(3)}
+                          °
+                        </p>
+                      </div>
+                    )}
                   <p className="text-xs text-gray-500 dark:text-gray-400 break-all mb-3">
                     {earthdataUrl}
                   </p>
@@ -405,7 +416,8 @@ export default function FarmerDashboard() {
               download Landsat satellite images for your field location.
             </p>
             <p className="text-xs text-blue-700 dark:text-blue-300 mt-2">
-              📐 <strong>Note:</strong> Coordinates are automatically rounded to 3 decimal places for optimal precision (~111 meters).
+              📐 <strong>Note:</strong> Coordinates are automatically rounded to
+              3 decimal places for optimal precision (~111 meters).
             </p>
           </div>
         </div>
