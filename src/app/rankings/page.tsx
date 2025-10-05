@@ -118,9 +118,9 @@ export default function FarmerRankingsPage() {
             Top Contributors
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We recognize farmers who share valuable data about
-            droughts, pests and sustainable practices. Your contribution can
-            improve government contracts and tenders!
+            We recognize farmers who share valuable data about droughts, pests
+            and sustainable practices. Your contribution can improve government
+            contracts and tenders!
           </p>
         </div>
 
@@ -406,8 +406,8 @@ export default function FarmerRankingsPage() {
             Want to appear in the rankings?
           </h2>
           <p className="text-lg mb-6 opacity-90">
-            Join TerraView and share valuable information for the
-            agricultural community. Get better contracts and recognition for your
+            Join TerraView and share valuable information for the agricultural
+            community. Get better contracts and recognition for your
             contributions.
           </p>
           <Link

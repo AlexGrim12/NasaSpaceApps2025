@@ -1697,6 +1697,7 @@ export default function BloomPredictionPage() {
                                     key={idx}
                                     className="border-2 border-gray-600 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-400"
                                   >
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                       src={img.url}
                                       alt={img.descripcion}
@@ -1955,6 +1956,7 @@ export default function BloomPredictionPage() {
                                     key={idx}
                                     className="border-2 border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-purple-500"
                                   >
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                       src={img.url}
                                       alt={img.descripcion}
@@ -2040,6 +2042,7 @@ export default function BloomPredictionPage() {
               >
                 ×
               </button>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={selectedImage.url}
                 alt={selectedImage.descripcion}

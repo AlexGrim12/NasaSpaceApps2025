@@ -262,9 +262,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
         {selectedType &&
           ['drought_report', 'pest_report'].includes(selectedType) && (
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Severity
-              </label>
+              <label className="block text-sm font-medium mb-2">Severity</label>
               <div className="grid grid-cols-3 gap-3">
                 <button
                   type="button"
@@ -343,8 +341,8 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
         </button>
 
         <p className="text-xs text-muted-foreground text-center">
-          * Required fields. Your contribution will be reviewed by our
-          team before being verified and adding points to your ranking.
+          * Required fields. Your contribution will be reviewed by our team
+          before being verified and adding points to your ranking.
         </p>
       </form>
     </div>

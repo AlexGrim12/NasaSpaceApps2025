@@ -73,14 +73,15 @@ export default function ContributionsPage() {
               <span className="font-medium text-red-600">Pests:</span> 40 pts
             </div>
             <div>
-              <span className="font-medium text-green-600">Sustainable:</span> 60
-              pts
+              <span className="font-medium text-green-600">Sustainable:</span>{' '}
+              60 pts
             </div>
             <div>
               <span className="font-medium text-blue-600">Crop:</span> 30 pts
             </div>
             <div>
-              <span className="font-medium text-purple-600">Weather:</span> 20 pts
+              <span className="font-medium text-purple-600">Weather:</span> 20
+              pts
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-3">
@@ -112,16 +113,16 @@ export default function ContributionsPage() {
               <div className="text-3xl mb-2">📈</div>
               <h4 className="font-semibold mb-2">Better Contracts</h4>
               <p className="text-sm text-muted-foreground">
-                Highly ranked farmers get access to better
-                government tenders and commercial contracts
+                Highly ranked farmers get access to better government tenders
+                and commercial contracts
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🎓</div>
               <h4 className="font-semibold mb-2">Recognition</h4>
               <p className="text-sm text-muted-foreground">
-                Level up from Apprentice to Legend and get exclusive
-                badges that demonstrate your expertise
+                Level up from Apprentice to Legend and get exclusive badges that
+                demonstrate your expertise
               </p>
             </div>
             <div>

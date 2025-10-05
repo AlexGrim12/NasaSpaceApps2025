@@ -66,9 +66,7 @@ export default function ResearcherDashboard() {
               <Database className="h-5 w-5 text-blue-600" />
             </div>
             <div className="text-2xl font-bold text-blue-600">847</div>
-            <p className="text-sm text-muted-foreground">
-              Satellite images
-            </p>
+            <p className="text-sm text-muted-foreground">Satellite images</p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
@@ -206,8 +204,8 @@ export default function ResearcherDashboard() {
               <h3 className="text-lg font-semibold">MODIS Terra/Aqua</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Surface reflectance data and vegetation indices with
-              daily temporal resolution
+              Surface reflectance data and vegetation indices with daily
+              temporal resolution
             </p>
             <div className="text-sm">
               <span className="inline-block bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs">
@@ -222,8 +220,7 @@ export default function ResearcherDashboard() {
               <h3 className="text-lg font-semibold">Landsat 8/9</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              High-resolution multispectral images for detailed
-              crop analysis
+              High-resolution multispectral images for detailed crop analysis
             </p>
             <div className="text-sm">
               <span className="inline-block bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs">

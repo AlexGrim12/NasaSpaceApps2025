@@ -249,10 +249,10 @@ export default function FarmerStats() {
             <div className="text-6xl mb-4">📊</div>
             <p className="text-muted-foreground">
               {filter === 'all'
-                ? 'You don\'t have any contributions yet. Create your first contribution above!'
+                ? "You don't have any contributions yet. Create your first contribution above!"
                 : filter === 'verified'
-                ? 'You don\'t have verified contributions yet.'
-                : 'You don\'t have pending contributions.'}
+                ? "You don't have verified contributions yet."
+                : "You don't have pending contributions."}
             </p>
           </div>
         ) : (

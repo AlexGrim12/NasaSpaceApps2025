@@ -40,10 +40,9 @@ export default function Home() {
               Smart monitoring of corn blooming events
             </p>
             <p className="text-lg mb-12 text-green-100/90 max-w-3xl mx-auto leading-relaxed">
-              We use NASA satellite data and cutting-edge technology
-              to revolutionize agriculture and phenological research of
-              Mexican corn, providing precise insights to improve
-              yields.
+              We use NASA satellite data and cutting-edge technology to
+              revolutionize agriculture and phenological research of Mexican
+              corn, providing precise insights to improve yields.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -95,9 +94,9 @@ export default function Home() {
               Why TerraView?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Our platform combines NASA satellite data with
-              artificial intelligence to provide accurate information
-              about blooming events with unprecedented precision.
+              Our platform combines NASA satellite data with artificial
+              intelligence to provide accurate information about blooming events
+              with unprecedented precision.
             </p>
           </div>
 
@@ -110,9 +109,8 @@ export default function Home() {
                 NASA Satellite Data
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                We use images from MODIS, Landsat and VIIRS to detect
-                blooming events with exceptional temporal and spatial
-                precision.
+                We use images from MODIS, Landsat and VIIRS to detect blooming
+                events with exceptional temporal and spatial precision.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -125,9 +123,8 @@ export default function Home() {
                 Real-Time Monitoring
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Visualize the current state of your crops and receive
-                smart alerts about important changes in blooming
-                patterns.
+                Visualize the current state of your crops and receive smart
+                alerts about important changes in blooming patterns.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -140,9 +137,8 @@ export default function Home() {
                 Predictive Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Advanced AI models that predict blooming patterns and
-                optimize agricultural decisions based on historical data and
-                trends.
+                Advanced AI models that predict blooming patterns and optimize
+                agricultural decisions based on historical data and trends.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -278,8 +274,8 @@ export default function Home() {
               Farmer Rankings
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              We recognize the most committed farmers who share
-              valuable information about droughts, pests and sustainable practices.
+              We recognize the most committed farmers who share valuable
+              information about droughts, pests and sustainable practices.
             </p>
           </div>
 
@@ -292,8 +288,8 @@ export default function Home() {
                 Better Contracts
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                The highest-ranked farmers get access to better
-                tenders and government contracts.
+                The highest-ranked farmers get access to better tenders and
+                government contracts.
               </p>
             </div>
 
@@ -318,8 +314,7 @@ export default function Home() {
                 Level Up
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                From Apprentice to Field Legend. Unlock badges and
-                recognitions.
+                From Apprentice to Field Legend. Unlock badges and recognitions.
               </p>
             </div>
           </div>
@@ -372,9 +367,9 @@ export default function Home() {
             </h2>
 
             <p className="text-xl md:text-2xl text-green-100/90 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Be part of the future of Mexican agriculture with
-              cutting-edge satellite data, smart analysis and a
-              community committed to innovation.
+              Be part of the future of Mexican agriculture with cutting-edge
+              satellite data, smart analysis and a community committed to
+              innovation.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -404,13 +399,13 @@ export default function Home() {
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                <div className="text-green-100 text-sm">Continuous Monitoring</div>
+                <div className="text-green-100 text-sm">
+                  Continuous Monitoring
+                </div>
               </div>
               <div className="text-center md:col-span-1 col-span-2">
                 <div className="text-3xl font-bold text-white mb-2">AI</div>
-                <div className="text-green-100 text-sm">
-                  Smart Analysis
-                </div>
+                <div className="text-green-100 text-sm">Smart Analysis</div>
               </div>
             </div>
           </div>

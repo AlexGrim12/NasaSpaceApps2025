@@ -246,7 +246,8 @@ export default function BloomPredictionPage() {
     setError(null)
     setPrediction(null)
 
-    const API_URL = process.env.NEXT_PUBLIC_BLOOM_API_URL || 'http://localhost:8000'
+    const API_URL =
+      process.env.NEXT_PUBLIC_BLOOM_API_URL || 'http://localhost:8000'
 
     try {
       const response = await fetch(`${API_URL}/predecir`, {
@@ -288,7 +289,8 @@ export default function BloomPredictionPage() {
     setError(null)
     setTimeline(null)
 
-    const API_URL = process.env.NEXT_PUBLIC_BLOOM_API_URL || 'http://localhost:8000'
+    const API_URL =
+      process.env.NEXT_PUBLIC_BLOOM_API_URL || 'http://localhost:8000'
 
     try {
       const response = await fetch(`${API_URL}/timeline-floracion`, {
@@ -818,8 +820,8 @@ export default function BloomPredictionPage() {
                             })}
                           </p>
                           <p className="text-sm text-muted-foreground mt-1">
-                            Probabilidad: {timeline.probabilidad_maxima.toFixed(1)}
-                            %
+                            Probabilidad:{' '}
+                            {timeline.probabilidad_maxima.toFixed(1)}%
                           </p>
                         </div>
 

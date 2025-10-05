@@ -145,9 +145,7 @@ export default function FarmerDashboard() {
               <MapPin className="h-5 w-5 text-green-600" />
             </div>
             <div className="text-2xl font-bold text-green-600">12</div>
-            <p className="text-sm text-muted-foreground">
-              +2 since last month
-            </p>
+            <p className="text-sm text-muted-foreground">+2 since last month</p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
@@ -239,8 +237,8 @@ export default function FarmerDashboard() {
                   Possible water stress
                 </p>
                 <p className="text-sm text-yellow-600 dark:text-yellow-300 mt-1">
-                  The East field shows signs of needing irrigation in the
-                  next 2-3 days.
+                  The East field shows signs of needing irrigation in the next
+                  2-3 days.
                 </p>
               </div>
 
@@ -249,8 +247,7 @@ export default function FarmerDashboard() {
                   Optimal conditions for blooming
                 </p>
                 <p className="text-sm text-green-600 dark:text-green-300 mt-1">
-                  North and Central fields show ideal conditions for
-                  blooming.
+                  North and Central fields show ideal conditions for blooming.
                 </p>
               </div>
 
@@ -295,8 +292,7 @@ export default function FarmerDashboard() {
                 <h4 className="font-semibold">Save Your Fields</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Register GPS coordinates of your land for accurate
-                analysis
+                Register GPS coordinates of your land for accurate analysis
               </p>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
@@ -305,8 +301,7 @@ export default function FarmerDashboard() {
                 <h4 className="font-semibold">Accurate Predictions</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Get blooming dates using real-time satellite
-                data
+                Get blooming dates using real-time satellite data
               </p>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
@@ -315,8 +310,7 @@ export default function FarmerDashboard() {
                 <h4 className="font-semibold">Complete Timeline</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                View day-by-day probabilities throughout the entire
-                season
+                View day-by-day probabilities throughout the entire season
               </p>
             </div>
           </div>
