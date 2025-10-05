@@ -105,7 +105,7 @@ export default function Home() {
               <div className="aspect-video">
                 <iframe
                   className="w-full h-full"
-                  src="https://youtu.be/9I4U4eVUkVI"
+                  src="https://www.youtube.com/embed/9I4U4eVUkVI"
                   title="TerraView Demo Video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
