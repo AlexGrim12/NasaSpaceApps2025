@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   Award,
   Plus,
+  Leaf,
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -267,8 +268,62 @@ export default function FarmerDashboard() {
         </div>
 
         {/* Coming Soon Features */}
-        <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">🚀 Próximamente</h3>
+        <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border rounded-lg p-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">
+                🌸 Predicción de Floración con IA
+              </h3>
+              <p className="text-muted-foreground">
+                Sistema de análisis fenológico usando Machine Learning (LSTM) y
+                datos satelitales de la NASA
+              </p>
+            </div>
+            <Link
+              href="/dashboard/farmer/bloom-prediction"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all flex items-center space-x-2 whitespace-nowrap"
+            >
+              <Leaf className="h-5 w-5" />
+              <span>Acceder Ahora</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <MapPin className="h-5 w-5 text-green-600" />
+                <h4 className="font-semibold">Guarda tus Parcelas</h4>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Registra las coordenadas GPS de tus terrenos para análisis
+                preciso
+              </p>
+            </div>
+            <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Calendar className="h-5 w-5 text-blue-600" />
+                <h4 className="font-semibold">Predicciones Precisas</h4>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Obtén fechas de floración usando datos satelitales en tiempo
+                real
+              </p>
+            </div>
+            <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="h-5 w-5 text-purple-600" />
+                <h4 className="font-semibold">Timeline Completo</h4>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Visualiza probabilidades día por día durante toda la temporada
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Próximamente */}
+        <div className="mt-8 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border rounded-lg p-8 text-center">
+          <h3 className="text-xl font-bold mb-4">🚀 Próximamente</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div className="p-4">
               <h4 className="font-semibold mb-2">Mapas Interactivos</h4>
@@ -277,9 +332,9 @@ export default function FarmerDashboard() {
               </p>
             </div>
             <div className="p-4">
-              <h4 className="font-semibold mb-2">Predicciones IA</h4>
+              <h4 className="font-semibold mb-2">Análisis Histórico</h4>
               <p className="text-sm text-muted-foreground">
-                Modelos de IA para predecir floración
+                Compara predicciones con resultados reales
               </p>
             </div>
             <div className="p-4">

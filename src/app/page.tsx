@@ -270,7 +270,7 @@ export default function Home() {
 
         <div className="container px-4 mx-auto relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium mb-6 ">
               <Trophy className="mr-2 h-4 w-4" />
               Sistema de Reconocimiento
             </div>

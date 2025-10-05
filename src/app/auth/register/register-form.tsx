@@ -19,7 +19,10 @@ export default function RegisterForm() {
 
   useEffect(() => {
     const roleParam = searchParams.get('role')
-    if (roleParam && (roleParam === 'agricultor' || roleParam === 'investigador')) {
+    if (
+      roleParam &&
+      (roleParam === 'agricultor' || roleParam === 'investigador')
+    ) {
       setRole(roleParam as UserRole)
     }
   }, [searchParams])
@@ -46,14 +49,12 @@ export default function RegisterForm() {
 
       if (authData.user) {
         // Create profile
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({
-            id: authData.user.id,
-            email: authData.user.email!,
-            name,
-            role,
-          })
+        const { error: profileError } = await supabase.from('profiles').insert({
+          id: authData.user.id,
+          email: authData.user.email!,
+          name,
+          role,
+        })
 
         if (profileError) throw profileError
 
@@ -65,7 +66,8 @@ export default function RegisterForm() {
         }
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
+      const errorMessage =
+        error instanceof Error ? error.message : 'Error desconocido'
       setError(errorMessage)
     } finally {
       setLoading(false)
@@ -136,7 +138,10 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Nombre Completo
               </label>
               <div className="relative">
@@ -156,7 +161,10 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Correo Electrónico
               </label>
               <div className="relative">
@@ -176,7 +184,10 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Contraseña
               </label>
               <div className="relative">
@@ -218,7 +229,11 @@ export default function RegisterForm() {
                   : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
               }`}
             >
-              {loading ? 'Creando cuenta...' : `Crear cuenta como ${role === 'agricultor' ? 'Agricultor' : 'Investigador'}`}
+              {loading
+                ? 'Creando cuenta...'
+                : `Crear cuenta como ${
+                    role === 'agricultor' ? 'Agricultor' : 'Investigador'
+                  }`}
             </button>
           </div>
         </form>

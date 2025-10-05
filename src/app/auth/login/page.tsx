@@ -40,7 +40,8 @@ export default function LoginPage() {
         router.push('/dashboard/researcher')
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
+      const errorMessage =
+        error instanceof Error ? error.message : 'Error desconocido'
       setError(errorMessage)
     } finally {
       setLoading(false)
