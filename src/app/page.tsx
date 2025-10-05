@@ -82,6 +82,68 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="py-20 bg-white dark:bg-gray-950">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm font-medium mb-6">
+                <Eye className="mr-2 h-4 w-4" />
+                Watch Our Demo
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                See TerraView in Action
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Discover how our platform is transforming agriculture with NASA
+                satellite data
+              </p>
+            </div>
+
+            {/* Video Container */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
+              <div className="aspect-video">
+                <iframe
+                  className="w-full h-full"
+                  src="https://youtu.be/9I4U4eVUkVI"
+                  title="TerraView Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+
+            {/* Video Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border border-green-200/50 dark:border-green-700/30">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  NASA Data
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  MODIS, Landsat & VIIRS
+                </p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border border-blue-200/50 dark:border-blue-700/30">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  AI-Powered
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Machine Learning Predictions
+                </p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200/50 dark:border-purple-700/30">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                  Real-Time
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Continuous Monitoring
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <div className="container px-4 mx-auto">

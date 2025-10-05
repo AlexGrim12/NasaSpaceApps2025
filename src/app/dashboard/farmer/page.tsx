@@ -11,16 +11,37 @@ import {
   Award,
   Plus,
   Leaf,
+  Satellite,
+  ExternalLink,
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { FarmerRanking } from '@/types/farmer-ranking'
+import { supabase } from '@/lib/supabase'
+
+interface FarmLocation {
+  id: string
+  farmer_id: string
+  name: string
+  description: string | null
+  latitude: number
+  longitude: number
+  hectares: number | null
+  crop_variety: string | null
+  planting_date: string | null
+  created_at: string
+}
 
 export default function FarmerDashboard() {
   const { user, profile, loading } = useAuth()
   const router = useRouter()
   const [ranking, setRanking] = useState<FarmerRanking | null>(null)
+  const [locations, setLocations] = useState<FarmLocation[]>([])
+  const [selectedLocationId, setSelectedLocationId] = useState<string>('')
+  const [startDate, setStartDate] = useState<string>('')
+  const [endDate, setEndDate] = useState<string>('')
+  const [earthdataUrl, setEarthdataUrl] = useState<string>('')
 
   useEffect(() => {
     if (!loading) {
@@ -48,9 +69,90 @@ export default function FarmerDashboard() {
     }
   }
 
+  const fetchLocations = async () => {
+    if (!user) return
+    try {
+      // Obtener el token de sesión
+      const { data: sessionData } = await supabase.auth.getSession()
+      const token = sessionData.session?.access_token
+
+      if (!token) {
+        console.error('No access token available')
+        return
+      }
+
+      const res = await fetch('/api/farm-locations', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        if (data.success) {
+          setLocations(data.data)
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching locations:', error)
+    }
+  }
+
+  const generateEarthdataUrl = (
+    latitude: number,
+    longitude: number,
+    startDate: string,
+    endDate: string,
+    zoom: number = 17
+  ): string => {
+    // Redondear coordenadas a 3 decimales
+    const lat = parseFloat(latitude.toFixed(3))
+    const lon = parseFloat(longitude.toFixed(3))
+    
+    const startDatetime = `${startDate}T00%3A00%3A00.000Z`
+    const endDatetime = `${endDate}T23%3A59%3A59.999Z`
+
+    const baseUrl = 'https://search.earthdata.nasa.gov/search/granules'
+    const params =
+      `?p=C2021957295-LPCLOUD` +
+      `&pg[0][v]=f` +
+      `&pg[0][gsk]=-start_date` +
+      `&q=C2021957657-LPCLOUD` +
+      `&sp[0]=${lon}%2C${lat}` +
+      `&qt=${startDatetime}%2C${endDatetime}` +
+      `&tl=1562640103.056!5!!` +
+      `&lat=${lat}` +
+      `&long=${lon}` +
+      `&zoom=${zoom}`
+
+    return baseUrl + params
+  }
+
+  const handleGenerateUrl = () => {
+    if (!selectedLocationId || !startDate || !endDate) {
+      alert('Please select a field and both dates')
+      return
+    }
+
+    const selectedLocation = locations.find((loc) => loc.id === selectedLocationId)
+    if (!selectedLocation) {
+      alert('Field not found')
+      return
+    }
+
+    const url = generateEarthdataUrl(
+      selectedLocation.latitude,
+      selectedLocation.longitude,
+      startDate,
+      endDate
+    )
+    setEarthdataUrl(url)
+  }
+
   useEffect(() => {
     if (user) {
       fetchRanking()
+      fetchLocations()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
@@ -181,6 +283,130 @@ export default function FarmerDashboard() {
             </div>
             <div className="text-2xl font-bold text-purple-600">15 days</div>
             <p className="text-sm text-muted-foreground">North Field</p>
+          </div>
+        </div>
+
+        {/* NASA Satellite Images Section */}
+        <div className="mb-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-blue-600 rounded-lg">
+              <Satellite className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                🛰️ NASA Satellite Images
+              </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                View Landsat satellite imagery for your fields
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            {/* Field Selection */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Select Field
+              </label>
+              <select
+                value={selectedLocationId}
+                onChange={(e) => setSelectedLocationId(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+              >
+                <option value="">-- Select a field --</option>
+                {locations.map((location) => (
+                  <option key={location.id} value={location.id}>
+                    {location.name} ({location.hectares} ha)
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Start Date */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Start Date
+              </label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+              />
+            </div>
+
+            {/* End Date */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                End Date
+              </label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+              />
+            </div>
+          </div>
+
+          {/* Generate Button */}
+          <div className="flex gap-4">
+            <button
+              onClick={handleGenerateUrl}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+            >
+              <Satellite className="h-5 w-5" />
+              Generate NASA Earthdata Link
+            </button>
+          </div>
+
+          {/* Generated URL Display */}
+          {earthdataUrl && (
+            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border-2 border-blue-300 dark:border-blue-600">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    🎉 Link generated successfully!
+                  </p>
+                  {selectedLocationId && locations.find(loc => loc.id === selectedLocationId) && (
+                    <div className="mb-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
+                      <p className="text-xs text-blue-700 dark:text-blue-300">
+                        📍 <strong>Coordinates (rounded to 3 decimals):</strong>
+                        <br />
+                        Latitude: {locations.find(loc => loc.id === selectedLocationId)!.latitude.toFixed(3)}°
+                        {' | '}
+                        Longitude: {locations.find(loc => loc.id === selectedLocationId)!.longitude.toFixed(3)}°
+                      </p>
+                    </div>
+                  )}
+                  <p className="text-xs text-gray-500 dark:text-gray-400 break-all mb-3">
+                    {earthdataUrl}
+                  </p>
+                  <a
+                    href={earthdataUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Open NASA Earthdata
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Info Box */}
+          <div className="mt-4 p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
+              <strong>ℹ️ How to use:</strong> Select one of your registered
+              fields, choose a date range, and click the button to generate a
+              direct link to NASA Earthdata. You&apos;ll be able to view and
+              download Landsat satellite images for your field location.
+            </p>
+            <p className="text-xs text-blue-700 dark:text-blue-300 mt-2">
+              📐 <strong>Note:</strong> Coordinates are automatically rounded to 3 decimal places for optimal precision (~111 meters).
+            </p>
           </div>
         </div>
 
