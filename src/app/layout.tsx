@@ -8,7 +8,7 @@ import { Navbar } from '@/components/layout/navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'BloomWatch - NASA Space Apps Challenge',
+  title: 'TerraView - NASA Space Apps Challenge',
   description:
     'Monitoring corn/maize blooming events in Mexico using NASA Earth observation data',
 }

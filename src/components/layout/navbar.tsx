@@ -3,15 +3,7 @@
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import {
-  Sprout,
-  User,
-  LogOut,
-  BarChart3,
-  Award,
-  Trophy,
-  Shield,
-} from 'lucide-react'
+import { User, LogOut, BarChart3, Award, Trophy, Shield } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { isAdmin } from '@/lib/auth-helpers'
 
@@ -33,7 +25,8 @@ export function Navbar() {
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <Sprout className="h-6 w-6 text-green-600" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="./logo.png" alt="TerraView Logo" className="h-8 w-8" />
           <span className="text-xl font-bold">TerraView</span>
         </Link>
 

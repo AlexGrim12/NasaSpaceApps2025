@@ -31,7 +31,17 @@ import {
 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 
-// Importar Chart.js dinámicamente para evitar problemas de SSR
+// Import Map dynamically to avoid SSR issues
+const LocationMap = dynamic(() => import('@/components/LocationMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] bg-gray-800 rounded-lg flex items-center justify-center">
+      <Loader2 className="h-8 w-8 animate-spin text-green-500" />
+    </div>
+  ),
+})
+
+// Import Chart.js dynamically to avoid SSR issues
 const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
   ssr: false,
 })
@@ -190,7 +200,7 @@ export default function BloomPredictionPage() {
   const [forceNewAnalysis, setForceNewAnalysis] = useState(false)
   const [checkingCache, setCheckingCache] = useState(false)
 
-  // Resultados de cada paso
+  // Results for each step
   const [trainResult, setTrainResult] = useState<TrainResult | null>(null)
   const [timelineResult, setTimelineResult] = useState<TimelineResult | null>(
     null
@@ -198,14 +208,14 @@ export default function BloomPredictionPage() {
   const [predictionResult, setPredictionResult] =
     useState<PredictionResult | null>(null)
 
-  // Control de pasos del proceso
+  // Process step control
   const [steps, setSteps] = useState<ProcessStep[]>([
-    { id: 1, name: 'Entrenar modelo con datos históricos', status: 'pending' },
-    { id: 2, name: 'Generar timeline de floración', status: 'pending' },
-    { id: 3, name: 'Calcular predicciones', status: 'pending' },
+    { id: 1, name: 'Train model with historical data', status: 'pending' },
+    { id: 2, name: 'Generate blooming timeline', status: 'pending' },
+    { id: 3, name: 'Calculate predictions', status: 'pending' },
   ])
 
-  // Formulario para nueva ubicación
+  // Form for new location
   const [newLocation, setNewLocation] = useState({
     name: '',
     description: '',
@@ -214,7 +224,7 @@ export default function BloomPredictionPage() {
     hectares: 0,
   })
 
-  // Parámetros del análisis completo
+  // Complete analysis parameters
   const [completeParams, setCompleteParams] = useState({
     anioInicio: 2018,
     anioFin: 2024,
@@ -294,7 +304,7 @@ export default function BloomPredictionPage() {
       })
 
       if (response.ok) {
-        setSuccess('✅ Ubicación guardada exitosamente')
+        setSuccess('✅ Location saved successfully')
         setShowNewLocationForm(false)
         setNewLocation({
           name: '',
@@ -306,7 +316,7 @@ export default function BloomPredictionPage() {
         await fetchLocations()
       } else {
         const data = await response.json()
-        setError(data.error || 'Error al guardar ubicación')
+        setError(data.error || 'Error saving location')
       }
     } catch (err) {
       setError('Error de conexión')
@@ -317,7 +327,7 @@ export default function BloomPredictionPage() {
   }
 
   const deleteLocation = async (id: string) => {
-    if (!confirm('¿Estás seguro de eliminar esta ubicación?')) return
+    if (!confirm('Are you sure you want to delete this location?')) return
 
     try {
       const token = await getAuthToken()
@@ -329,14 +339,14 @@ export default function BloomPredictionPage() {
       })
 
       if (response.ok) {
-        setSuccess('✅ Ubicación eliminada')
+        setSuccess('✅ Location deleted')
         if (selectedLocation?.id === id) {
           setSelectedLocation(null)
         }
         await fetchLocations()
       }
     } catch (err) {
-      setError('Error al eliminar ubicación')
+      setError('Error deleting location')
       console.error('Error deleting location:', err)
     }
   }
@@ -476,7 +486,7 @@ export default function BloomPredictionPage() {
 
   const runCompleteAnalysis = async () => {
     if (!selectedLocation) {
-      setError('Selecciona una ubicación primero')
+      setError('Select a location first')
       return
     }
 
@@ -612,7 +622,7 @@ export default function BloomPredictionPage() {
         fechaAnalisis
       )
 
-      setSuccess('✅ Análisis completo finalizado exitosamente')
+      setSuccess('✅ Complete analysis finished successfully')
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'Error desconocido'
@@ -1171,13 +1181,11 @@ export default function BloomPredictionPage() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar: Ubicaciones */}
+          {/* Sidebar: Locations */}
           <div className="lg:col-span-1">
             <div className="bg-gray-900 border border-gray-700 rounded-lg shadow-xl p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-white">
-                  Mis Parcelas
-                </h2>
+                <h2 className="text-xl font-semibold text-white">My Fields</h2>
                 <button
                   onClick={() => setShowNewLocationForm(true)}
                   className="p-2 bg-green-600 text-white rounded-full hover:bg-green-500 transition"
@@ -1186,20 +1194,20 @@ export default function BloomPredictionPage() {
                 </button>
               </div>
 
-              {/* Formulario nueva ubicación */}
+              {/* New location form */}
               {showNewLocationForm && (
                 <div className="mb-4 p-4 bg-gray-800 border border-gray-600 rounded-lg">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="font-semibold text-white">Nueva Parcela</h3>
+                    <h3 className="font-semibold text-white">New Field</h3>
                     <button onClick={() => setShowNewLocationForm(false)}>
                       <X className="h-5 w-5 text-gray-400 hover:text-white" />
                     </button>
                   </div>
 
-                  {/* Coordenadas predefinidas */}
+                  {/* Preset coordinates */}
                   <div className="mb-3">
                     <p className="text-sm text-gray-300 mb-2">
-                      Coordenadas predefinidas:
+                      Preset coordinates:
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {PRESET_COORDINATES.map((preset) => (
@@ -1222,7 +1230,7 @@ export default function BloomPredictionPage() {
 
                   <input
                     type="text"
-                    placeholder="Nombre de la parcela"
+                    placeholder="Field name"
                     value={newLocation.name}
                     onChange={(e) =>
                       setNewLocation({ ...newLocation, name: e.target.value })
@@ -1232,7 +1240,7 @@ export default function BloomPredictionPage() {
                   <input
                     type="number"
                     step="0.0001"
-                    placeholder="Latitud"
+                    placeholder="Latitude"
                     value={newLocation.latitude || ''}
                     onChange={(e) =>
                       setNewLocation({
@@ -1245,7 +1253,7 @@ export default function BloomPredictionPage() {
                   <input
                     type="number"
                     step="0.0001"
-                    placeholder="Longitud"
+                    placeholder="Longitude"
                     value={newLocation.longitude || ''}
                     onChange={(e) =>
                       setNewLocation({
@@ -1256,7 +1264,7 @@ export default function BloomPredictionPage() {
                     className="w-full p-2 mb-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:border-green-500 focus:outline-none"
                   />
                   <textarea
-                    placeholder="Descripción (opcional)"
+                    placeholder="Description (optional)"
                     value={newLocation.description}
                     onChange={(e) =>
                       setNewLocation({
@@ -1272,13 +1280,13 @@ export default function BloomPredictionPage() {
                     disabled={loading}
                     className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-500 disabled:bg-gray-600 disabled:text-gray-400 transition"
                   >
-                    {loading ? 'Guardando...' : 'Guardar'}
+                    {loading ? 'Saving...' : 'Save'}
                   </button>
                 </div>
               )}
 
-              {/* Lista de ubicaciones */}
-              <div className="space-y-2">
+              {/* Location list */}
+              <div className="space-y-2 mb-4">
                 {locations.map((loc) => (
                   <div
                     key={loc.id}
@@ -1312,43 +1320,57 @@ export default function BloomPredictionPage() {
 
                 {locations.length === 0 && (
                   <p className="text-gray-400 text-sm text-center py-4">
-                    No tienes parcelas guardadas
+                    You don&apos;t have any saved fields
                   </p>
                 )}
               </div>
+
+              {/* Interactive Map */}
+              {locations.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-sm font-semibold text-white mb-2">
+                    📍 Fields Map
+                  </h3>
+                  <LocationMap
+                    locations={locations}
+                    selectedLocation={selectedLocation}
+                    onLocationSelect={setSelectedLocation}
+                  />
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Contenido principal */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
             <div className="bg-gray-900 border border-gray-700 rounded-lg shadow-xl p-6">
               {!selectedLocation ? (
                 <div className="text-center py-12">
                   <MapPin className="h-16 w-16 text-gray-600 mx-auto mb-4" />
                   <p className="text-gray-400">
-                    Selecciona o crea una parcela para comenzar el análisis
+                    Select or create a field to start the analysis
                   </p>
                 </div>
               ) : (
                 <>
                   <h2 className="text-2xl font-bold text-white mb-6">
-                    🚀 Análisis Completo Automatizado
+                    🚀 Automated Complete Analysis
                   </h2>
                   <p className="text-gray-300 mb-6">
-                    El sistema automáticamente:
+                    The system will automatically:
                     <br />
-                    1️⃣ Entrenará el modelo con datos históricos
+                    1️⃣ Train the model with historical data
                     <br />
-                    2️⃣ Generará el timeline de floración
+                    2️⃣ Generate the blooming timeline
                     <br />
-                    3️⃣ Realizará predicciones para {completeParams.anioPred}
+                    3️⃣ Make predictions for {completeParams.anioPred}
                   </p>
 
-                  {/* Parámetros */}
+                  {/* Parameters */}
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Año Inicio
+                        Start Year
                       </label>
                       <input
                         type="number"
@@ -1366,7 +1388,7 @@ export default function BloomPredictionPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Año Fin
+                        End Year
                       </label>
                       <input
                         type="number"
@@ -1384,7 +1406,7 @@ export default function BloomPredictionPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Año Predicción
+                        Prediction Year
                       </label>
                       <input
                         type="number"
