@@ -35,7 +35,7 @@ export default function ResearcherDashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Cargando dashboard...</p>
+          <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
         </div>
       </div>
     )
@@ -49,10 +49,10 @@ export default function ResearcherDashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            ¡Bienvenido, {profile.name}! 🔬
+            Welcome, {profile.name}! 🔬
           </h1>
           <p className="text-muted-foreground">
-            Centro de investigación fenológica del maíz mexicano
+            Mexican corn phenological research center
           </p>
         </div>
 
@@ -61,47 +61,47 @@ export default function ResearcherDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Datasets Disponibles
+                Available Datasets
               </h3>
               <Database className="h-5 w-5 text-blue-600" />
             </div>
             <div className="text-2xl font-bold text-blue-600">847</div>
             <p className="text-sm text-muted-foreground">
-              Imágenes satelitales
+              Satellite images
             </p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Estudios Activos
+                Active Studies
               </h3>
               <FileText className="h-5 w-5 text-purple-600" />
             </div>
             <div className="text-2xl font-bold text-purple-600">23</div>
-            <p className="text-sm text-muted-foreground">En progreso</p>
+            <p className="text-sm text-muted-foreground">In progress</p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Regiones Monitoreadas
+                Monitored Regions
               </h3>
               <Globe className="h-5 w-5 text-green-600" />
             </div>
             <div className="text-2xl font-bold text-green-600">156</div>
-            <p className="text-sm text-muted-foreground">Áreas de cultivo</p>
+            <p className="text-sm text-muted-foreground">Crop areas</p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Última Actualización
+                Last Update
               </h3>
               <Calendar className="h-5 w-5 text-orange-600" />
             </div>
             <div className="text-2xl font-bold text-orange-600">2h</div>
-            <p className="text-sm text-muted-foreground">Datos MODIS</p>
+            <p className="text-sm text-muted-foreground">MODIS data</p>
           </div>
         </div>
 
@@ -111,15 +111,15 @@ export default function ResearcherDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-6 flex items-center">
               <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
-              Herramientas de Investigación
+              Research Tools
             </h2>
             <div className="space-y-4">
               <div className="border rounded-lg p-4 hover:bg-accent/50 cursor-pointer transition-colors">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium">Análisis Temporal</h3>
+                    <h3 className="font-medium">Temporal Analysis</h3>
                     <p className="text-sm text-muted-foreground">
-                      Estudios de series de tiempo de floración
+                      Time series studies of blooming
                     </p>
                   </div>
                   <TrendingUp className="h-5 w-5 text-green-600" />
@@ -129,9 +129,9 @@ export default function ResearcherDashboard() {
               <div className="border rounded-lg p-4 hover:bg-accent/50 cursor-pointer transition-colors">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium">Correlación Climática</h3>
+                    <h3 className="font-medium">Climate Correlation</h3>
                     <p className="text-sm text-muted-foreground">
-                      Relación entre clima y fenología
+                      Relationship between climate and phenology
                     </p>
                   </div>
                   <Database className="h-5 w-5 text-blue-600" />
@@ -141,9 +141,9 @@ export default function ResearcherDashboard() {
               <div className="border rounded-lg p-4 hover:bg-accent/50 cursor-pointer transition-colors">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium">Mapeado Espectral</h3>
+                    <h3 className="font-medium">Spectral Mapping</h3>
                     <p className="text-sm text-muted-foreground">
-                      Análisis de índices de vegetación
+                      Vegetation index analysis
                     </p>
                   </div>
                   <Satellite className="h-5 w-5 text-purple-600" />
@@ -156,42 +156,42 @@ export default function ResearcherDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-6 flex items-center">
               <FileText className="h-5 w-5 mr-2 text-green-600" />
-              Publicaciones Recientes
+              Recent Publications
             </h2>
             <div className="space-y-4">
               <div className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 p-4">
                 <h3 className="font-medium text-blue-800 dark:text-blue-200 mb-1">
-                  Patrones de Floración 2024
+                  Blooming Patterns 2024
                 </h3>
                 <p className="text-sm text-blue-600 dark:text-blue-300 mb-2">
-                  Análisis fenológico del maíz en Sinaloa usando datos MODIS
+                  Phenological analysis of corn in Sinaloa using MODIS data
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Por equipo BloomWatch • 15 oct 2024
+                  By TerraView team • Oct 15, 2024
                 </p>
               </div>
 
               <div className="border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20 p-4">
                 <h3 className="font-medium text-green-800 dark:text-green-200 mb-1">
-                  Impacto Climático en Cultivos
+                  Climate Impact on Crops
                 </h3>
                 <p className="text-sm text-green-600 dark:text-green-300 mb-2">
-                  Correlación entre temperatura y eventos de floración temprana
+                  Correlation between temperature and early blooming events
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Por Leonardo G. • 8 oct 2024
+                  By Leonardo G. • Oct 8, 2024
                 </p>
               </div>
 
               <div className="border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-900/20 p-4">
                 <h3 className="font-medium text-purple-800 dark:text-purple-200 mb-1">
-                  Metodología NASA-MODIS
+                  NASA-MODIS Methodology
                 </h3>
                 <p className="text-sm text-purple-600 dark:text-purple-300 mb-2">
-                  Optimización de algoritmos para detección de floración
+                  Algorithm optimization for bloom detection
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Por Ruy C. • 1 oct 2024
+                  By Ruy C. • Oct 1, 2024
                 </p>
               </div>
             </div>
@@ -206,12 +206,12 @@ export default function ResearcherDashboard() {
               <h3 className="text-lg font-semibold">MODIS Terra/Aqua</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Datos de reflectancia superficial y índices de vegetación con
-              resolución temporal diaria
+              Surface reflectance data and vegetation indices with
+              daily temporal resolution
             </p>
             <div className="text-sm">
               <span className="inline-block bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs">
-                250m resolución
+                250m resolution
               </span>
             </div>
           </div>
@@ -222,12 +222,12 @@ export default function ResearcherDashboard() {
               <h3 className="text-lg font-semibold">Landsat 8/9</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Imágenes multiespectrales de alta resolución para análisis
-              detallado de cultivos
+              High-resolution multispectral images for detailed
+              crop analysis
             </p>
             <div className="text-sm">
               <span className="inline-block bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs">
-                30m resolución
+                30m resolution
               </span>
             </div>
           </div>
@@ -238,12 +238,12 @@ export default function ResearcherDashboard() {
               <h3 className="text-lg font-semibold">VIIRS NPP</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Radiómetro de última generación para monitoreo nocturno y estudios
-              de biomasa
+              Latest generation radiometer for nighttime monitoring and biomass
+              studies
             </p>
             <div className="text-sm">
               <span className="inline-block bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-xs">
-                375m resolución
+                375m resolution
               </span>
             </div>
           </div>
@@ -251,24 +251,24 @@ export default function ResearcherDashboard() {
 
         {/* Coming Soon Features */}
         <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">🚀 Próximamente</h3>
+          <h3 className="text-2xl font-bold mb-4">🚀 Coming Soon</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div className="p-4">
-              <h4 className="font-semibold mb-2">API de Datos</h4>
+              <h4 className="font-semibold mb-2">Data API</h4>
               <p className="text-sm text-muted-foreground">
-                Acceso programático a datasets
+                Programmatic access to datasets
               </p>
             </div>
             <div className="p-4">
               <h4 className="font-semibold mb-2">Machine Learning</h4>
               <p className="text-sm text-muted-foreground">
-                Modelos predictivos personalizables
+                Customizable predictive models
               </p>
             </div>
             <div className="p-4">
-              <h4 className="font-semibold mb-2">Colaboración</h4>
+              <h4 className="font-semibold mb-2">Collaboration</h4>
               <p className="text-sm text-muted-foreground">
-                Herramientas para trabajo en equipo
+                Team working tools
               </p>
             </div>
           </div>

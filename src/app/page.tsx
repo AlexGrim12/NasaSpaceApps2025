@@ -34,16 +34,16 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
-              BloomWatch
+              TerraView
             </h1>
             <p className="text-2xl md:text-3xl mb-8 text-green-50 font-light">
-              Monitoreo inteligente de la floración del maíz
+              Smart monitoring of corn blooming events
             </p>
             <p className="text-lg mb-12 text-green-100/90 max-w-3xl mx-auto leading-relaxed">
-              Utilizamos datos satelitales de la NASA y tecnología de vanguardia
-              para revolucionar la agricultura y la investigación fenológica del
-              maíz mexicano, proporcionando insights precisos para mejorar los
-              rendimientos.
+              We use NASA satellite data and cutting-edge technology
+              to revolutionize agriculture and phenological research of
+              Mexican corn, providing precise insights to improve
+              yields.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -52,7 +52,7 @@ export default function Home() {
                 className="group inline-flex items-center px-8 py-4 bg-white text-green-800 rounded-xl font-semibold hover:bg-green-50 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-200/50"
               >
                 <Sprout className="mr-3 h-6 w-6" />
-                Soy Agricultor
+                I&apos;m a Farmer
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
@@ -60,7 +60,7 @@ export default function Home() {
                 className="group inline-flex items-center px-8 py-4 bg-transparent text-white border-2 border-white/50 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
               >
                 <BarChart3 className="mr-3 h-6 w-6" />
-                Soy Investigador
+                I&apos;m a Researcher
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -89,15 +89,15 @@ export default function Home() {
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm font-medium mb-6">
               <Sparkles className="mr-2 h-4 w-4" />
-              Tecnología de Vanguardia
+              Cutting-Edge Technology
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-              ¿Por qué BloomWatch?
+              Why TerraView?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Nuestra plataforma combina datos satelitales de la NASA con
-              inteligencia artificial para proporcionar información precisa
-              sobre los eventos de floración con una precisión sin precedentes.
+              Our platform combines NASA satellite data with
+              artificial intelligence to provide accurate information
+              about blooming events with unprecedented precision.
             </p>
           </div>
 
@@ -107,12 +107,12 @@ export default function Home() {
                 <Satellite className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                Datos Satelitales NASA
+                NASA Satellite Data
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Utilizamos imágenes de MODIS, Landsat y VIIRS para detectar
-                eventos de floración con precisión temporal y espacial
-                excepcional.
+                We use images from MODIS, Landsat and VIIRS to detect
+                blooming events with exceptional temporal and spatial
+                precision.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -122,12 +122,12 @@ export default function Home() {
                 <Eye className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                Monitoreo en Tiempo Real
+                Real-Time Monitoring
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Visualiza el estado actual de tus cultivos y recibe alertas
-                inteligentes sobre cambios importantes en los patrones de
-                floración.
+                Visualize the current state of your crops and receive
+                smart alerts about important changes in blooming
+                patterns.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -137,12 +137,12 @@ export default function Home() {
                 <BarChart3 className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                Análisis Predictivo
+                Predictive Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Modelos de IA avanzados que predicen patrones de floración y
-                optimizan las decisiones agrícolas basadas en datos históricos y
-                tendencias.
+                Advanced AI models that predict blooming patterns and
+                optimize agricultural decisions based on historical data and
+                trends.
               </p>
               <div className="mt-6 w-full h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -162,13 +162,13 @@ export default function Home() {
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 text-gray-800 dark:text-gray-200 rounded-full text-sm font-medium mb-6">
               <Users className="mr-2 h-4 w-4" />
-              Para Todos los Profesionales
+              For All Professionals
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-              Diseñado para Ti
+              Designed for You
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Dos experiencias especializadas, una plataforma potente
+              Two specialized experiences, one powerful platform
             </p>
           </div>
 
@@ -183,25 +183,25 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                  Para Agricultores
+                  For Farmers
                 </h3>
 
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    Monitoreo en tiempo real de cultivos
+                    Real-time crop monitoring
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    Optimización de riego y nutrientes
+                    Irrigation and nutrient optimization
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    Predicciones de rendimiento
+                    Yield predictions
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    Alertas personalizadas
+                    Personalized alerts
                   </li>
                 </ul>
 
@@ -209,7 +209,7 @@ export default function Home() {
                   href="/auth/register?role=agricultor"
                   className="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
-                  Comenzar como Agricultor
+                  Start as a Farmer
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
                 </Link>
               </div>
@@ -225,25 +225,25 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                  Para Investigadores
+                  For Researchers
                 </h3>
 
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    Acceso a datos históricos completos
+                    Access to complete historical data
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    Herramientas de análisis avanzado
+                    Advanced analysis tools
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    Estudios fenológicos detallados
+                    Detailed phenological studies
                   </li>
                   <li className="flex items-center text-gray-700 dark:text-gray-300">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    Exportación de datasets
+                    Dataset export
                   </li>
                 </ul>
 
@@ -251,7 +251,7 @@ export default function Home() {
                   href="/auth/register?role=investigador"
                   className="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
-                  Comenzar como Investigador
+                  Start as a Researcher
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
                 </Link>
               </div>
@@ -272,14 +272,14 @@ export default function Home() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-sm font-medium mb-6 ">
               <Trophy className="mr-2 h-4 w-4" />
-              Sistema de Reconocimiento
+              Recognition System
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-              Ranking de Agricultores
+              Farmer Rankings
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Reconocemos a los agricultores más comprometidos que comparten
-              información valiosa sobre sequías, plagas y prácticas sostenibles.
+              We recognize the most committed farmers who share
+              valuable information about droughts, pests and sustainable practices.
             </p>
           </div>
 
@@ -289,11 +289,11 @@ export default function Home() {
                 <Trophy className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-                Mejores Contratos
+                Better Contracts
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Los agricultores mejor rankeados obtienen acceso a mejores
-                licitaciones y contratos gubernamentales.
+                The highest-ranked farmers get access to better
+                tenders and government contracts.
               </p>
             </div>
 
@@ -302,11 +302,11 @@ export default function Home() {
                 <TrendingUp className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-                Gana Puntos
+                Earn Points
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Reporta sequías (50 pts), plagas (40 pts), prácticas sostenibles
-                (60 pts) y datos de cultivos.
+                Report droughts (50 pts), pests (40 pts), sustainable practices
+                (60 pts) and crop data.
               </p>
             </div>
 
@@ -315,11 +315,11 @@ export default function Home() {
                 <Award className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-                Sube de Nivel
+                Level Up
               </h3>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                Desde Aprendiz hasta Leyenda del Campo. Desbloquea insignias y
-                reconocimientos.
+                From Apprentice to Field Legend. Unlock badges and
+                recognitions.
               </p>
             </div>
           </div>
@@ -331,11 +331,11 @@ export default function Home() {
               className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-xl font-semibold hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-200/50 dark:hover:shadow-yellow-900/50"
             >
               <Trophy className="mr-3 h-6 w-6" />
-              Ver Ranking Completo
+              View Full Rankings
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-              Dashboard público • No requiere iniciar sesión
+              Public dashboard • No login required
             </p>
           </div>
         </div>
@@ -368,13 +368,13 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
-              Únete a la Revolución Agrícola
+              Join the Agricultural Revolution
             </h2>
 
             <p className="text-xl md:text-2xl text-green-100/90 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Forma parte del futuro de la agricultura mexicana con datos
-              satelitales de última generación, análisis inteligente y una
-              comunidad comprometida con la innovación.
+              Be part of the future of Mexican agriculture with
+              cutting-edge satellite data, smart analysis and a
+              community committed to innovation.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -383,7 +383,7 @@ export default function Home() {
                 className="group inline-flex items-center px-10 py-5 bg-white text-green-800 rounded-2xl font-bold hover:bg-green-50 transition-all duration-300 transform hover:scale-105 text-lg shadow-2xl hover:shadow-white/20"
               >
                 <Sparkles className="mr-3 h-6 w-6" />
-                Crear Cuenta Gratis
+                Create Free Account
                 <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
 
@@ -391,7 +391,7 @@ export default function Home() {
                 href="/auth/login"
                 className="group inline-flex items-center px-8 py-4 bg-transparent text-white border-2 border-white/50 rounded-2xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
               >
-                Ya tengo cuenta
+                I already have an account
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -400,16 +400,16 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">NASA</div>
-                <div className="text-green-100 text-sm">Datos Satelitales</div>
+                <div className="text-green-100 text-sm">Satellite Data</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                <div className="text-green-100 text-sm">Monitoreo Continuo</div>
+                <div className="text-green-100 text-sm">Continuous Monitoring</div>
               </div>
               <div className="text-center md:col-span-1 col-span-2">
                 <div className="text-3xl font-bold text-white mb-2">AI</div>
                 <div className="text-green-100 text-sm">
-                  Análisis Inteligente
+                  Smart Analysis
                 </div>
               </div>
             </div>

@@ -30,7 +30,7 @@ export default function ContributionsPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Cargando...</p>
+          <p className="mt-4 text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
@@ -51,41 +51,41 @@ export default function ContributionsPage() {
           <div className="flex items-center space-x-3 mb-2">
             <Award className="h-8 w-8 text-green-600" />
             <h1 className="text-3xl font-bold text-foreground">
-              Mis Contribuciones
+              My Contributions
             </h1>
           </div>
           <p className="text-muted-foreground">
-            Comparte información valiosa, gana puntos y sube en el ranking
+            Share valuable information, earn points and climb the rankings
           </p>
         </div>
 
         {/* Info Banner */}
         <div className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border rounded-lg p-6">
           <h3 className="font-semibold mb-2">
-            💡 ¿Cómo funciona el sistema de puntos?
+            💡 How does the points system work?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-sm">
             <div>
-              <span className="font-medium text-orange-600">Sequías:</span> 50
+              <span className="font-medium text-orange-600">Droughts:</span> 50
               pts
             </div>
             <div>
-              <span className="font-medium text-red-600">Plagas:</span> 40 pts
+              <span className="font-medium text-red-600">Pests:</span> 40 pts
             </div>
             <div>
-              <span className="font-medium text-green-600">Sostenible:</span> 60
+              <span className="font-medium text-green-600">Sustainable:</span> 60
               pts
             </div>
             <div>
-              <span className="font-medium text-blue-600">Cultivo:</span> 30 pts
+              <span className="font-medium text-blue-600">Crop:</span> 30 pts
             </div>
             <div>
-              <span className="font-medium text-purple-600">Clima:</span> 20 pts
+              <span className="font-medium text-purple-600">Weather:</span> 20 pts
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-3">
-            Todas las contribuciones son revisadas antes de ser verificadas. Los
-            puntos se suman automáticamente una vez verificadas.
+            All contributions are reviewed before being verified. Points are
+            automatically added once verified.
           </p>
         </div>
 
@@ -105,31 +105,31 @@ export default function ContributionsPage() {
         {/* Benefits Section */}
         <div className="mt-8 bg-card border rounded-lg p-6">
           <h3 className="text-xl font-semibold mb-4">
-            🏆 Beneficios de Contribuir
+            🏆 Benefits of Contributing
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="text-3xl mb-2">📈</div>
-              <h4 className="font-semibold mb-2">Mejores Contratos</h4>
+              <h4 className="font-semibold mb-2">Better Contracts</h4>
               <p className="text-sm text-muted-foreground">
-                Agricultores con alto ranking tienen acceso a mejores
-                licitaciones gubernamentales y contratos comerciales
+                Highly ranked farmers get access to better
+                government tenders and commercial contracts
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🎓</div>
-              <h4 className="font-semibold mb-2">Reconocimiento</h4>
+              <h4 className="font-semibold mb-2">Recognition</h4>
               <p className="text-sm text-muted-foreground">
-                Sube de nivel desde Aprendiz hasta Leyenda y obtén insignias
-                exclusivas que demuestran tu experiencia
+                Level up from Apprentice to Legend and get exclusive
+                badges that demonstrate your expertise
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🌍</div>
-              <h4 className="font-semibold mb-2">Impacto Social</h4>
+              <h4 className="font-semibold mb-2">Social Impact</h4>
               <p className="text-sm text-muted-foreground">
-                Tu información ayuda a otros agricultores y contribuye a la
-                seguridad alimentaria de México
+                Your information helps other farmers and contributes to
+                Mexico&apos;s food security
               </p>
             </div>
           </div>

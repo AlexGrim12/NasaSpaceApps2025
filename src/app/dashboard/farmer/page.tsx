@@ -60,7 +60,7 @@ export default function FarmerDashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Cargando dashboard...</p>
+          <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
         </div>
       </div>
     )
@@ -74,10 +74,10 @@ export default function FarmerDashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            ¡Bienvenido, {profile.name}! 🌾
+            Welcome, {profile.name}! 🌾
           </h1>
           <p className="text-muted-foreground">
-            Panel de control para monitoreo de cultivos de maíz
+            Control panel for corn crop monitoring
           </p>
         </div>
 
@@ -89,10 +89,10 @@ export default function FarmerDashboard() {
                 <Award className="h-12 w-12 text-yellow-300" />
                 <div>
                   <h3 className="text-2xl font-bold">
-                    Posición #{ranking.rank_position || '-'} en el Ranking
+                    Position #{ranking.rank_position || '-'} in Rankings
                   </h3>
                   <p className="text-white/80">
-                    {ranking.total_points} puntos • Nivel:{' '}
+                    {ranking.total_points} points • Level:{' '}
                     <span className="capitalize font-semibold">
                       {ranking.level}
                     </span>
@@ -104,7 +104,7 @@ export default function FarmerDashboard() {
                 className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all flex items-center space-x-2"
               >
                 <Plus className="h-5 w-5" />
-                <span>Nueva Contribución</span>
+                <span>New Contribution</span>
               </Link>
             </div>
           </div>
@@ -117,10 +117,10 @@ export default function FarmerDashboard() {
                 <Award className="h-12 w-12 text-green-600" />
                 <div>
                   <h3 className="text-xl font-bold">
-                    ¡Únete al Ranking de Agricultores!
+                    Join the Farmer Rankings!
                   </h3>
                   <p className="text-muted-foreground">
-                    Comparte información y gana puntos para mejorar tu posición
+                    Share information and earn points to improve your position
                   </p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function FarmerDashboard() {
                 className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all flex items-center space-x-2"
               >
                 <Plus className="h-5 w-5" />
-                <span>Crear Contribución</span>
+                <span>Create Contribution</span>
               </Link>
             </div>
           </div>
@@ -140,49 +140,49 @@ export default function FarmerDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Parcelas Activas
+                Active Fields
               </h3>
               <MapPin className="h-5 w-5 text-green-600" />
             </div>
             <div className="text-2xl font-bold text-green-600">12</div>
             <p className="text-sm text-muted-foreground">
-              +2 desde el mes pasado
+              +2 since last month
             </p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Temperatura Promedio
+                Average Temperature
               </h3>
               <Thermometer className="h-5 w-5 text-orange-600" />
             </div>
             <div className="text-2xl font-bold text-orange-600">24°C</div>
             <p className="text-sm text-muted-foreground">
-              Óptima para floración
+              Optimal for blooming
             </p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Humedad del Suelo
+                Soil Moisture
               </h3>
               <Droplet className="h-5 w-5 text-blue-600" />
             </div>
             <div className="text-2xl font-bold text-blue-600">68%</div>
-            <p className="text-sm text-muted-foreground">Nivel adecuado</p>
+            <p className="text-sm text-muted-foreground">Adequate level</p>
           </div>
 
           <div className="bg-card border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-card-foreground">
-                Próxima Floración
+                Next Blooming
               </h3>
               <Calendar className="h-5 w-5 text-purple-600" />
             </div>
-            <div className="text-2xl font-bold text-purple-600">15 días</div>
-            <p className="text-sm text-muted-foreground">Parcela Norte</p>
+            <div className="text-2xl font-bold text-purple-600">15 days</div>
+            <p className="text-sm text-muted-foreground">North Field</p>
           </div>
         </div>
 
@@ -192,16 +192,16 @@ export default function FarmerDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-6 flex items-center">
               <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
-              Actividad Reciente
+              Recent Activity
             </h2>
             <div className="space-y-4">
               <div className="flex items-start space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <div className="flex-shrink-0 w-2 h-2 bg-green-600 rounded-full mt-2"></div>
                 <div>
                   <p className="text-sm font-medium text-card-foreground">
-                    Floración detectada en Parcela Sur
+                    Blooming detected in South Field
                   </p>
-                  <p className="text-xs text-muted-foreground">Hace 2 horas</p>
+                  <p className="text-xs text-muted-foreground">2 hours ago</p>
                 </div>
               </div>
 
@@ -209,9 +209,9 @@ export default function FarmerDashboard() {
                 <div className="flex-shrink-0 w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
                 <div>
                   <p className="text-sm font-medium text-card-foreground">
-                    Imagen satelital actualizada
+                    Satellite image updated
                   </p>
-                  <p className="text-xs text-muted-foreground">Hace 4 horas</p>
+                  <p className="text-xs text-muted-foreground">4 hours ago</p>
                 </div>
               </div>
 
@@ -219,9 +219,9 @@ export default function FarmerDashboard() {
                 <div className="flex-shrink-0 w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
                 <div>
                   <p className="text-sm font-medium text-card-foreground">
-                    Recomendación de riego enviada
+                    Irrigation recommendation sent
                   </p>
-                  <p className="text-xs text-muted-foreground">Ayer</p>
+                  <p className="text-xs text-muted-foreground">Yesterday</p>
                 </div>
               </div>
             </div>
@@ -231,36 +231,36 @@ export default function FarmerDashboard() {
           <div className="bg-card border rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-6 flex items-center">
               <AlertTriangle className="h-5 w-5 mr-2 text-yellow-600" />
-              Alertas y Recomendaciones
+              Alerts and Recommendations
             </h2>
             <div className="space-y-4">
               <div className="border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 p-4">
                 <p className="font-medium text-yellow-800 dark:text-yellow-200">
-                  Posible estrés hídrico
+                  Possible water stress
                 </p>
                 <p className="text-sm text-yellow-600 dark:text-yellow-300 mt-1">
-                  La parcela Este muestra signos de necesitar riego en los
-                  próximos 2-3 días.
+                  The East field shows signs of needing irrigation in the
+                  next 2-3 days.
                 </p>
               </div>
 
               <div className="border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20 p-4">
                 <p className="font-medium text-green-800 dark:text-green-200">
-                  Condiciones óptimas para floración
+                  Optimal conditions for blooming
                 </p>
                 <p className="text-sm text-green-600 dark:text-green-300 mt-1">
-                  Las parcelas Norte y Centro muestran condiciones ideales para
-                  la floración.
+                  North and Central fields show ideal conditions for
+                  blooming.
                 </p>
               </div>
 
               <div className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 p-4">
                 <p className="font-medium text-blue-800 dark:text-blue-200">
-                  Nueva imagen disponible
+                  New image available
                 </p>
                 <p className="text-sm text-blue-600 dark:text-blue-300 mt-1">
-                  Revisa las nuevas imágenes satelitales de MODIS para análisis
-                  detallado.
+                  Check out the new MODIS satellite images for detailed
+                  analysis.
                 </p>
               </div>
             </div>
@@ -272,11 +272,11 @@ export default function FarmerDashboard() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-2xl font-bold mb-2">
-                🌸 Predicción de Floración con IA
+                🌸 Bloom Prediction with AI
               </h3>
               <p className="text-muted-foreground">
-                Sistema de análisis fenológico usando Machine Learning (LSTM) y
-                datos satelitales de la NASA
+                Phenological analysis system using Machine Learning (LSTM) and
+                NASA satellite data
               </p>
             </div>
             <Link
@@ -284,7 +284,7 @@ export default function FarmerDashboard() {
               className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all flex items-center space-x-2 whitespace-nowrap"
             >
               <Leaf className="h-5 w-5" />
-              <span>Acceder Ahora</span>
+              <span>Access Now</span>
             </Link>
           </div>
 
@@ -292,30 +292,31 @@ export default function FarmerDashboard() {
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <MapPin className="h-5 w-5 text-green-600" />
-                <h4 className="font-semibold">Guarda tus Parcelas</h4>
+                <h4 className="font-semibold">Save Your Fields</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Registra las coordenadas GPS de tus terrenos para análisis
-                preciso
+                Register GPS coordinates of your land for accurate
+                analysis
               </p>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="h-5 w-5 text-blue-600" />
-                <h4 className="font-semibold">Predicciones Precisas</h4>
+                <h4 className="font-semibold">Accurate Predictions</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Obtén fechas de floración usando datos satelitales en tiempo
-                real
+                Get blooming dates using real-time satellite
+                data
               </p>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-purple-600" />
-                <h4 className="font-semibold">Timeline Completo</h4>
+                <h4 className="font-semibold">Complete Timeline</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Visualiza probabilidades día por día durante toda la temporada
+                View day-by-day probabilities throughout the entire
+                season
               </p>
             </div>
           </div>
@@ -323,24 +324,24 @@ export default function FarmerDashboard() {
 
         {/* Próximamente */}
         <div className="mt-8 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border rounded-lg p-8 text-center">
-          <h3 className="text-xl font-bold mb-4">🚀 Próximamente</h3>
+          <h3 className="text-xl font-bold mb-4">🚀 Coming Soon</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div className="p-4">
-              <h4 className="font-semibold mb-2">Mapas Interactivos</h4>
+              <h4 className="font-semibold mb-2">Interactive Maps</h4>
               <p className="text-sm text-muted-foreground">
-                Visualiza tus parcelas en mapas satelitales
+                Visualize your fields on satellite maps
               </p>
             </div>
             <div className="p-4">
-              <h4 className="font-semibold mb-2">Análisis Histórico</h4>
+              <h4 className="font-semibold mb-2">Historical Analysis</h4>
               <p className="text-sm text-muted-foreground">
-                Compara predicciones con resultados reales
+                Compare predictions with actual results
               </p>
             </div>
             <div className="p-4">
-              <h4 className="font-semibold mb-2">Notificaciones Móviles</h4>
+              <h4 className="font-semibold mb-2">Mobile Notifications</h4>
               <p className="text-sm text-muted-foreground">
-                Recibe alertas en tu dispositivo
+                Receive alerts on your device
               </p>
             </div>
           </div>

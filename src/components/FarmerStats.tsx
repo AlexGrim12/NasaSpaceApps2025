@@ -35,11 +35,11 @@ const CONTRIBUTION_COLORS: Record<string, string> = {
 }
 
 const CONTRIBUTION_LABELS: Record<string, string> = {
-  drought_report: 'Sequía',
-  pest_report: 'Plaga',
-  sustainable_practice: 'Sostenible',
-  crop_data: 'Cultivo',
-  weather_data: 'Clima',
+  drought_report: 'Drought',
+  pest_report: 'Pest',
+  sustainable_practice: 'Sustainable',
+  crop_data: 'Crop',
+  weather_data: 'Weather',
 }
 
 export default function FarmerStats() {
@@ -93,7 +93,7 @@ export default function FarmerStats() {
     return (
       <div className="bg-card border rounded-lg p-8 text-center">
         <Loader2 className="h-8 w-8 animate-spin text-green-600 mx-auto mb-4" />
-        <p className="text-muted-foreground">Cargando tus estadísticas...</p>
+        <p className="text-muted-foreground">Loading your stats...</p>
       </div>
     )
   }
@@ -106,9 +106,9 @@ export default function FarmerStats() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-2xl font-bold">
-                {profile?.name || 'Agricultor'}
+                {profile?.name || 'Farmer'}
               </h3>
-              <p className="text-white/80">Tu posición en el ranking</p>
+              <p className="text-white/80">Your ranking position</p>
             </div>
             <Trophy className="h-12 w-12 text-yellow-300" />
           </div>
@@ -118,23 +118,23 @@ export default function FarmerStats() {
               <div className="text-3xl font-bold">
                 {ranking.rank_position || '-'}
               </div>
-              <div className="text-sm text-white/80">Posición</div>
+              <div className="text-sm text-white/80">Position</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <div className="text-3xl font-bold">{ranking.total_points}</div>
-              <div className="text-sm text-white/80">Puntos</div>
+              <div className="text-sm text-white/80">Points</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <div className="text-3xl font-bold capitalize">
                 {ranking.level}
               </div>
-              <div className="text-sm text-white/80">Nivel</div>
+              <div className="text-sm text-white/80">Level</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <div className="text-3xl font-bold">
                 {ranking.contributions_count}
               </div>
-              <div className="text-sm text-white/80">Contribuciones</div>
+              <div className="text-sm text-white/80">Contributions</div>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export default function FarmerStats() {
             <div className="mt-4 pt-4 border-t border-white/20">
               <div className="flex items-center space-x-2 mb-2">
                 <Award className="h-5 w-5" />
-                <span className="font-semibold">Insignias Desbloqueadas</span>
+                <span className="font-semibold">Unlocked Badges</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {ranking.badges.map((badge) => (
@@ -164,7 +164,7 @@ export default function FarmerStats() {
         <div className="bg-card border rounded-lg p-6">
           <h3 className="text-xl font-semibold mb-4 flex items-center">
             <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
-            Desglose de Contribuciones
+            Contributions Breakdown
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div className="text-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
@@ -172,35 +172,35 @@ export default function FarmerStats() {
               <div className="text-2xl font-bold text-orange-600">
                 {ranking.drought_reports}
               </div>
-              <div className="text-xs text-muted-foreground">Sequías</div>
+              <div className="text-xs text-muted-foreground">Droughts</div>
             </div>
             <div className="text-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
               <Bug className="h-6 w-6 text-red-600 mx-auto mb-2" />
               <div className="text-2xl font-bold text-red-600">
                 {ranking.pest_reports}
               </div>
-              <div className="text-xs text-muted-foreground">Plagas</div>
+              <div className="text-xs text-muted-foreground">Pests</div>
             </div>
             <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
               <Leaf className="h-6 w-6 text-green-600 mx-auto mb-2" />
               <div className="text-2xl font-bold text-green-600">
                 {ranking.sustainable_practices}
               </div>
-              <div className="text-xs text-muted-foreground">Sostenibles</div>
+              <div className="text-xs text-muted-foreground">Sustainable</div>
             </div>
             <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
               <BarChart3 className="h-6 w-6 text-blue-600 mx-auto mb-2" />
               <div className="text-2xl font-bold text-blue-600">
                 {ranking.crop_data_shared}
               </div>
-              <div className="text-xs text-muted-foreground">Cultivos</div>
+              <div className="text-xs text-muted-foreground">Crops</div>
             </div>
             <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
               <Cloud className="h-6 w-6 text-purple-600 mx-auto mb-2" />
               <div className="text-2xl font-bold text-purple-600">
                 {ranking.weather_data_shared}
               </div>
-              <div className="text-xs text-muted-foreground">Clima</div>
+              <div className="text-xs text-muted-foreground">Weather</div>
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function FarmerStats() {
       {/* Recent Contributions */}
       <div className="bg-card border rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-semibold">Mis Contribuciones</h3>
+          <h3 className="text-xl font-semibold">My Contributions</h3>
           <div className="flex space-x-2">
             <button
               onClick={() => setFilter('all')}
@@ -219,7 +219,7 @@ export default function FarmerStats() {
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
             >
-              Todas ({contributions.length})
+              All ({contributions.length})
             </button>
             <button
               onClick={() => setFilter('verified')}
@@ -229,7 +229,7 @@ export default function FarmerStats() {
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
             >
-              Verificadas ({contributions.filter((c) => c.verified).length})
+              Verified ({contributions.filter((c) => c.verified).length})
             </button>
             <button
               onClick={() => setFilter('pending')}
@@ -239,7 +239,7 @@ export default function FarmerStats() {
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
             >
-              Pendientes ({contributions.filter((c) => !c.verified).length})
+              Pending ({contributions.filter((c) => !c.verified).length})
             </button>
           </div>
         </div>
@@ -249,10 +249,10 @@ export default function FarmerStats() {
             <div className="text-6xl mb-4">📊</div>
             <p className="text-muted-foreground">
               {filter === 'all'
-                ? 'Aún no tienes contribuciones. ¡Crea tu primera contribución arriba!'
+                ? 'You don\'t have any contributions yet. Create your first contribution above!'
                 : filter === 'verified'
-                ? 'No tienes contribuciones verificadas aún.'
-                : 'No tienes contribuciones pendientes de verificación.'}
+                ? 'You don\'t have verified contributions yet.'
+                : 'You don\'t have pending contributions.'}
             </p>
           </div>
         ) : (
@@ -291,7 +291,7 @@ export default function FarmerStats() {
                         <span className="flex items-center">
                           <Clock className="h-3 w-3 mr-1" />
                           {new Date(contribution.created_at).toLocaleDateString(
-                            'es-MX',
+                            'en-US',
                             {
                               day: 'numeric',
                               month: 'short',
@@ -302,12 +302,12 @@ export default function FarmerStats() {
                         {contribution.verified ? (
                           <span className="flex items-center text-green-600">
                             <CheckCircle className="h-3 w-3 mr-1" />
-                            Verificada
+                            Verified
                           </span>
                         ) : (
                           <span className="flex items-center text-yellow-600">
                             <XCircle className="h-3 w-3 mr-1" />
-                            Pendiente
+                            Pending
                           </span>
                         )}
                       </div>

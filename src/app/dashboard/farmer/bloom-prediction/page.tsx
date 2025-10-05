@@ -4,6 +4,16 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import {
+  savePredictionWithAnalysis,
+  uploadSatelliteImage,
+  getRecentPrediction,
+  type BloomPredictionData,
+  type AnalysisData,
+  type SatelliteImageData,
+  type CompletePrediction,
+  type SavedAnalysis,
+} from '@/lib/bloom-predictions'
+import {
   MapPin,
   Plus,
   X,
@@ -28,12 +38,6 @@ const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
 const Bar = dynamic(() => import('react-chartjs-2').then((mod) => mod.Bar), {
   ssr: false,
 })
-const Chart = dynamic(
-  () => import('react-chartjs-2').then((mod) => mod.Chart),
-  {
-    ssr: false,
-  }
-)
 
 // Registrar componentes de Chart.js
 import {
@@ -177,6 +181,14 @@ export default function BloomPredictionPage() {
     url: string
     descripcion: string
   } | null>(null)
+  const [savingImages, setSavingImages] = useState(false)
+
+  // Estados para caché de datos
+  const [usingCachedData, setUsingCachedData] = useState(false)
+  const [cachedPrediction, setCachedPrediction] =
+    useState<CompletePrediction | null>(null)
+  const [forceNewAnalysis, setForceNewAnalysis] = useState(false)
+  const [checkingCache, setCheckingCache] = useState(false)
 
   // Resultados de cada paso
   const [trainResult, setTrainResult] = useState<TrainResult | null>(null)
@@ -217,7 +229,16 @@ export default function BloomPredictionPage() {
     if (user) {
       fetchLocations()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
+
+  // Efecto para cargar caché cuando se selecciona ubicación
+  useEffect(() => {
+    if (selectedLocation && !forceNewAnalysis) {
+      loadCachedPrediction(selectedLocation.id)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLocation])
 
   // ============================================
   // FUNCIONES PARA OBTENER TOKEN
@@ -287,8 +308,9 @@ export default function BloomPredictionPage() {
         const data = await response.json()
         setError(data.error || 'Error al guardar ubicación')
       }
-    } catch (error) {
+    } catch (err) {
       setError('Error de conexión')
+      console.error('Error saving location:', err)
     } finally {
       setLoading(false)
     }
@@ -313,8 +335,9 @@ export default function BloomPredictionPage() {
         }
         await fetchLocations()
       }
-    } catch (error) {
+    } catch (err) {
       setError('Error al eliminar ubicación')
+      console.error('Error deleting location:', err)
     }
   }
 
@@ -325,6 +348,120 @@ export default function BloomPredictionPage() {
       longitude: lon,
       name: name,
     })
+  }
+
+  // ============================================
+  // FUNCIONES PARA CACHÉ DE PREDICCIONES
+  // ============================================
+
+  const loadCachedPrediction = async (locationId: string) => {
+    setCheckingCache(true)
+    setError('')
+
+    try {
+      // Buscar predicción reciente (últimos 7 días)
+      const cached = await getRecentPrediction(locationId, 7)
+
+      if (cached && !forceNewAnalysis) {
+        setCachedPrediction(cached)
+        setUsingCachedData(true)
+
+        // Convertir datos guardados al formato de la UI
+        loadDataFromCache(cached)
+
+        setSuccess('✅ Datos cargados desde caché (últimos 7 días)')
+        return true
+      }
+
+      setUsingCachedData(false)
+      return false
+    } catch (error) {
+      console.error('Error al cargar caché:', error)
+      setUsingCachedData(false)
+      return false
+    } finally {
+      setCheckingCache(false)
+    }
+  }
+
+  const loadDataFromCache = (cached: CompletePrediction) => {
+    // Cargar datos de análisis
+    const analysisMap = new Map<string, SavedAnalysis>()
+    cached.analysis.forEach((a) => {
+      analysisMap.set(a.analysis_type, a)
+    })
+
+    // Reconstruir trainResult
+    const trainingAnalysis = analysisMap.get('training')
+    if (trainingAnalysis) {
+      setTrainResult({
+        mensaje: 'Datos cargados desde caché',
+        metricas: trainingAnalysis.metrics as TrainResult['metricas'],
+        grafica_metricas:
+          trainingAnalysis.chart_data as TrainResult['grafica_metricas'],
+      })
+    }
+
+    // Reconstruir timelineResult
+    const timelineAnalysis = analysisMap.get('timeline')
+    if (timelineAnalysis) {
+      const timelineImages = cached.images
+        .filter((img) => img.image_type === 'timeline')
+        .map((img) => ({
+          url: img.image_url,
+          descripcion: img.description,
+          fecha_solicitada: img.requested_date,
+          fecha_imagen: img.image_date,
+          cloud_cover: img.cloud_cover,
+        }))
+
+      setTimelineResult({
+        fecha_pico_probabilidad:
+          (timelineAnalysis.metrics?.fecha_pico_probabilidad as string) || '',
+        probabilidad_maxima:
+          (timelineAnalysis.metrics?.probabilidad_maxima as number) || 0,
+        timeline: [],
+        grafica_timeline:
+          timelineAnalysis.chart_data as TimelineResult['grafica_timeline'],
+        imagenes_satelitales: timelineImages,
+      })
+    }
+
+    // Reconstruir predictionResult
+    const phenologyAnalysis = analysisMap.get('phenology')
+    if (phenologyAnalysis) {
+      const predictionImages = cached.images
+        .filter((img) => img.image_type === 'prediction')
+        .map((img) => ({
+          url: img.image_url,
+          descripcion: img.description,
+          fecha_solicitada: img.requested_date,
+          fecha_imagen: img.image_date,
+          cloud_cover: img.cloud_cover,
+        }))
+
+      setPredictionResult({
+        fecha_actual: cached.prediction.analysis_date,
+        fecha_floracion_predicha: cached.prediction.predicted_bloom_date,
+        dias_hasta_floracion: cached.prediction.days_to_bloom,
+        gdc_acumulado: cached.prediction.gdc_accumulated,
+        ndvi_actual: cached.prediction.ndvi_value,
+        grafica_analisis:
+          phenologyAnalysis.chart_data as PredictionResult['grafica_analisis'],
+        imagenes_satelitales: predictionImages,
+      })
+    }
+
+    // Marcar todos los pasos como completados
+    setSteps([
+      {
+        id: 1,
+        name: 'Entrenar modelo con datos históricos',
+        status: 'completed',
+      },
+      { id: 2, name: 'Generar timeline de floración', status: 'completed' },
+      { id: 3, name: 'Calcular predicciones', status: 'completed' },
+    ])
   }
 
   // ============================================
@@ -343,12 +480,24 @@ export default function BloomPredictionPage() {
       return
     }
 
+    // Intentar cargar datos del caché primero (si no se fuerza nuevo análisis)
+    if (!forceNewAnalysis) {
+      const hasCached = await loadCachedPrediction(selectedLocation.id)
+      if (hasCached) {
+        setLoading(false)
+        return // Usar datos cacheados
+      }
+    }
+
+    // Si no hay caché o se forzó nuevo análisis, ejecutar análisis ML
     setLoading(true)
     setError('')
     setSuccess('')
     setTrainResult(null)
     setTimelineResult(null)
     setPredictionResult(null)
+    setUsingCachedData(false)
+    setCachedPrediction(null)
 
     // Resetear pasos
     setSteps([
@@ -464,8 +613,10 @@ export default function BloomPredictionPage() {
       )
 
       setSuccess('✅ Análisis completo finalizado exitosamente')
-    } catch (err: any) {
-      setError(`❌ Error: ${err.message}`)
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : 'Error desconocido'
+      setError(`❌ Error: ${errorMessage}`)
       // Marcar el paso actual como error
       const activeStep = steps.find((s) => s.status === 'active')
       if (activeStep) {
@@ -724,6 +875,111 @@ export default function BloomPredictionPage() {
   }
 
   // ============================================
+  // FUNCIONES PARA GUARDAR IMÁGENES EN BUCKET
+  // ============================================
+
+  const saveImageToBucket = async (
+    imageUrl: string,
+    description: string,
+    predictionId: string
+  ) => {
+    try {
+      // Descargar la imagen desde la URL
+      const response = await fetch(imageUrl)
+      if (!response.ok) {
+        throw new Error('Error al descargar imagen')
+      }
+
+      const blob = await response.blob()
+      const file = new File([blob], `satellite-${Date.now()}.jpg`, {
+        type: 'image/jpeg',
+      })
+
+      // Subir al bucket usando nuestra función
+      const result = await uploadSatelliteImage(file, predictionId)
+
+      if (result.success) {
+        console.log('✅ Imagen guardada en bucket:', result.url)
+        return result
+      } else {
+        throw new Error(result.error || 'Error al subir imagen')
+      }
+    } catch (error) {
+      console.error('Error al guardar imagen:', error)
+      throw error
+    }
+  }
+
+  const saveAllImagesToBucket = async () => {
+    if (!predictionResult && !timelineResult) {
+      setError('No hay imágenes para guardar')
+      return
+    }
+
+    setSavingImages(true)
+    setError('')
+
+    try {
+      const images: Array<{ url: string; descripcion: string }> = []
+
+      // Recopilar todas las imágenes
+      if (timelineResult?.imagenes_satelitales) {
+        images.push(
+          ...timelineResult.imagenes_satelitales.map((img) => ({
+            url: img.url,
+            descripcion: `Timeline: ${img.descripcion}`,
+          }))
+        )
+      }
+
+      if (predictionResult?.imagenes_satelitales) {
+        images.push(
+          ...predictionResult.imagenes_satelitales.map((img) => ({
+            url: img.url,
+            descripcion: `Predicción: ${img.descripcion}`,
+          }))
+        )
+      }
+
+      if (images.length === 0) {
+        setError('No se encontraron imágenes para guardar')
+        return
+      }
+
+      // Generar un ID temporal para la predicción si no existe
+      const tempPredictionId = `temp-${Date.now()}`
+
+      // Guardar cada imagen
+      let savedCount = 0
+      for (const image of images) {
+        try {
+          await saveImageToBucket(
+            image.url,
+            image.descripcion,
+            tempPredictionId
+          )
+          savedCount++
+        } catch (error) {
+          console.error(`Error al guardar imagen: ${image.descripcion}`, error)
+        }
+      }
+
+      if (savedCount > 0) {
+        setSuccess(
+          `✅ Se guardaron ${savedCount} de ${images.length} imágenes en el bucket`
+        )
+      } else {
+        setError('No se pudo guardar ninguna imagen')
+      }
+    } catch (error) {
+      setError('Error al guardar imágenes en el bucket')
+      console.error('Error:', error)
+    } finally {
+      setSavingImages(false)
+    }
+  }
+
+  // ============================================
   // GUARDAR PREDICCIÓN EN BASE DE DATOS
   // ============================================
 
@@ -733,25 +989,138 @@ export default function BloomPredictionPage() {
     analysisDate: string
   ) => {
     try {
-      const token = await getAuthToken()
-      await fetch('/api/bloom-predictions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+      // Preparar datos de la predicción principal
+      const predictionData: BloomPredictionData = {
+        location_id: locationId,
+        analysis_date: analysisDate,
+        predicted_bloom_date: prediction.fecha_floracion_predicha,
+        days_to_bloom: prediction.dias_hasta_floracion,
+        gdc_accumulated: prediction.gdc_acumulado,
+        ndvi_value: prediction.ndvi_actual || undefined,
+        model_version: 'LSTM-v1.0',
+        temperature_avg: prediction.grafica_analisis?.temperatura_media
+          ? prediction.grafica_analisis.temperatura_media.reduce(
+              (a, b) => a + b,
+              0
+            ) / prediction.grafica_analisis.temperatura_media.length
+          : undefined,
+        precipitation_total: prediction.grafica_analisis
+          ?.precipitacion_acumulada
+          ? Math.max(...prediction.grafica_analisis.precipitacion_acumulada)
+          : undefined,
+        metadata: {
+          completeParams: completeParams as Record<string, unknown>,
+          analysis_type: 'complete_ml_analysis',
         },
-        body: JSON.stringify({
-          location_id: locationId,
-          analysis_date: analysisDate,
-          predicted_bloom_date: prediction.fecha_floracion_predicha,
-          days_to_bloom: prediction.dias_hasta_floracion,
-          gdc_accumulated: prediction.gdc_acumulado,
-          ndvi_value: prediction.ndvi_actual || null,
-          model_version: 'LSTM-v1.0',
-        }),
-      })
+      }
+
+      // Preparar datos de análisis para las gráficas
+      const analysisData: AnalysisData[] = []
+
+      // Agregar datos de entrenamiento si existen
+      if (trainResult?.grafica_metricas) {
+        analysisData.push({
+          analysis_type: 'training',
+          chart_data: trainResult.grafica_metricas,
+          metrics: trainResult.metricas,
+        })
+      }
+
+      // Agregar datos de timeline si existen
+      if (timelineResult?.grafica_timeline) {
+        analysisData.push({
+          analysis_type: 'timeline',
+          chart_data: timelineResult.grafica_timeline,
+          metrics: {
+            fecha_pico_probabilidad: timelineResult.fecha_pico_probabilidad,
+            probabilidad_maxima: timelineResult.probabilidad_maxima,
+          },
+        })
+      }
+
+      // Agregar datos de análisis fenológico
+      if (prediction.grafica_analisis) {
+        analysisData.push({
+          analysis_type: 'phenology',
+          chart_data: prediction.grafica_analisis,
+        })
+
+        // Si hay datos de precipitación, agregar análisis separado
+        if (prediction.grafica_analisis.precipitacion_mm) {
+          analysisData.push({
+            analysis_type: 'precipitation',
+            chart_data: {
+              fechas: prediction.grafica_analisis.fechas,
+              precipitacion_mm: prediction.grafica_analisis.precipitacion_mm,
+              precipitacion_acumulada:
+                prediction.grafica_analisis.precipitacion_acumulada,
+            },
+          })
+        }
+
+        // Si hay datos de temperatura, agregar análisis separado
+        if (prediction.grafica_analisis.temperatura_media) {
+          analysisData.push({
+            analysis_type: 'temperature',
+            chart_data: {
+              fechas: prediction.grafica_analisis.fechas,
+              temperatura_media: prediction.grafica_analisis.temperatura_media,
+              temperatura_max: prediction.grafica_analisis.temperatura_max,
+              temperatura_min: prediction.grafica_analisis.temperatura_min,
+            },
+          })
+        }
+      }
+
+      // Preparar datos de imágenes satelitales
+      const satelliteImages: SatelliteImageData[] = []
+
+      // Agregar imágenes del timeline si existen
+      if (timelineResult?.imagenes_satelitales) {
+        timelineResult.imagenes_satelitales.forEach((img) => {
+          satelliteImages.push({
+            image_url: img.url,
+            description: img.descripcion,
+            requested_date: img.fecha_solicitada,
+            image_date: img.fecha_imagen,
+            cloud_cover: img.cloud_cover,
+            image_type: 'timeline',
+            metadata: { source: 'timeline_analysis' },
+          })
+        })
+      }
+
+      // Agregar imágenes de la predicción si existen
+      if (prediction.imagenes_satelitales) {
+        prediction.imagenes_satelitales.forEach((img) => {
+          satelliteImages.push({
+            image_url: img.url,
+            description: img.descripcion,
+            requested_date: img.fecha_solicitada,
+            image_date: img.fecha_imagen,
+            cloud_cover: img.cloud_cover,
+            image_type: 'prediction',
+            metadata: { source: 'prediction_analysis' },
+          })
+        })
+      }
+
+      // Guardar todo en la base de datos
+      const result = await savePredictionWithAnalysis(
+        predictionData,
+        analysisData,
+        satelliteImages
+      )
+
+      if (result.success) {
+        console.log('✅ Predicción guardada exitosamente:', result.predictionId)
+      } else {
+        console.error('❌ Error al guardar predicción:', result.error)
+        setError(`Error al guardar: ${result.error}`)
+      }
     } catch (error) {
       console.error('Error saving prediction:', error)
+      setError('Error al guardar la predicción en la base de datos')
     }
   }
 
@@ -1033,10 +1402,65 @@ export default function BloomPredictionPage() {
                     </div>
                   </div>
 
+                  {/* Indicador de caché */}
+                  {checkingCache && (
+                    <div className="bg-blue-900/30 border border-blue-700 p-4 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
+                        <p className="text-blue-300">
+                          Buscando análisis previos...
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Mensaje de datos cacheados */}
+                  {usingCachedData && cachedPrediction && (
+                    <div className="bg-purple-900/30 border border-purple-700 p-4 rounded-lg">
+                      <div className="flex items-start gap-3">
+                        <Activity className="h-5 w-5 text-purple-400 mt-1" />
+                        <div className="flex-1">
+                          <p className="text-purple-200 font-semibold mb-1">
+                            📋 Mostrando datos guardados
+                          </p>
+                          <p className="text-purple-300 text-sm mb-2">
+                            Análisis realizado el{' '}
+                            {new Date(
+                              cachedPrediction.prediction.created_at
+                            ).toLocaleDateString('es-MX', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              id="forceNewAnalysis"
+                              checked={forceNewAnalysis}
+                              onChange={(e) =>
+                                setForceNewAnalysis(e.target.checked)
+                              }
+                              className="rounded border-purple-500 text-purple-600 focus:ring-purple-500"
+                            />
+                            <label
+                              htmlFor="forceNewAnalysis"
+                              className="text-sm text-purple-300 cursor-pointer"
+                            >
+                              Ejecutar análisis nuevo (ignora caché)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Botón iniciar análisis */}
                   <button
                     onClick={runCompleteAnalysis}
-                    disabled={loading}
+                    disabled={loading || checkingCache}
                     className="w-full py-3 px-6 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:from-green-500 hover:to-blue-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-gray-400 transition flex items-center justify-center gap-2"
                   >
                     {loading ? (
@@ -1044,8 +1468,20 @@ export default function BloomPredictionPage() {
                         <Loader2 className="h-5 w-5 animate-spin" />
                         Procesando...
                       </>
+                    ) : checkingCache ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Verificando...
+                      </>
+                    ) : usingCachedData && !forceNewAnalysis ? (
+                      <>✅ Datos Cargados</>
                     ) : (
-                      <>🚀 Iniciar Análisis Completo</>
+                      <>
+                        🚀{' '}
+                        {usingCachedData
+                          ? 'Ejecutar Nuevo Análisis'
+                          : 'Iniciar Análisis Completo'}
+                      </>
                     )}
                   </button>
 
@@ -1555,6 +1991,34 @@ export default function BloomPredictionPage() {
                             </div>
                           </div>
                         )}
+                    </div>
+                  )}
+
+                  {/* Botón para guardar imágenes en bucket */}
+                  {(timelineResult?.imagenes_satelitales?.length ||
+                    predictionResult?.imagenes_satelitales?.length) && (
+                    <div className="mt-6 text-center">
+                      <button
+                        onClick={saveAllImagesToBucket}
+                        disabled={savingImages}
+                        className="bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 disabled:opacity-50 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+                      >
+                        {savingImages ? (
+                          <>
+                            <Loader2 className="h-5 w-5 animate-spin" />
+                            Guardando imágenes...
+                          </>
+                        ) : (
+                          <>
+                            <ImageIcon className="h-5 w-5" />
+                            Guardar Imágenes en Bucket
+                          </>
+                        )}
+                      </button>
+                      <p className="text-sm text-gray-400 mt-2">
+                        Guarda todas las imágenes satelitales en tu
+                        almacenamiento personal
+                      </p>
                     </div>
                   )}
                 </>

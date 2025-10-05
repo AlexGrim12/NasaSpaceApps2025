@@ -34,7 +34,7 @@ export function Navbar() {
       <div className="container flex h-16 items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
           <Sprout className="h-6 w-6 text-green-600" />
-          <span className="text-xl font-bold">BloomWatch</span>
+          <span className="text-xl font-bold">TerraView</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
@@ -44,7 +44,7 @@ export function Navbar() {
             className="text-sm font-medium transition-colors hover:text-primary flex items-center space-x-1"
           >
             <Trophy className="h-4 w-4" />
-            <span>Ranking</span>
+            <span>Rankings</span>
           </Link>
 
           {user ? (
@@ -53,8 +53,8 @@ export function Navbar() {
                 <User className="h-4 w-4" />
                 <span>
                   {profile?.role === 'agricultor'
-                    ? 'Agricultor'
-                    : 'Investigador'}
+                    ? 'Farmer'
+                    : 'Researcher'}
                 </span>
               </div>
 
@@ -82,7 +82,7 @@ export function Navbar() {
                     className="text-sm font-medium transition-colors hover:text-primary flex items-center space-x-1"
                   >
                     <Award className="h-4 w-4" />
-                    <span>Contribuir</span>
+                    <span>Contribute</span>
                   </Link>
                 </>
               ) : (
@@ -91,7 +91,7 @@ export function Navbar() {
                   className="text-sm font-medium transition-colors hover:text-primary"
                 >
                   <BarChart3 className="h-4 w-4 inline mr-1" />
-                  Análisis
+                  Analysis
                 </Link>
               )}
 
@@ -100,7 +100,7 @@ export function Navbar() {
                 className="text-sm font-medium text-red-600 transition-colors hover:text-red-500"
               >
                 <LogOut className="h-4 w-4 inline mr-1" />
-                Salir
+                Sign Out
               </button>
             </>
           ) : (
@@ -109,13 +109,13 @@ export function Navbar() {
                 href="/auth/login"
                 className="text-sm font-medium transition-colors hover:text-primary"
               >
-                Iniciar Sesión
+                Sign In
               </Link>
               <Link
                 href="/auth/register"
                 className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
-                Registrarse
+                Sign Up
               </Link>
             </>
           )}

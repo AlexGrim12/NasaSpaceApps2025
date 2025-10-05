@@ -29,40 +29,40 @@ const CONTRIBUTION_TYPES: {
 }[] = [
   {
     value: 'drought_report',
-    label: 'Reporte de Sequía',
-    description: 'Informa sobre condiciones de sequía en tu región',
+    label: 'Drought Report',
+    description: 'Report drought conditions in your region',
     icon: <Droplets className="h-5 w-5" />,
     color: 'text-orange-600',
     points: CONTRIBUTION_POINTS.drought_report,
   },
   {
     value: 'pest_report',
-    label: 'Reporte de Plaga',
-    description: 'Reporta plagas o enfermedades detectadas',
+    label: 'Pest Report',
+    description: 'Report detected pests or diseases',
     icon: <Bug className="h-5 w-5" />,
     color: 'text-red-600',
     points: CONTRIBUTION_POINTS.pest_report,
   },
   {
     value: 'sustainable_practice',
-    label: 'Práctica Sostenible',
-    description: 'Comparte tus prácticas agrícolas sostenibles',
+    label: 'Sustainable Practice',
+    description: 'Share your sustainable agricultural practices',
     icon: <Leaf className="h-5 w-5" />,
     color: 'text-green-600',
     points: CONTRIBUTION_POINTS.sustainable_practice,
   },
   {
     value: 'crop_data',
-    label: 'Datos de Cultivo',
-    description: 'Comparte información sobre tu cosecha y siembra',
+    label: 'Crop Data',
+    description: 'Share information about your harvest and planting',
     icon: <BarChart3 className="h-5 w-5" />,
     color: 'text-blue-600',
     points: CONTRIBUTION_POINTS.crop_data,
   },
   {
     value: 'weather_data',
-    label: 'Datos Climáticos',
-    description: 'Aporta datos meteorológicos de tu ubicación',
+    label: 'Weather Data',
+    description: 'Contribute meteorological data from your location',
     icon: <Cloud className="h-5 w-5" />,
     color: 'text-purple-600',
     points: CONTRIBUTION_POINTS.weather_data,
@@ -87,17 +87,17 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
     setSuccess(false)
 
     if (!user) {
-      setError('Debes iniciar sesión para contribuir')
+      setError('You must sign in to contribute')
       return
     }
 
     if (!selectedType) {
-      setError('Selecciona un tipo de contribución')
+      setError('Select a contribution type')
       return
     }
 
     if (description.length < 10) {
-      setError('La descripción debe tener al menos 10 caracteres')
+      setError('Description must be at least 10 characters')
       return
     }
 
@@ -110,7 +110,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
       } = await supabase.auth.getSession()
 
       if (!session) {
-        setError('Tu sesión ha expirado. Por favor inicia sesión nuevamente.')
+        setError('Your session has expired. Please sign in again.')
         return
       }
 
@@ -135,7 +135,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al crear contribución')
+        throw new Error(data.error || 'Error creating contribution')
       }
 
       setSuccess(true)
@@ -151,7 +151,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
       // Reset success message after 3 seconds
       setTimeout(() => setSuccess(false), 3000)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido')
+      setError(err instanceof Error ? err.message : 'Unknown error')
     } finally {
       setLoading(false)
     }
@@ -163,16 +163,16 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
 
   return (
     <div className="bg-card border rounded-lg p-6">
-      <h2 className="text-2xl font-bold mb-4">📊 Nueva Contribución</h2>
+      <h2 className="text-2xl font-bold mb-4">📊 New Contribution</h2>
       <p className="text-muted-foreground mb-6">
-        Comparte información valiosa y gana puntos para mejorar tu ranking
+        Share valuable information and earn points to improve your ranking
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Type Selection */}
         <div>
           <label className="block text-sm font-medium mb-3">
-            Tipo de Contribución *
+            Contribution Type *
           </label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {CONTRIBUTION_TYPES.map((type) => (
@@ -194,7 +194,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
                       {type.description}
                     </div>
                     <div className="text-xs font-medium text-green-600 mt-2">
-                      +{type.points} puntos
+                      +{type.points} points
                     </div>
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
                 {selectedContribution.label}
               </span>
               <span className="ml-auto text-green-600 font-bold">
-                +{selectedContribution.points} puntos
+                +{selectedContribution.points} points
               </span>
             </div>
           </div>
@@ -226,34 +226,34 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
             htmlFor="description"
             className="block text-sm font-medium mb-2"
           >
-            Descripción Detallada *
+            Detailed Description *
           </label>
           <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Describe tu contribución con el mayor detalle posible. Incluye fechas, ubicaciones específicas, cantidades, variedades, técnicas utilizadas, resultados obtenidos, etc."
+            placeholder="Describe your contribution in as much detail as possible. Include dates, specific locations, quantities, varieties, techniques used, results obtained, etc."
             rows={5}
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent bg-background"
             required
             minLength={10}
           />
           <p className="text-xs text-muted-foreground mt-1">
-            Mínimo 10 caracteres. Actualmente: {description.length}
+            Minimum 10 characters. Currently: {description.length}
           </p>
         </div>
 
         {/* Location */}
         <div>
           <label htmlFor="location" className="block text-sm font-medium mb-2">
-            Ubicación (opcional)
+            Location (optional)
           </label>
           <input
             id="location"
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="Ej: Jalisco, Tepatitlán - Parcela Norte"
+            placeholder="E.g: Jalisco, Tepatitlán - North Field"
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent bg-background"
           />
         </div>
@@ -263,7 +263,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
           ['drought_report', 'pest_report'].includes(selectedType) && (
             <div>
               <label className="block text-sm font-medium mb-2">
-                Severidad
+                Severity
               </label>
               <div className="grid grid-cols-3 gap-3">
                 <button
@@ -275,7 +275,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  Baja
+                  Low
                 </button>
                 <button
                   type="button"
@@ -286,7 +286,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  Moderada
+                  Moderate
                 </button>
                 <button
                   type="button"
@@ -297,7 +297,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  Alta
+                  High
                 </button>
               </div>
             </div>
@@ -318,7 +318,7 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
           <div className="flex items-center space-x-2 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
             <span className="text-sm text-green-600 dark:text-green-400">
-              ¡Contribución creada exitosamente! Pendiente de verificación.
+              Contribution created successfully! Pending verification.
             </span>
           </div>
         )}
@@ -332,19 +332,19 @@ export default function ContributionForm({ onSuccess }: ContributionFormProps) {
           {loading ? (
             <>
               <Loader2 className="h-5 w-5 animate-spin" />
-              <span>Enviando...</span>
+              <span>Sending...</span>
             </>
           ) : (
             <>
               <CheckCircle className="h-5 w-5" />
-              <span>Enviar Contribución</span>
+              <span>Submit Contribution</span>
             </>
           )}
         </button>
 
         <p className="text-xs text-muted-foreground text-center">
-          * Campos obligatorios. Tu contribución será revisada por nuestro
-          equipo antes de ser verificada y sumar puntos a tu ranking.
+          * Required fields. Your contribution will be reviewed by our
+          team before being verified and adding points to your ranking.
         </p>
       </form>
     </div>

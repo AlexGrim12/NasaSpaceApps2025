@@ -8,9 +8,7 @@ import {
   MapPin,
   Calendar,
   TrendingUp,
-  Cloud,
   Thermometer,
-  Droplets,
   Leaf,
   AlertCircle,
   Loader2,
@@ -18,7 +16,6 @@ import {
   Trash2,
   Eye,
   Plus,
-  ChevronDown,
   ChevronUp,
 } from 'lucide-react'
 

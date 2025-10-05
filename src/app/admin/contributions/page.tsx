@@ -86,7 +86,7 @@ export default function AdminContributionsPage() {
       const result = await response.json()
 
       if (result.success) {
-        // Enriquecer con información del agricultor
+        // Enrich with farmer information
         const enrichedContributions = await Promise.all(
           result.data.map(async (contrib: Contribution) => {
             try {
@@ -103,8 +103,8 @@ export default function AdminContributionsPage() {
               return {
                 ...contrib,
                 farmer_info: {
-                  name: ranking?.farmer_name || 'Agricultor',
-                  email: userData?.user?.email || 'Sin email',
+                  name: ranking?.farmer_name || 'Farmer',
+                  email: userData?.user?.email || 'No email',
                   location: ranking?.location,
                 },
               }
@@ -148,7 +148,7 @@ export default function AdminContributionsPage() {
           },
           body: JSON.stringify({
             verified,
-            notes: verified ? 'Aprobada por administrador' : 'Rechazada',
+            notes: verified ? 'Approved by administrator' : 'Rejected',
           }),
         }
       )
@@ -184,11 +184,11 @@ export default function AdminContributionsPage() {
 
   const getTypeLabel = (type: string) => {
     const labels: Record<string, string> = {
-      drought_report: 'Reporte de Sequía',
-      pest_report: 'Reporte de Plaga',
-      sustainable_practice: 'Práctica Sostenible',
-      crop_data: 'Datos de Cultivo',
-      weather_data: 'Datos Meteorológicos',
+      drought_report: 'Drought Report',
+      pest_report: 'Pest Report',
+      sustainable_practice: 'Sustainable Practice',
+      crop_data: 'Crop Data',
+      weather_data: 'Weather Data',
     }
     return labels[type] || type
   }
@@ -223,10 +223,10 @@ export default function AdminContributionsPage() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Panel de Administrador
+                Admin Panel
               </h1>
               <p className="text-gray-600 dark:text-gray-400">
-                Verificación de contribuciones de agricultores
+                Farmer contributions verification
               </p>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function AdminContributionsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Pendientes
+                    Pending
                   </p>
                   <p className="text-2xl font-bold text-orange-500">
                     {contributions.filter((c) => !c.verified).length}
@@ -251,7 +251,7 @@ export default function AdminContributionsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Verificadas
+                    Verified
                   </p>
                   <p className="text-2xl font-bold text-green-500">
                     {contributions.filter((c) => c.verified).length}
@@ -284,7 +284,7 @@ export default function AdminContributionsPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Buscar por nombre, email o descripción..."
+                  placeholder="Search by name, email or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
@@ -301,7 +301,7 @@ export default function AdminContributionsPage() {
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                 >
-                  Todas
+                  All
                 </button>
                 <button
                   onClick={() => setFilter('pending')}
@@ -311,7 +311,7 @@ export default function AdminContributionsPage() {
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                 >
-                  Pendientes
+                  Pending
                 </button>
                 <button
                   onClick={() => setFilter('verified')}
@@ -321,7 +321,7 @@ export default function AdminContributionsPage() {
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                 >
-                  Verificadas
+                  Verified
                 </button>
               </div>
             </div>
@@ -337,7 +337,7 @@ export default function AdminContributionsPage() {
           <div className="bg-white dark:bg-gray-800 rounded-lg p-12 text-center shadow-sm">
             <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-600 dark:text-gray-400 text-lg">
-              No se encontraron contribuciones
+              No contributions found
             </p>
           </div>
         ) : (
@@ -362,12 +362,12 @@ export default function AdminContributionsPage() {
                         {contribution.verified ? (
                           <span className="flex items-center gap-1 text-green-500 text-sm font-medium">
                             <CheckCircle className="w-4 h-4" />
-                            Verificada
+                            Verified
                           </span>
                         ) : (
                           <span className="flex items-center gap-1 text-orange-500 text-sm font-medium">
                             <Clock className="w-4 h-4" />
-                            Pendiente
+                            Pending
                           </span>
                         )}
                       </div>
@@ -395,7 +395,7 @@ export default function AdminContributionsPage() {
                         <Calendar className="w-4 h-4" />
                         <span>
                           {new Date(contribution.created_at).toLocaleDateString(
-                            'es-MX'
+                            'en-US'
                           )}
                         </span>
                       </div>
@@ -409,7 +409,7 @@ export default function AdminContributionsPage() {
                       className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
                     >
                       <Eye className="w-4 h-4" />
-                      Ver Detalles
+                      View Details
                     </button>
 
                     {!contribution.verified ? (
@@ -422,7 +422,7 @@ export default function AdminContributionsPage() {
                           className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                         >
                           <CheckCircle className="w-4 h-4" />
-                          Aprobar
+                          Approve
                         </button>
                         <button
                           onClick={() =>
@@ -432,7 +432,7 @@ export default function AdminContributionsPage() {
                           className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                         >
                           <XCircle className="w-4 h-4" />
-                          Rechazar
+                          Reject
                         </button>
                       </>
                     ) : (
@@ -444,7 +444,7 @@ export default function AdminContributionsPage() {
                         className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                       >
                         <XCircle className="w-4 h-4" />
-                        Revocar
+                        Revoke
                       </button>
                     )}
                   </div>
@@ -460,7 +460,7 @@ export default function AdminContributionsPage() {
             <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Detalles de Contribución
+                  Contribution Details
                 </h2>
                 <button
                   onClick={() => setSelectedContribution(null)}
@@ -473,7 +473,7 @@ export default function AdminContributionsPage() {
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Tipo
+                    Type
                   </label>
                   <p className="text-gray-900 dark:text-white">
                     {getTypeLabel(selectedContribution.type)}
@@ -482,7 +482,7 @@ export default function AdminContributionsPage() {
 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Agricultor
+                    Farmer
                   </label>
                   <p className="text-gray-900 dark:text-white">
                     {selectedContribution.farmer_info?.name}
@@ -494,7 +494,7 @@ export default function AdminContributionsPage() {
 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Descripción
+                    Description
                   </label>
                   <p className="text-gray-900 dark:text-white">
                     {selectedContribution.description}
@@ -503,16 +503,16 @@ export default function AdminContributionsPage() {
 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Puntos
+                    Points
                   </label>
                   <p className="text-gray-900 dark:text-white">
-                    {selectedContribution.points_earned} puntos
+                    {selectedContribution.points_earned} points
                   </p>
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Estado
+                    Status
                   </label>
                   <p
                     className={`font-medium ${
@@ -522,19 +522,19 @@ export default function AdminContributionsPage() {
                     }`}
                   >
                     {selectedContribution.verified
-                      ? 'Verificada'
-                      : 'Pendiente'}
+                      ? 'Verified'
+                      : 'Pending'}
                   </p>
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Fecha de Creación
+                    Creation Date
                   </label>
                   <p className="text-gray-900 dark:text-white">
                     {new Date(
                       selectedContribution.created_at
-                    ).toLocaleString('es-MX')}
+                    ).toLocaleString('en-US')}
                   </p>
                 </div>
               </div>
@@ -550,7 +550,7 @@ export default function AdminContributionsPage() {
                       className="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
                     >
                       <CheckCircle className="w-4 h-4" />
-                      Aprobar
+                      Approve
                     </button>
                     <button
                       onClick={() => {
@@ -560,7 +560,7 @@ export default function AdminContributionsPage() {
                       className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
                     >
                       <XCircle className="w-4 h-4" />
-                      Rechazar
+                      Reject
                     </button>
                   </>
                 ) : (
@@ -572,7 +572,7 @@ export default function AdminContributionsPage() {
                     className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
                   >
                     <XCircle className="w-4 h-4" />
-                    Revocar Verificación
+                    Revoke Verification
                   </button>
                 )}
               </div>

@@ -112,15 +112,15 @@ export default function FarmerRankingsPage() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center space-x-2 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Trophy className="h-4 w-4" />
-            <span>Ranking Nacional de Agricultores</span>
+            <span>National Farmer Rankings</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Top de Contribuyentes
+            Top Contributors
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Reconocemos a los agricultores que comparten datos valiosos sobre
-            sequías, plagas y prácticas sostenibles. ¡Tu contribución puede
-            mejorar contratos y licitaciones gubernamentales!
+            We recognize farmers who share valuable data about
+            droughts, pests and sustainable practices. Your contribution can
+            improve government contracts and tenders!
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export default function FarmerRankingsPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Total Agricultores
+                  Total Farmers
                 </p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {stats.totalFarmers}
@@ -149,7 +149,7 @@ export default function FarmerRankingsPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Total Contribuciones
+                  Total Contributions
                 </p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {stats.totalContributions}
@@ -165,7 +165,7 @@ export default function FarmerRankingsPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Puntos Promedio
+                  Average Points
                 </p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {stats.avgPoints}
@@ -178,7 +178,7 @@ export default function FarmerRankingsPage() {
         {/* Filters */}
         <div className="rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-            Filtrar por Nivel
+            Filter by Level
           </h3>
           <div className="flex flex-wrap gap-2">
             <button
@@ -189,7 +189,7 @@ export default function FarmerRankingsPage() {
                   : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
               }`}
             >
-              Todos
+              All
             </button>
             {(
               [
@@ -221,17 +221,17 @@ export default function FarmerRankingsPage() {
           <div className="rounded-xl p-12 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
             <p className="text-gray-500 dark:text-gray-400">
-              Cargando rankings...
+              Loading rankings...
             </p>
           </div>
         ) : rankings.length === 0 ? (
           <div className=" rounded-xl p-12 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
             <Trophy className="h-16 w-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-              No hay agricultores en este nivel
+              No farmers at this level
             </h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Sé el primero en contribuir y alcanzar este nivel
+              Be the first to contribute and reach this level
             </p>
           </div>
         ) : (
@@ -268,9 +268,9 @@ export default function FarmerRankingsPage() {
                             )}
                             <Calendar className="h-4 w-4" />
                             <span>
-                              Desde{' '}
+                              Since{' '}
                               {new Date(farmer.created_at).toLocaleDateString(
-                                'es-MX',
+                                'en-US',
                                 { month: 'long', year: 'numeric' }
                               )}
                             </span>
@@ -298,7 +298,7 @@ export default function FarmerRankingsPage() {
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
-                              Sequías
+                              Droughts
                             </p>
                             <p className="font-semibold text-gray-900 dark:text-white">
                               {farmer.drought_reports}
@@ -312,7 +312,7 @@ export default function FarmerRankingsPage() {
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
-                              Plagas
+                              Pests
                             </p>
                             <p className="font-semibold text-gray-900 dark:text-white">
                               {farmer.pest_reports}
@@ -326,7 +326,7 @@ export default function FarmerRankingsPage() {
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
-                              Sostenible
+                              Sustainable
                             </p>
                             <p className="font-semibold text-gray-900 dark:text-white">
                               {farmer.sustainable_practices}
@@ -340,7 +340,7 @@ export default function FarmerRankingsPage() {
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
-                              Clima
+                              Weather
                             </p>
                             <p className="font-semibold text-gray-900 dark:text-white">
                               {farmer.weather_data_shared}
@@ -403,19 +403,19 @@ export default function FarmerRankingsPage() {
         {/* CTA Section */}
         <div className="mt-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white shadow-2xl">
           <h2 className="text-3xl font-bold mb-4">
-            ¿Quieres aparecer en el ranking?
+            Want to appear in the rankings?
           </h2>
           <p className="text-lg mb-6 opacity-90">
-            Únete a BloomWatch y comparte información valiosa para la comunidad
-            agrícola. Obtén mejores contratos y reconocimiento por tus
-            contribuciones.
+            Join TerraView and share valuable information for the
+            agricultural community. Get better contracts and recognition for your
+            contributions.
           </p>
           <Link
             href="/auth/register?role=agricultor"
             className="inline-flex items-center space-x-2 px-8 py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-gray-100 transition-all shadow-lg"
           >
             <Trophy className="h-5 w-5" />
-            <span>Unirse Ahora</span>
+            <span>Join Now</span>
           </Link>
         </div>
       </div>
